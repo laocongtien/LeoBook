@@ -54,7 +54,7 @@ $route_publisher  =	'home.publisher';
 						</span>
 					</div>
 				</button>
-				<div class="cartbox mxClrAft {{($item->invent < 1) ? 'ost' : ''}}">
+				<div class="cartbox mxClrAft {{($data->invent < 1) ? 'ost' : ''}}">
 					<div class="num left">
 						<input type="text" class="n left" value="1">
 						<div class="ctrlnum left">

@@ -8,9 +8,9 @@ class Book extends Model
 {
     protected $table = 'books';
 
-	protected $fillable = ['name', 'author_id', 'price','discount','invent','publishing_date','issuer_id','publisher_id','type_id','cate_id','language_id','size','cover_id','image','page','info','rate','ratecount'];
+	protected $fillable = ['name', 'author_id', 'price','discount','invent','publishing_date','issuer_id','publisher_id','type_id','cate_id','language_id','size','cover_id','image','page','info','rate','ratecount','qty_saled'];
 
-	public $timestamps = true;
+	//public $timestamps = true;
 
 	public function author() {
 		return $this->belongsTo('App\Author');
