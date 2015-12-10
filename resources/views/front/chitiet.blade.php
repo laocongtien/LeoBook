@@ -24,13 +24,13 @@ $route_publisher  =	'home.publisher';
 				<div class="name">
 					{{$data->name}}
 				</div>
-				<a href="tacgia.php" class="ath">
+				<a href="{!! route($route_author) !!}" class="ath">
 					{{ $data->author->name }}
 				</a>
 				<div class="sls">
-					{{ $data->price }}đ
+					{{ number_format($data->price,0,',','.') }}đ
 					<div>
-						{{ $data->price - $data->price * $data->discount /100 }}đ
+						{{ number_format($data->price - $data->price * $data->discount /100,0,',','.') }}đ
 					</div>
 				</div>
 			</div>
@@ -40,7 +40,7 @@ $route_publisher  =	'home.publisher';
 						<div class="star bg left"></div>
 					</div>
 					<div class="rate right">
-						99000
+						{!! number_format(99000,0,',','.') !!}
 					</div>
 				</div>
 				<button class="lkbook is-like mxClrAft">
@@ -54,7 +54,7 @@ $route_publisher  =	'home.publisher';
 						</span>
 					</div>
 				</button>
-				<div class="cartbox mxClrAft ost">
+				<div class="cartbox mxClrAft {{($item->invent < 1) ? 'ost' : ''}}">
 					<div class="num left">
 						<input type="text" class="n left" value="1">
 						<div class="ctrlnum left">
@@ -82,13 +82,13 @@ $route_publisher  =	'home.publisher';
 					<div class="dtr">
 						Ngày xuất bản
 						<span>
-							{{ $data->publishing_date }}
+							{{ date('d/m/Y',strtotime($data->publishing_date)) }}
 						</span>
 					</div>
 					<div class="dtr">
 						Ngày cập nhật
 						<span>
-							{{ $data->updated_at }}
+							{{ date('d/m/Y',strtotime($data->updated_at)) }}
 						</span>
 					</div>
 					<div class="dtr">

@@ -12,21 +12,21 @@
 				</a>
 				<div class="book_author intt is-1r">
 					Tác giả: 
-					<a href="tacgia.php" >
+					<a href="{!! route($route_author) !!}" >
 						{{ $item->author->name }}
 					</a>
 				</div>
 				<div class="intt li">
 					NXB: 
-						<a href="nxb.php">{!! $item->publisher->name!!}</a>
+						<a href="{!! route($route_publisher) !!}">{!! $item->publisher->name!!}</a>
 				</div>
 				<div class="sal">
 					<div class="gri">
 						<div class="old">
-							{!! $item->price !!}đ
+							{{ number_format($item->price,0,',','.') }}đ
 						</div>
 						<div class="new">
-							{!! $item->price - $item->price * $item->discount /100 !!}đ
+							{{ number_format($item->price - $item->price * $item->discount /100,0,',','.') }}đ
 						</div>
 					</div>
 					<div class="li">
