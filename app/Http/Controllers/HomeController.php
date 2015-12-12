@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-         $bestsellers = book::orderBy('qty_saled','DESC')->take(10)->get();
+         $bestsellers = book::orderBy('qty_saled','DESC')->take(10)->paginate(10);
         return view('front.xemthem',[
             'data' =>  $bestsellers,
              'name' =>  'Bán chạy nhất'
