@@ -1,7 +1,7 @@
 @extends('front.layouts.base')
 
 @section('head.title')
-Công ty phát hành 
+Tác giả
 @stop
 
 @section('body.content')
@@ -12,39 +12,33 @@ Công ty phát hành
 			</div>
 
 			<div class="athslider">
-				<div class="slider">
-					<?php
-						$author_word = array("a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
-						foreach ($author_word as $value) :
-					?>
-					<div class="nav">
-			      <div class="author_word is-menu" data-set="<?php echo $value; ?>"data-link="word">
-			      	<?php echo $value; ?>
-			      </div>
-			      <div class="author_list">
-		        	<div class="author_name is-menu" data-link="pp">
-		        		Công Ty TNHH AMVN
-		        	</div>
-		        	<div class="author_name is-menu" data-link="pp">
-		        		Bách Việt Book
-		        	</div>
-		        	<div class="author_name is-menu" data-link="pp">
-		        		Cổ Nguyệt Books
-		        	</div>
-			      </div>
-			    </div>
-					<?php endforeach; ?>
-				</div>
+				<div class="slider">	
+					@foreach ($author_word as $value)
+						<div class="nav">
+				     	<div class="author_word is-menu" data-set="{{$value->alpha}}"data-link="word">
+				      	{{$value->alpha}}
+				      	</div>
+				      	<div class="author_list">
+					      	<?php $author = DB::table('authors')->where(DB::raw('substr(name,1,1)'),$value->alpha)->get();?>
+					      	@foreach ($author as $item)
+					        	<div class="author_name is-menu" data-link="pp">
+					        		{{$item->name}}
+					        	</div>
+					        @endforeach		
+			        	</div>
+				      	</div>
+			      	@endforeach
+			    </div>					
+				
 			</div>
 		    <div class="scroll_word">
-				<?php
-					$word = array("a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
-					foreach ($word as $value) :
-				?>
-				<div class="word is-menu"  data-set="<?php echo $value; ?>" data-link="word">
-					<?php echo $value; ?>
+				
+				@foreach ($author_word as $value)
+				
+				<div class="word is-menu"  data-set="{{$value->alpha}}" data-link="word">
+					{{ $value->alpha }}
 				</div>
-				<?php endforeach; ?>
+				@endforeach
 		    </div>
 		</div>
 		<div class="authorbox right">
@@ -53,7 +47,7 @@ Công ty phát hành
 				<div class="filterbox">
 					<div class="filterbar mxClrAft">
 						<div class="namebox">
-							Danh sách Công ty phát hành
+							Danh sách tác giả
 						</div>
 						<div class="fil slfilter right">
 							<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
@@ -68,23 +62,21 @@ Công ty phát hành
 							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
 							<div class="athn">
 								<div>
-									Công Ty TNHH AMVN
+									Ploy
 								</div>
 							</div>
 						</div>
-						<?php   for ($i = 1; $i < 9;$i++): ?>
-								<div class="athitem">
-									<div class="log">
-										<img src="style/images/temp/cty/cty<?php echo $i; ?>.png" alt="mybook">
-									</div>
-									<img src="style/images/theme/logo-gray.png" alt="" class="nava">
-									<div class="athn lo">
-										<div>
-											Công Ty TNHH AMVN
-										</div>
+						<?php for ($i = 1; $i < 9;$i++): ?>
+							<div class="athitem">
+								<div class="ava" style="background-image: url(style/images/temp/athava.jpg)"></div>
+								<img src="style/images/theme/logo-gray.png" alt="" class="nava">
+								<div class="athn">
+									<div>
+										Ploy
 									</div>
 								</div>
-						<?php endfor ?>
+							</div>
+						<?php endfor; ?>
 					</div>
 					<div class="page_number">
 		        <div class="page_num">
@@ -106,7 +98,7 @@ Công ty phát hành
 				<div class="filterbox">
 					<div class="filterbar mxClrAft">
 						<div class="namebox">
-							Danh sách Công ty phát hành
+							Danh sách tác giả 
 							<span>
 								#A
 							</span>
@@ -120,7 +112,7 @@ Công ty phát hành
 							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
 							<div class="athn">
 								<div>
-									Công Ty TNHH AMVN
+									Ploy
 								</div>
 							</div>
 						</div>
@@ -143,51 +135,34 @@ Công ty phát hành
 			<!--Từng tác giả-->
 			<div class="is-tab" data-link="pp">
 				<div class="prfath mxClrAft">
-					<div class="log">
-						<img src="style/images/temp/cty/cty1.png">
-					</div>
+					<div class="ava" style="background-image: url(style/images/temp/athava.jpg)"></div>
 					<div class="nava">
 						<img src="style/images/theme/logo-gray.png" alt="">
 					</div>
 					<div class="prf">
 						<div class="na">
-							Công Ty TNHH AMVN
+							Gào
 						</div>
 						<div class="int">
-							Trụ sở chính:
+							Tên thật:
 							<span>
-								Tầng 21, Capital Tower, 109 Trần Hưng Đạo, Q. Hoàn Kiếm,Hà Nội
+								Vũ Phương Thanh
 							</span>
 						</div>
 						<div class="int">
-							Số điện thoại: 
+							Tuổi:
 							<span>
-								(04) 38789800
+								27
 							</span>
 						</div>
-						<div class="int">
-							Fax:
-							<span>
-								(04) 36340781
-							</span>
-						</div>
-						<div class="int">
-							Email:
-							<span>
-								 sales@amvietnam.com
-							</span>
-						</div>
-						<div class="int">
-							Website:
-							<span>
-								http://amvietnam.com
-							</span>
+						<div class="trig is-3r">
+							Gọi Gào thôi là được rồi. Gọi là nhà văn có lẽ sẽ làm nhiều người tức giận. Hotgirl thì tôi không dám nhận và cũng chẳng thích nhận để làm gì!
 						</div>
 					</div>
 				</div>
 				<div class="listbook wrap">
 					<div class="first_line">
-						<a href="xemthem.php" class="list_title left">Sách của AMVN</a>
+						<a href="xemthem.php" class="list_title left">Sách của Gào</a>
 						<a href="xemthem.php" class="more right">
 							Xem tất cả
 							<span class="fa fa-angle-double-right"></span>
@@ -257,9 +232,8 @@ Công ty phát hành
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over is-over-check">
+												<button class="over">
 													<span class="fa fa-bullhorn"></span>
-													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>

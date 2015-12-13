@@ -18,6 +18,7 @@ Trang xem thêm sản phẩm
 	<div class="contain detai">
 		<!--Này là thống kê lúc click xem thêm-->
 		<div class="ltbanner">
+
 			{{ $name or 'Default' }}
 		</div>
 		<div class="filterbox wrap is-box">
@@ -28,7 +29,7 @@ Trang xem thêm sản phẩm
 							Trang chủ
 							<span class="fa fa-angle-double-right"></span>
 						</a>
-						<a class="cat">
+						<a  class="cat">
 							{{ $name or 'Default' }}
 							<span class="fa fa-angle-double-right"></span>
 						</a>
@@ -37,8 +38,8 @@ Trang xem thêm sản phẩm
 				</div>
 				<div class="fil slfilter right">
 					<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
-						<option value="">Sách mới</option>
-						<option value="">Sắp xếp theo: A - Z</option>
+						<option value="Sách mới">Sách mới</option>
+						<option value="a-z">Sắp xếp theo: A - Z</option>
 						<option value="">Sắp xếp theo: Z - A</option>
 						<option value="">Giá: cao đến thấp</option>
 						<option value="">Giá: thấp đến cao</option>

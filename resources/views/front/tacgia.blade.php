@@ -13,38 +13,29 @@ Tác giả
 
 			<div class="athslider">
 				<div class="slider">
-					<?php
-						$author_word = array("a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
-						foreach ($author_word as $value) :
-					?>
+					@foreach ($author_word as $value)
 					<div class="nav">
-			      <div class="author_word is-menu" data-set="<?php echo $value; ?>"data-link="word">
-			      	<?php echo $value; ?>
+			      <div class="author_word is-menu" data-set="{{$value->alpha}}"data-link="word">
+			      	{{$value->alpha}}
 			      </div>
 			      <div class="author_list">
-		        	<div class="author_name is-menu" data-link="pp">
-		        		An Yên
-		        	</div>
-		        	<div class="author_name is-menu" data-link="pp">
-		        		An Dĩ Mạch
-		        	</div>
-		        	<div class="author_name is-menu" data-link="pp">
-		        		An Lạc Phong
-		        	</div>
+				    <?php $author = DB::table('authors')->where(DB::raw('substr(name,1,1)'),$value->alpha)->get();?>
+				    @foreach ($author as $item)
+			        	<div class="author_name is-menu" data-link="pp">
+			        		{{$item->name}}
+			        	</div>
+		        	@endforeach
 			      </div>
 			    </div>
-					<?php endforeach; ?>
+					@endforeach
 				</div>
 			</div>
 		    <div class="scroll_word">
-				<?php
-					$word = array("a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
-					foreach ($word as $value) :
-				?>
-				<div class="word is-menu"  data-set="<?php echo $value; ?>" data-link="word">
-					<?php echo $value; ?>
+				@foreach ($author_word as $value)
+				<div class="word is-menu"  data-set="{{ $value->alpha }}" data-link="word">
+					{{ $value->alpha }}
 				</div>
-				<?php endforeach; ?>
+				@endforeach
 		    </div>
 		</div>
 		<div class="authorbox right">
@@ -224,7 +215,7 @@ Tác giả
 														5%
 													</span>
 											</div>
-											<div class="cartbox mxClrAft">
+											<div class="cartbox mxClrAft ost">
 												<div class="num left">
 													<input type="text" class="n left" value="1">
 													<div class="ctrlnum left">
@@ -238,8 +229,9 @@ Tác giả
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>

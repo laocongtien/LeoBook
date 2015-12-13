@@ -29,7 +29,7 @@
 			<div class="old intt">
 				Giá bìa: 
 					<span>
-						{{ number_format($item->price,0,',','.') }}
+						{{ number_format($item->price,0,',','.') }}đ
 					</span>
 			</div>
 			<div class="new intt">
@@ -44,25 +44,7 @@
 						{!! $item->discount !!}%
 					</span>
 			</div>
-			<div class="cartbox mxClrAft {{($item->invent < 1) ? 'ost' : ''}}">
-				<div class="num left">
-					<input type="text" class="n left" value="1">
-					<div class="ctrlnum left">
-						<div class="fa fa-angle-up is-up"></div>
-						<div class="fa fa-angle-down is-down"></div>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<button class="addcart left">
-					<span class="fa fa-opencart"></span>
-					<span class="fa fa-check"></span>
-					THÊM VÀO GIỎ
-				</button>
-				<button class="over">
-					<span class="fa fa-bullhorn"></span>
-					BÁO KHI CÓ HÀNG
-				</button>
-			</div>
+			@include('front.partials.cartbox')	
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -19,7 +19,7 @@ $route_checkout   =	'home.checkout';
 $route_customer   =	'home.customer';
 $route_cate   =	'home.cate';
 ?>
-	<form name="checkout" class="contain paypage mxClrAft">
+	<div class="contain paypage mxClrAft">
 		<div class="ltbanner">
 			Thanh toán đơn hàng
 		</div>
@@ -29,10 +29,11 @@ $route_cate   =	'home.cate';
 					Sản phẩm trong giỏ hàng (5)
 				</div>
 				<div class="bl">
-					@foreach($content as $item)
-						<div class="cart-item mxClrAft">
-							<a href="{{ route('home.detail' , $item->id) }}" class="cv left" id="{{ $item->rowid }}">
-								<img src="style/images/temp/book{{ $item['options']['image'] }}.jpg" alt="mybook">
+					
+						@foreach($content as $item)
+						<div class="cart-item mxClrAft" id="{{ $item->rowid }}">
+							<a href="{{ route('home.detail' , $item->id) }}" class="cv left">
+								<img src="{!!asset('')!!}style/images/temp/{{ $item['options']['image'] }}.jpg" alt="mybook">
 							</a>
 							<div class="dtb left">
 								<a href="{{ route('home.detail' , $item->id) }}" class="ttb">
@@ -42,12 +43,22 @@ $route_cate   =	'home.cate';
 									Xóa sản phẩm
 								</div>
 							</div>
-							@include('front.partials.cartbox')	
+							<div class="cartbox mxClrAft left">
+								<div class="num">
+									<input type="text" class="n left" value="{{ $item->qty }}">
+									<div class="ctrlnum left">
+										<div class="fa fa-angle-up is-up"></div>
+										<div class="fa fa-angle-down is-down"></div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
 							<div class="br left">
 								{{ number_format($item->price,0,',','.') }}đ
 							</div>
 						</div>
-					@endforeach
+						@endforeach
+					
 				</div>
 			</div>
 			<div class="left bk">
@@ -96,18 +107,10 @@ $route_cate   =	'home.cate';
 							Sử dụng mã giảm giá
 						</div>
 						<div class="is-sh">
-							<div class="code mxClrAft">
-								<input type="text" class="ip is-ipcode is-ip-code" placeholder="Nhập mã giảm giá">
-								<div class="txtcode">
-									Dùng mã giảm 20.000 đ
-								</div>
-								<div class="sp is-ckcode">
-									Đồng ý
-								</div>
-								<div class="sp is-cancelcode">
-									Hủy
-								</div>
-							</div>
+							<form action="" name="ma-giam-gia" class="code mxClrAft">
+								<input type="text" class="ip" placeholder="Nhập mã giảm giá">
+								<input type="submit" class="sp" value="Đồng ý">
+							</form>
 						</div>
 					</div>
 					<div class="prib">
@@ -115,21 +118,13 @@ $route_cate   =	'home.cate';
 							Sử dụng Xu để giảm giá
 						</div>
 						<div class="is-sh">
-							<div class="code mxClrAft">
+							<form action="" name="xu-giam-gia" class="code mxClrAft">
 								<div class="t">
 									Số lượng Xu có thể sử dụng:
 								</div>
-								<input type="text" class="ip is-ipcode is-ip-xu" placeholder="Nhập số lượng xu">
-								<div class="txtcode">
-									Dùng xu giảm 10.000đ
-								</div>
-								<div class="sp is-ckcode">
-									Đồng ý
-								</div>
-								<div class="sp is-cancelcode">
-									Hủy
-								</div>
-							</div>
+								<input type="text" class="ip" placeholder="Nhập số lượng xu">
+								<input type="submit" class="sp" value="Đồng ý">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -192,5 +187,5 @@ $route_cate   =	'home.cate';
 				Hoàn thành thanh toán
 			</div>
 		</div>
-	</form>
+	</div>
 @stop

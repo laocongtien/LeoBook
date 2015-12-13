@@ -19,31 +19,32 @@ $route_checkout   =	'home.checkout';
 $route_customer   =	'home.customer';
 $route_cate   =	'home.cate';
 ?>
+
 	<div class="contain wrap mxClrAft chitietsach">
 		<div class="little_detail">
 			<div class="ava">
-				<img src="{!!asset('')!!}style/images/temp/{{ $item->image}}.jpg" alt="">
+				<img src="{!!asset('')!!}style/images/temp/{{ $data->image}}.jpg" alt="">
 			</div>
 			<div class="dtb">
 				<div class="name">
-					{{ $item->name }}
+					{{$data->name}}
 				</div>
-				<a href="tacgia.php" class="ath">
-					{{ $item->author->name }}
+				<a href="{!! route($route_author) !!}" class="ath">
+					{{ $data->author->name }}
 				</a>
 				<div class="sls">
-					{{ number_format($item->price,0,',','.') }}đ
+					{{ number_format($data->price,0,',','.') }}đ
 					<div>
-						{{ number_format($item->price - $item->price * $item->discount /100,0,',','.') }}đ
+						{{ number_format($data->price - $data->price * $data->discount /100,0,',','.') }}đ
 					</div>
 				</div>
 			</div>
 			<div class="btb">
-				<div class="starbox is-ratebook mxClrAft" num="3.5">
-					<div class="nonestar bg left is-rate">
-						<div class="star bg left is-percent"></div>
+				<div class="starbox mxClrAft">
+					<div class="nonestar bg left">
+						<div class="star bg left"></div>
 					</div>
-					<div class="rate right is-numrate">
+					<div class="rate right">
 						{!! number_format(99000,0,',','.') !!}
 					</div>
 				</div>
@@ -58,7 +59,39 @@ $route_cate   =	'home.cate';
 						</span>
 					</div>
 				</button>
-				@include('front.partials.cartbox')	
+				<?php $qty = 1; ?>
+				<div class="cartbox mxClrAft {{($data->invent < 1) ? 'ost' : ''}}
+					@if (Cart::count() != 0)
+					@foreach(Cart::content() as $cart)
+					<?php 
+					if ($cart->id == $data->id) {
+						$qty = $cart->qty;
+						echo 'ck';
+						break;
+					}else{ echo '';}
+					?>
+					@endforeach
+					@endif
+				">
+					<div class="num left">
+						<input type="text" class="n left" value="{{$qty }}">
+						<input type="hidden" class="b-id" value="{{ $data->id }}">
+						<div class="ctrlnum left">
+							<div class="fa fa-angle-up is-up"></div>
+							<div class="fa fa-angle-down is-down"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<button class="addcart left">
+						<span class="fa fa-opencart"></span>
+						<span class="fa fa-check"></span>
+						THÊM VÀO GIỎ
+					</button>
+					<button class="over">
+						<span class="fa fa-bullhorn"></span>
+						BÁO KHI CÓ HÀNG
+					</button>
+				</div>
 			</div>
 			<div class="detail">
 				<div class="title">
@@ -68,56 +101,56 @@ $route_cate   =	'home.cate';
 					<div class="dtr">
 						Ngày xuất bản
 						<span>
-							{{ date('d/m/Y',strtotime($item->publishing_date)) }}
+							{{ date('d/m/Y',strtotime($data->publishing_date)) }}
 						</span>
 					</div>
 					<div class="dtr">
 						Ngày cập nhật
 						<span>
-							{{ date('d/m/Y',strtotime($item->updated_at)) }}
+							{{ date('d/m/Y',strtotime($data->updated_at)) }}
 						</span>
 					</div>
 					<div class="dtr">
 						Công ty phát hành
 						<span>
-							{{ $item->issuer->name }}
+							{{ $data->issuer->name }}
 						</span>
 					</div>
 					<div class="dtr">
 						Nhà Xuất bản
 						<span>
-							{{ $item->publisher->name }}
+							{{ $data->publisher->name }}
 						</span>
 					</div>
 					<div class="dtr">
 						Thể loại
 						<span>
-							{{ $item->type->name }}
+							{{ $data->type->name }}
 						</span>
 					</div>
 					<div class="dtr">
 						Ngôn ngữ
 						<span>
-							{{ $item->language->value }}
+							{{ $data->language->value }}
 						</span>
 					</div>
 					<div class="dtr"></div>
 					<div class="dtr">
 						Số trang
 						<span>
-							{{ $item->page }}
+							{{ $data->page }}
 						</span>
 					</div>
 					<div class="dtr">
 						Khổ sách
 						<span>
-							{{ $item->size }}
+							{{ $data->size }}
 						</span>
 					</div>
 					<div class="dtr">
 						Kiểu sách
 						<span>
-							{{ $item->cover->value }}
+							{{ $data->cover->value }}
 						</span>
 					</div>
 				</div>
@@ -138,7 +171,7 @@ $route_cate   =	'home.cate';
 			<div class="is-tab tab tab1" data-link="gioithieu">
 				<div class="txt_gioithieu">
 					<div class="ndchinh">
-						{!! $item->info !!}
+						{{ $data->info }}
 					</div>
 					<div class="seemore">
 						Xem thêm
@@ -207,7 +240,7 @@ $route_cate   =	'home.cate';
 				</div>
 				<div class="comment_box">
 					<div class="cmt_item">
-						<a href="#" class="prof_pic left" style="background-image: url(style/images/temp/prf.jpg"></a>
+						<a href="#" class="prof_pic left" style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg"></a>
 						<div class="cmt_item_txt right">
 							<div class="ppname mxClrAft">
 								<a href="#" class="name left">Kita</a>
@@ -232,7 +265,7 @@ $route_cate   =	'home.cate';
 						<div class="clear"></div>
 					</div>
 					<div class="cmt_item">
-						<a href="#" class="prof_pic left" style="background-image: url(style/images/temp/prf.jpg"></a>
+						<a href="#" class="prof_pic left" style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg"></a>
 						<div class="cmt_item_txt right">
 							<div class="ppname mxClrAft">
 								<a href="#" class="name left">Kita</a>
@@ -273,7 +306,7 @@ $route_cate   =	'home.cate';
 								Người đọc đã mua
 							</div>
 							<div class="mn is-is-menu" data-link="03">
-								Sách tại Tiểu thuyết
+								Sách cùng thể loại
 							</div>
 						</div>
 						<div class="fil slfilter right">
@@ -328,13 +361,13 @@ $route_cate   =	'home.cate';
 									<div class="book_item">
 										<div class="book_item_hover">
 											<div class="book_cover">
-												<a href="{{ route('home.detail' , $item->id) }}">
-													<img src="style/images/temp/book<?php echo $i; ?>.jpg" alt="mybook">
+												<a href="xemsachchitiet.php">
+													<img src="{!!asset('')!!}style/images/temp/book<?php echo $i; ?>.jpg" alt="mybook">
 												</a>
 											</div>
 											<div class="smdt">
 												<div class="dt">
-													<a href="{{ route('home.detail' , $item->id) }}" class="book_title is-2r">
+													<a href="xemsachchitiet.php" class="book_title is-2r">
 														Cô đơn cũng không khóc
 													</a>
 													<div class="book_author intt">
@@ -376,7 +409,7 @@ $route_cate   =	'home.cate';
 													</div>
 												</div>
 												<div class="cartbox mxClrAft">
-													<div class="num left">
+													<div class="num">
 														<input type="text" class="n left" value="1">
 														<div class="ctrlnum left">
 															<div class="fa fa-angle-up is-up"></div>
@@ -384,14 +417,13 @@ $route_cate   =	'home.cate';
 														</div>
 														<div class="clear"></div>
 													</div>
-													<button class="addcart left">
+													<button class="addcart">
 														<span class="fa fa-opencart"></span>
 														<span class="fa fa-check"></span>
 														THÊM VÀO GIỎ
 													</button>
-													<button class="over is-over-check">
+													<button class="over">
 														<span class="fa fa-bullhorn"></span>
-														<span class="fa fa-check"></span>
 														BÁO KHI CÓ HÀNG
 													</button>
 												</div>

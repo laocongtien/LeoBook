@@ -105,7 +105,25 @@ Danh mục sách
 													Tự tin lên nào! Đừng khóc nữa ... Là những câu thần chú của tuổi trẻ khi tôi lấy hết can đảm rời xa P. Chàng trai ấy vẫn sống mãi trong tâm khảm của tôi, bởi những gì dang dở không có kết thúc, thì mãi vẫn là thứ mà người ta thường nghĩ đến, lúc không còn nơi bấu víu! Tôi mãi coi P là người tri kỷ của mình, dù P đã là thiên sứ! P đã rời khỏi thế gian này, nhưng P vẫn ở trong lòng tôi, như một ký ức bất tử. Đúng là, những gì đẹp sẽ còn sống mãi! Với tôi, P còn lớn hơn tình yêu, bởi chúng tôi đã từng có nhiều năm là bạn thân dưới một mái trường! Bước qua tan vỡ với P thật sâu lắng, day dứt và cả sự biết ơn! Bởi nếu cuộc đời này không gặp P, tôi sẽ không thể nhận ra giá trị của mình và gìn giữ nó! Để một ngày trưởng thành hơn, tôi gặp M trong tâm trạng nhớ cố hương da diết. Thứ duy nhất ở M cứ ở lì trong tim tôi không chịu rời đi, chính là ánh mắt! Ấm áp và an yên vô cùng. M, P đều vẫn còn lại trong tôi, dù nhiều thứ đã bỏ tôi đi mãi...
 											</div>
 										</div>
-										@include('front.partials.cartbox')	
+										<div class="cartbox mxClrAft">
+											<div class="num">
+												<input type="text" class="n left" value="1">
+												<div class="ctrlnum left">
+													<div class="fa fa-angle-up is-up"></div>
+													<div class="fa fa-angle-down is-down"></div>
+												</div>
+												<div class="clear"></div>
+											</div>
+											<button class="addcart">
+												<span class="fa fa-opencart"></span>
+												<span class="fa fa-check"></span>
+												THÊM VÀO GIỎ
+											</button>
+											<button class="over">
+												<span class="fa fa-bullhorn"></span>
+												BÁO KHI CÓ HÀNG
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -177,7 +195,21 @@ Danh mục sách
 													Tự tin lên nào! Đừng khóc nữa ... Là những câu thần chú của tuổi trẻ khi tôi lấy hết can đảm rời xa P. Chàng trai ấy vẫn sống mãi trong tâm khảm của tôi, bởi những gì dang dở không có kết thúc, thì mãi vẫn là thứ mà người ta thường nghĩ đến, lúc không còn nơi bấu víu! Tôi mãi coi P là người tri kỷ của mình, dù P đã là thiên sứ! P đã rời khỏi thế gian này, nhưng P vẫn ở trong lòng tôi, như một ký ức bất tử. Đúng là, những gì đẹp sẽ còn sống mãi! Với tôi, P còn lớn hơn tình yêu, bởi chúng tôi đã từng có nhiều năm là bạn thân dưới một mái trường! Bước qua tan vỡ với P thật sâu lắng, day dứt và cả sự biết ơn! Bởi nếu cuộc đời này không gặp P, tôi sẽ không thể nhận ra giá trị của mình và gìn giữ nó! Để một ngày trưởng thành hơn, tôi gặp M trong tâm trạng nhớ cố hương da diết. Thứ duy nhất ở M cứ ở lì trong tim tôi không chịu rời đi, chính là ánh mắt! Ấm áp và an yên vô cùng. M, P đều vẫn còn lại trong tôi, dù nhiều thứ đã bỏ tôi đi mãi...
 											</div>
 										</div>
-										@include('front.partials.cartbox')	
+										<div class="cartbox mxClrAft">
+											<div class="num">
+												<input type="text" class="n left" value="1">
+												<div class="ctrlnum left">
+													<div class="fa fa-angle-up is-up"></div>
+													<div class="fa fa-angle-down is-down"></div>
+												</div>
+												<div class="clear"></div>
+											</div>
+											<button class="addcart">
+												<span class="fa fa-opencart"></span>
+												<span class="fa fa-check"></span>
+												THÊM VÀO GIỎ
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -249,7 +281,25 @@ Danh mục sách
 													Tự tin lên nào! Đừng khóc nữa ... Là những câu thần chú của tuổi trẻ khi tôi lấy hết can đảm rời xa P. Chàng trai ấy vẫn sống mãi trong tâm khảm của tôi, bởi những gì dang dở không có kết thúc, thì mãi vẫn là thứ mà người ta thường nghĩ đến, lúc không còn nơi bấu víu! Tôi mãi coi P là người tri kỷ của mình, dù P đã là thiên sứ! P đã rời khỏi thế gian này, nhưng P vẫn ở trong lòng tôi, như một ký ức bất tử. Đúng là, những gì đẹp sẽ còn sống mãi! Với tôi, P còn lớn hơn tình yêu, bởi chúng tôi đã từng có nhiều năm là bạn thân dưới một mái trường! Bước qua tan vỡ với P thật sâu lắng, day dứt và cả sự biết ơn! Bởi nếu cuộc đời này không gặp P, tôi sẽ không thể nhận ra giá trị của mình và gìn giữ nó! Để một ngày trưởng thành hơn, tôi gặp M trong tâm trạng nhớ cố hương da diết. Thứ duy nhất ở M cứ ở lì trong tim tôi không chịu rời đi, chính là ánh mắt! Ấm áp và an yên vô cùng. M, P đều vẫn còn lại trong tôi, dù nhiều thứ đã bỏ tôi đi mãi...
 											</div>
 										</div>
-										@include('front.partials.cartbox')	
+										<div class="cartbox mxClrAft">
+											<div class="num">
+												<input type="text" class="n left" value="1">
+												<div class="ctrlnum left">
+													<div class="fa fa-angle-up is-up"></div>
+													<div class="fa fa-angle-down is-down"></div>
+												</div>
+												<div class="clear"></div>
+											</div>
+											<button class="addcart">
+												<span class="fa fa-opencart"></span>
+												<span class="fa fa-check"></span>
+												THÊM VÀO GIỎ
+											</button>
+											<button class="over">
+												<span class="fa fa-bullhorn"></span>
+												BÁO KHI CÓ HÀNG
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -321,7 +371,25 @@ Danh mục sách
 													Tự tin lên nào! Đừng khóc nữa ... Là những câu thần chú của tuổi trẻ khi tôi lấy hết can đảm rời xa P. Chàng trai ấy vẫn sống mãi trong tâm khảm của tôi, bởi những gì dang dở không có kết thúc, thì mãi vẫn là thứ mà người ta thường nghĩ đến, lúc không còn nơi bấu víu! Tôi mãi coi P là người tri kỷ của mình, dù P đã là thiên sứ! P đã rời khỏi thế gian này, nhưng P vẫn ở trong lòng tôi, như một ký ức bất tử. Đúng là, những gì đẹp sẽ còn sống mãi! Với tôi, P còn lớn hơn tình yêu, bởi chúng tôi đã từng có nhiều năm là bạn thân dưới một mái trường! Bước qua tan vỡ với P thật sâu lắng, day dứt và cả sự biết ơn! Bởi nếu cuộc đời này không gặp P, tôi sẽ không thể nhận ra giá trị của mình và gìn giữ nó! Để một ngày trưởng thành hơn, tôi gặp M trong tâm trạng nhớ cố hương da diết. Thứ duy nhất ở M cứ ở lì trong tim tôi không chịu rời đi, chính là ánh mắt! Ấm áp và an yên vô cùng. M, P đều vẫn còn lại trong tôi, dù nhiều thứ đã bỏ tôi đi mãi...
 											</div>
 										</div>
-										@include('front.partials.cartbox')	
+										<div class="cartbox mxClrAft">
+											<div class="num">
+												<input type="text" class="n left" value="1">
+												<div class="ctrlnum left">
+													<div class="fa fa-angle-up is-up"></div>
+													<div class="fa fa-angle-down is-down"></div>
+												</div>
+												<div class="clear"></div>
+											</div>
+											<button class="addcart">
+												<span class="fa fa-opencart"></span>
+												<span class="fa fa-check"></span>
+												THÊM VÀO GIỎ
+											</button>
+											<button class="over">
+												<span class="fa fa-bullhorn"></span>
+												BÁO KHI CÓ HÀNG
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>

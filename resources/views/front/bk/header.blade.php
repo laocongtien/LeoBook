@@ -39,11 +39,11 @@ $route_cate   =	'home.cate';
 	<div class="pop is-pop" data-pop="hoanthanh">
 		<div class="head">
 			Thông báo
-			<a href="{!!asset('')!!}" class="fa fa-close is-closepop"></a>
+			<a href="{!!asset(' ')!!}" class="fa fa-close is-closepop"></a>
 		</div>
 		<div class="t">
 			Đã hoàn tất giao dịch. Cảm ơn quý khách đã sử dụng dịch vụ của Leobook.com.
-			<a href="{!!asset('')!!}">
+			<a href="{!!asset(' ')!!}">
 				Quay về trang chủ.
 			</a>
 		</div>
@@ -51,7 +51,7 @@ $route_cate   =	'home.cate';
 	<div class="pop is-pop" data-pop="editadr">
 		<div class="head">
 			Thay đổi địa chỉ giao hàng
-			<div class="fa fa-close is-closepop"></div>
+			<a class="fa fa-close is-closepop"></a>
 		</div>
 		<form class="bd">
 			<div class="b">
@@ -91,28 +91,59 @@ $route_cate   =	'home.cate';
 				</div>
 					<div class="adr big">
 						<div class="le">
-							Thành phố
+							Quốc Gia
 						</div>
 						<div class="ri">
-							<select name="thanhpho" class="is-sl" value="Thành Phố">
-								<option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-								<option value="Hà Nội">Hà Nội</option>
-								<option value="Đà nẵng">Đà nẵng</option>
-								<option value="Huế">Huế</option>
+							<select name="quocgia" class="is-sl" value="Quốc Gia">
+								<option value="">Việt Nam</option>
+								<option value="">Malaysia</option>
+								<option value="">Singapore</option>
+								<option value="">Trung Quốc</option>
 							</select>
 						</div>
 					</div>
 				<div class="adb mxClrAft">
 					<div class="adr">
 						<div class="le">
+							Thành phố
+						</div>
+						<div class="ri">
+							<select name="thanhpho" class="is-sl" value="Thành Phố">
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+							</select>
+						</div>
+					</div>
+					<div class="adr">
+						<div class="le">
+							ZipCode
+						</div>
+						<input type="text" class="ri" value="7000">
+					</div>
+					<div class="adr">
+						<div class="le">
 							Quận/ Huyện
 						</div>
 						<div class="ri">
 							<select name="quan" class="is-sl" value="Quận">
-								<option value="Bình Thạnh">Bình Thạnh</option>
-								<option value="Bình Tân">Bình Tân</option>
-								<option value="Tân Bình">Tân Bình</option>
-								<option value="Tân Phú">Tân Phú</option>
+								<option value="">Bình Thạnh</option>
+								<option value="">Bình Tân</option>
+								<option value="">Tân Bình</option>
+								<option value="">Tân Phú</option>
 							</select>
 						</div>
 					</div>
@@ -122,19 +153,17 @@ $route_cate   =	'home.cate';
 						</div>
 						<div class="ri">
 							<select name="xa" class="is-sl" value="xa">
-								<option value="Phường 1">Phường 1</option>
-								<option value="Phường 2">Phường 2</option>
-								<option value="Phường 3">Phường 3</option>
-								<option value="Phường 4">Phường 4</option>
+								<option value="">Phường 1</option>
+								<option value="">Phường 2</option>
+								<option value="">Phường 3</option>
+								<option value="">Phường 4</option>
 							</select>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="ctrl mxClrAft">
-				<button class="submit is-closepop right">
-					Cập nhật
-				</button>
+				<input type="submit" class="submit is-closepop right" value="Cập nhật">
 				<div class="cancel is-closepop right">
 					Hủy
 				</div>
@@ -144,7 +173,7 @@ $route_cate   =	'home.cate';
 	<div class="pop is-pop" data-pop="editprf">
 		<div class="head">
 			Chỉnh sửa thông tin liên hệ
-			<div class="fa fa-close is-closepop"></div>
+			<a class="fa fa-close is-closepop"></a>
 		</div>
 		<form class="bd">
 			<div class="b">
@@ -188,9 +217,7 @@ $route_cate   =	'home.cate';
 				</div>
 			</div>
 			<div class="ctrl mxClrAft">
-				<button class="submit is-closepop right">
-					Cập nhật
-				</button>
+				<input type="submit" class="submit is-closepop right" value="Cập nhật">
 				<div class="cancel is-closepop right">
 					Hủy
 				</div>
@@ -200,7 +227,7 @@ $route_cate   =	'home.cate';
 	<div class="pop is-pop" data-pop="addadress">
 		<div class="head">
 			Thêm địa chỉ giao hàng
-			<div class="fa fa-close is-closepop"></div>
+			<a class="fa fa-close is-closepop"></a>
 		</div>
 		<form class="bd">
 			<div class="b">
@@ -223,28 +250,59 @@ $route_cate   =	'home.cate';
 				</div>
 					<div class="adr big">
 						<div class="le">
-							Thành phố
+							Quốc Gia
 						</div>
 						<div class="ri">
-							<select name="thanhpho" class="is-sl" value="Thành Phố">
-								<option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-								<option value="Hà Nội">Hà Nội</option>
-								<option value="Đà nẵng">Đà nẵng</option>
-								<option value="Huế">Huế</option>
+							<select name="quocgia" class="is-sl" value="Quốc Gia">
+								<option value="">Việt Nam</option>
+								<option value="">Malaysia</option>
+								<option value="">Singapore</option>
+								<option value="">Trung Quốc</option>
 							</select>
 						</div>
 					</div>
 				<div class="adb mxClrAft">
 					<div class="adr">
 						<div class="le">
+							Thành phố
+						</div>
+						<div class="ri">
+							<select name="thanhpho" class="is-sl" value="Thành Phố">
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+							</select>
+						</div>
+					</div>
+					<div class="adr">
+						<div class="le">
+							ZipCode
+						</div>
+						<input type="text" class="ri" value="7000">
+					</div>
+					<div class="adr">
+						<div class="le">
 							Quận/ Huyện
 						</div>
 						<div class="ri">
 							<select name="quan" class="is-sl" value="Quận">
-								<option value="Bình Thạnh">Bình Thạnh</option>
-								<option value="Bình Tân">Bình Tân</option>
-								<option value="Tân Bình">Tân Bình</option>
-								<option value="Tân Phú">Tân Phú</option>
+								<option value="">Bình Thạnh</option>
+								<option value="">Bình Tân</option>
+								<option value="">Tân Bình</option>
+								<option value="">Tân Phú</option>
 							</select>
 						</div>
 					</div>
@@ -254,19 +312,17 @@ $route_cate   =	'home.cate';
 						</div>
 						<div class="ri">
 							<select name="xa" class="is-sl" value="xa">
-								<option value="Phường 1">Phường 1</option>
-								<option value="Phường 2">Phường 2</option>
-								<option value="Phường 3">Phường 3</option>
-								<option value="Phường 4">Phường 4</option>
+								<option value="">Phường 1</option>
+								<option value="">Phường 2</option>
+								<option value="">Phường 3</option>
+								<option value="">Phường 4</option>
 							</select>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="ctrl mxClrAft">
-				<button class="submit is-closepop right">
-					Thêm địa chỉ
-				</button>
+				<input type="submit" class="submit is-closepop right" value="Thêm địa chỉ">
 				<div class="cancel is-closepop right">
 					Hủy
 				</div>
@@ -276,7 +332,7 @@ $route_cate   =	'home.cate';
 	<div class="pop is-pop" data-pop="edadress">
 		<div class="head">
 			Chỉnh sửa địa chỉ giao hàng
-			<div class="fa fa-close is-closepop"></div>
+			<a class="fa fa-close is-closepop"></a>
 		</div>
 		<form class="bd">
 			<div class="b">
@@ -299,28 +355,59 @@ $route_cate   =	'home.cate';
 				</div>
 					<div class="adr big">
 						<div class="le">
-							Thành phố
+							Quốc Gia
 						</div>
 						<div class="ri">
-							<select name="thanhpho" class="is-sl" value="Thành Phố">
-								<option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-								<option value="Hà Nội">Hà Nội</option>
-								<option value="Đà nẵng">Đà nẵng</option>
-								<option value="Huế">Huế</option>
+							<select name="quocgia" class="is-sl" value="Quốc Gia">
+								<option value="">Việt Nam</option>
+								<option value="">Malaysia</option>
+								<option value="">Singapore</option>
+								<option value="">Trung Quốc</option>
 							</select>
 						</div>
 					</div>
 				<div class="adb mxClrAft">
 					<div class="adr">
 						<div class="le">
+							Thành phố
+						</div>
+						<div class="ri">
+							<select name="thanhpho" class="is-sl" value="Thành Phố">
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+								<option value="">TP. Hồ Chí Minh</option>
+								<option value="">Hà Nội</option>
+								<option value="">Đà nẵng</option>
+								<option value="">Huế</option>
+							</select>
+						</div>
+					</div>
+					<div class="adr">
+						<div class="le">
+							ZipCode
+						</div>
+						<input type="text" class="ri" value="7000">
+					</div>
+					<div class="adr">
+						<div class="le">
 							Quận/ Huyện
 						</div>
 						<div class="ri">
 							<select name="quan" class="is-sl" value="Quận">
-								<option value="Bình Thạnh">Bình Thạnh</option>
-								<option value="Bình Tân">Bình Tân</option>
-								<option value="Tân Bình">Tân Bình</option>
-								<option value="Tân Phú">Tân Phú</option>
+								<option value="">Bình Thạnh</option>
+								<option value="">Bình Tân</option>
+								<option value="">Tân Bình</option>
+								<option value="">Tân Phú</option>
 							</select>
 						</div>
 					</div>
@@ -330,19 +417,17 @@ $route_cate   =	'home.cate';
 						</div>
 						<div class="ri">
 							<select name="xa" class="is-sl" value="xa">
-								<option value="Phường 1">Phường 1</option>
-								<option value="Phường 2">Phường 2</option>
-								<option value="Phường 3">Phường 3</option>
-								<option value="Phường 4">Phường 4</option>
+								<option value="">Phường 1</option>
+								<option value="">Phường 2</option>
+								<option value="">Phường 3</option>
+								<option value="">Phường 4</option>
 							</select>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="ctrl mxClrAft">
-				<button class="submit is-closepop right">
-					Cập nhật
-				</button>
+				<input type="submit" class="submit is-closepop right" value="Cập nhật">
 				<div class="cancel is-closepop right">
 					Hủy
 				</div>
@@ -352,7 +437,7 @@ $route_cate   =	'home.cate';
 	<div class="header">
 		<div class="head wrap">
 			<div class="top_left left">
-				<a href="{!!asset('')!!}" class="logo left">
+				<a href="{!!asset(' ')!!}" class="logo left">
 					<img src="{!!asset('')!!}style/images/theme/log.png">
 				</a>
 				<div class="menu left">
@@ -418,14 +503,14 @@ $route_cate   =	'home.cate';
 					</div>
 					<div class="menu_c2 hide">
 						<div class="clone2" sub="tt_1">
-							<?php $cates = DB::table('cates')->get(); ?>
+						<?php $cates = DB::table('cates')->get(); ?>
 							@foreach ($cates as $cate)
 								<div class="title_c2">
 									<a href="{!! route($route_cate) !!}" class="name_menu">
 										{!! $cate->name !!}
 									</a>
 								</div>
-							@endforeach							
+							@endforeach
 						</div>
 						<div class="clone2" sub="tt_2">
 							@foreach ($cates as $cate)
@@ -443,7 +528,7 @@ $route_cate   =	'home.cate';
 										{!! $cate->name !!}
 									</a>
 								</div>
-							@endforeach
+							@endforeach	
 						</div>
 						<div class="clone2" sub="tt_4">
 							@foreach ($cates as $cate)
@@ -452,7 +537,7 @@ $route_cate   =	'home.cate';
 										{!! $cate->name !!}
 									</a>
 								</div>
-							@endforeach
+							@endforeach	
 						</div>
 					</div>
 				</div>
@@ -470,7 +555,7 @@ $route_cate   =	'home.cate';
 				<div class="cart left {{ (Cart::count() != 0) ? '' : 'empty'}}">
 					<div class="fa fa-shopping-cart"></div>
 					<div class="ab">
-						{{ Cart::count(false) }}
+						{{ Cart::count() }}
 					</div>
 					<div class="cab">
 						<div class="cast">
@@ -504,7 +589,7 @@ $route_cate   =	'home.cate';
 								@endforeach
 							@endif
 						</div>
-						<div class="caend mxClrAft">
+						<div class="caend mxClrAft ">
 							<div class="total left">
 								Tổng cộng: 
 								<input type="hidden" class="total-price" value="{{ Cart::total() }}" />
@@ -512,35 +597,30 @@ $route_cate   =	'home.cate';
 									{{ number_format(Cart::total(),0,',','.') }}đ
 								</span>
 							</div>
-							<a href="{!! route($route_checkout) !!}" class="pay loggin right">
-								<button>
-									Thanh toán
-								</button>
-							</a>
-							<a href="login.php" class="pay unlog right">
+							<a href="{!! route($route_checkout) !!}" class="pay right">
 								<button>
 									Thanh toán
 								</button>
 							</a>
 						</div>
-						<a href="{!!asset('')!!}" class="etc">
+						<a href="{!!asset(' ')!!}" class="etc">
 							<span class="fa fa-shopping-basket"></span>
 							Bạn chưa mua hàng
 						</a>
 					</div>
 				</div>
 				<div class="prf left">
-					<div class="fa fa-user unlog"></div>
-					<div class="pri loggin"  style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
-					<div class="log unlog">
-						<a href="loggin.php" class="lg">
+					<div class="fa fa-user" style="display: none"></div>
+					<div class="pri"  style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
+					<div class="log" style="display: none">
+						<a href="signin" class="lg">
 							Đăng Nhập
 						</a>
-						<a href="register.php" class="lg">
+						<a href="signup" class="lg">
 							Đăng Ký
 						</a>
 					</div>
-					<div class="log on loggin">
+					<div class="log on">
 						<a href="{!! route($route_customer) !!}" ref="" class="lg">
 							Tài khoản
 						</a>
@@ -556,7 +636,7 @@ $route_cate   =	'home.cate';
 						<a href="{!! route($route_customer) !!}" ref="noti" class="lg">
 							Thông báo
 						</a>
-						<a href="logout" class="lg">
+						<a href="#" class="lg">
 							Đăng xuất
 						</a>
 					</div>
@@ -570,7 +650,7 @@ $route_cate   =	'home.cate';
 	<div class="clearpage wrap">
 		<div class="t">
 			Đã hoàn tất giao dịch. Cảm ơn quý khách đã sử dụng dịch vụ của Leobook.com.
-			<a href="{!!asset('')!!}">
+			<a href="{!!asset(' ')!!}">
 				Quay về trang chủ.
 			</a>
 		</div> 

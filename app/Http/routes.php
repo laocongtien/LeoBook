@@ -11,76 +11,24 @@
 |
 */
 
-Route::get('/', [
-	'as' => 'home.index',
-	'uses' => 'HomeController@index'
-]);
-Route::get('/test/{id}', [
-	'as' => 'home.test',
-	'uses' => 'HomeController@test'
-]);
-
-Route::get('/chi-tiet/{id}', [
-	'as' => 'home.detail',
-	'uses' => 'HomeController@detail'
-]);
-
-Route::get('/ban-chay-nhat', [
-	'as' =>'home.bestseller',
-	'uses' => 'HomeController@bestseller'
-]);
-
-Route::get('/sach-moi', [
-	'as' =>'home.newbook',
-	'uses' => 'HomeController@newbook'
-]);
-
-Route::get('/sap-phat-hanh', [
-	'as' =>'home.comming',
-	'uses' => 'HomeController@comming'
-]);
-
-Route::get('/giam-gia', [
-	'as' =>'home.discount',
-	'uses' => 'HomeController@discount'
-]);
-
-Route::get('/combo', [
-	'as' =>'home.combo',
-	'uses' => 'HomeController@combo'
-]);
-
-Route::get('/tac-gia', [
-	'as' =>'home.author',
-	'uses' => 'HomeController@author'
-]);
-
-Route::get('/nha-xuat-ban', [
-	'as' =>'home.publisher',
-	'uses' => 'HomeController@publisher'
-]);
-
-Route::get('/cong-ty-phat-hanh', [
-	'as' =>'home.issuer',
-	'uses' => 'HomeController@issuer'
-]);
-
-Route::get('/tim-kiem', [
-	'as' =>'home.search',
-	'uses' => 'HomeController@search'
-]);
-
-Route::get('/thanh-toan', [
-	'as' =>'home.checkout',
-	'uses' => 'HomeController@checkout'
-]);
-
-Route::get('/tai-khoan', [
-	'as' =>'home.customer',
-	'uses' => 'HomeController@customer'
-]);
-
-Route::get('/danh-muc', [
-	'as' =>'home.cate',
-	'uses' => 'HomeController@cate'
-]);
+Route::get('/', ['as' => 'home.index','uses' => 'HomeController@index']);
+Route::get('/test/{id}/{qty}', ['as' => 'home.test','uses' => 'HomeController@test']);
+Route::get('/chi-tiet/{id}', ['as' => 'home.detail','uses' => 'HomeController@detail']);
+Route::get('/ban-chay-nhat', ['as' =>'home.bestseller','uses' => 'HomeController@bestseller']);
+Route::get('/sach-moi', ['as' =>'home.newbook','uses' => 'HomeController@newbook']);
+Route::get('/sap-phat-hanh', ['as' =>'home.comming','uses' => 'HomeController@comming']);
+Route::get('/giam-gia', ['as' =>'home.discount','uses' => 'HomeController@discount']);
+Route::get('/combo', ['as' =>'home.combo','uses' => 'HomeController@combo']);
+Route::get('/tac-gia', ['as' =>'home.author','uses' => 'HomeController@author']);
+Route::get('/nha-xuat-ban', ['as' =>'home.publisher','uses' => 'HomeController@publisher']);
+Route::get('/cong-ty-phat-hanh', ['as' =>'home.issuer','uses' => 'HomeController@issuer']);
+Route::get('/tim-kiem', ['as' =>'home.search','uses' => 'HomeController@search']);
+Route::get('/thanh-toan', ['as' =>'home.checkout','uses' => 'HomeController@checkout']);
+Route::get('/tai-khoan', ['as' =>'home.customer','uses' => 'HomeController@customer']);
+Route::get('/danh-muc', ['as' =>'home.cate','uses' => 'HomeController@cate']);
+Route::get('/mua-sach/{id}/{qty}', ['as' =>'home.buy','uses' => 'HomeController@buy']);
+Route::get('/xoa-sach/{id}', ['as' =>'home.delete','uses' => 'HomeController@delete']);
+Route::get('/cap-nhat-sach/{id}/{qty}', ['as' =>'home.update','uses' => 'HomeController@update']);
+Route::get('/chi-tiet/mua-sach/{id}/{qty}', ['as' =>'home.buy','uses' => 'HomeController@buy']);
+Route::get('/chi-tiet/xoa-sach/{id}', ['as' =>'home.delete','uses' => 'HomeController@delete']);
+Route::get('/chi-tiet/cap-nhat-sach/{id}/{qty}', ['as' =>'home.update','uses' => 'HomeController@update']);

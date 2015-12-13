@@ -1,7 +1,7 @@
 @extends('front.layouts.base')
 
 @section('head.title')
-Công ty phát hành 
+Nhà xuất bản
 @stop
 
 @section('body.content')
@@ -23,13 +23,13 @@ Công ty phát hành
 			      </div>
 			      <div class="author_list">
 		        	<div class="author_name is-menu" data-link="pp">
-		        		Công Ty TNHH AMVN
+		        		NXB Trẻ
 		        	</div>
 		        	<div class="author_name is-menu" data-link="pp">
-		        		Bách Việt Book
+		        		NXB Tri thức
 		        	</div>
 		        	<div class="author_name is-menu" data-link="pp">
-		        		Cổ Nguyệt Books
+		        		NXB Văn hóa - Giáo dục
 		        	</div>
 			      </div>
 			    </div>
@@ -53,7 +53,7 @@ Công ty phát hành
 				<div class="filterbox">
 					<div class="filterbar mxClrAft">
 						<div class="namebox">
-							Danh sách Công ty phát hành
+							Danh sách NXB
 						</div>
 						<div class="fil slfilter right">
 							<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
@@ -68,19 +68,19 @@ Công ty phát hành
 							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
 							<div class="athn">
 								<div>
-									Công Ty TNHH AMVN
+									NXB Thông tin và truyền thông
 								</div>
 							</div>
 						</div>
 						<?php   for ($i = 1; $i < 9;$i++): ?>
 								<div class="athitem">
 									<div class="log">
-										<img src="style/images/temp/cty/cty<?php echo $i; ?>.png" alt="mybook">
+										<img src="style/images/temp/nxb/nxb<?php echo $i; ?>.png" alt="mybook">
 									</div>
 									<img src="style/images/theme/logo-gray.png" alt="" class="nava">
 									<div class="athn lo">
 										<div>
-											Công Ty TNHH AMVN
+											NXB Thông tin và truyền thông
 										</div>
 									</div>
 								</div>
@@ -106,7 +106,7 @@ Công ty phát hành
 				<div class="filterbox">
 					<div class="filterbar mxClrAft">
 						<div class="namebox">
-							Danh sách Công ty phát hành
+							Danh sách NXB
 							<span>
 								#A
 							</span>
@@ -120,7 +120,7 @@ Công ty phát hành
 							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
 							<div class="athn">
 								<div>
-									Công Ty TNHH AMVN
+									NXB Thông tin và truyền thông
 								</div>
 							</div>
 						</div>
@@ -144,50 +144,50 @@ Công ty phát hành
 			<div class="is-tab" data-link="pp">
 				<div class="prfath mxClrAft">
 					<div class="log">
-						<img src="style/images/temp/cty/cty1.png">
+						<img src="style/images/temp/nxb/nxb3.png">
 					</div>
 					<div class="nava">
 						<img src="style/images/theme/logo-gray.png" alt="">
 					</div>
 					<div class="prf">
 						<div class="na">
-							Công Ty TNHH AMVN
+							NXB Trẻ
 						</div>
 						<div class="int">
 							Trụ sở chính:
 							<span>
-								Tầng 21, Capital Tower, 109 Trần Hưng Đạo, Q. Hoàn Kiếm,Hà Nội
+								161 B Lý Chính Thắng - Phường 7 - Quận 3 -  Thành phố Hồ Chí Minh
 							</span>
 						</div>
 						<div class="int">
 							Số điện thoại: 
 							<span>
-								(04) 38789800
+								(84.8) 39316289 - 39316211 - 39317849 - 38465596
 							</span>
 						</div>
 						<div class="int">
 							Fax:
 							<span>
-								(04) 36340781
+								(84.8) 3 8437450
 							</span>
 						</div>
 						<div class="int">
 							Email:
 							<span>
-								 sales@amvietnam.com
+								 hopthubandoc@nxbtre.com.vn
 							</span>
 						</div>
 						<div class="int">
 							Website:
 							<span>
-								http://amvietnam.com
+								www.nxbtre.com.vn
 							</span>
 						</div>
 					</div>
 				</div>
 				<div class="listbook wrap">
 					<div class="first_line">
-						<a href="xemthem.php" class="list_title left">Sách của AMVN</a>
+						<a href="xemthem.php" class="list_title left">Sách của NXB Trẻ</a>
 						<a href="xemthem.php" class="more right">
 							Xem tất cả
 							<span class="fa fa-angle-double-right"></span>
@@ -243,7 +243,7 @@ Công ty phát hành
 														5%
 													</span>
 											</div>
-											<div class="cartbox mxClrAft">
+											<div class="cartbox mxClrAft ost">
 												<div class="num left">
 													<input type="text" class="n left" value="1">
 													<div class="ctrlnum left">

@@ -257,9 +257,8 @@ Công ty phát hành
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over is-over-check">
+												<button class="over">
 													<span class="fa fa-bullhorn"></span>
-													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>

@@ -6,13 +6,18 @@ Trang chủ Website bán Sách
 
 @section('body.content')
 <?php
-$route_detail = 'home.detail';
 $route_bestseller = 'home.bestseller';
-$route_newbook	=	'home.newbook';
-$route_comming	=	'home.comming';
-$route_discount	=	'home.discount';
+$route_newbook    =	'home.newbook';
+$route_comming    =	'home.comming';
+$route_discount   =	'home.discount';
+$route_combo      =	'home.combo';
 $route_author     =	'home.author';
 $route_publisher  =	'home.publisher';
+$route_issuer     =	'home.issuer';
+$route_search     =	'home.search';
+$route_checkout   =	'home.checkout';
+$route_customer   =	'home.customer';
+$route_cate   =	'home.cate';
 ?>
 	<div class="contain index">
 		<div class="slidebar wait unselectable">
@@ -47,7 +52,6 @@ $route_publisher  =	'home.publisher';
 				</div>
 				<div class="slide_book wait unselectable">
 					<div class="book">
-					
 						@foreach($bestseller as $item)
 							@include('front.partials.book_item')
 						@endforeach
@@ -71,7 +75,6 @@ $route_publisher  =	'home.publisher';
 				</div>
 				<div class="slide_book wait unselectable">
 					<div class="book">
-
 						@foreach($newests as $item)
 							@include('front.partials.book_item')
 						@endforeach
@@ -141,7 +144,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb1.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="#" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -159,8 +162,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -170,7 +174,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb2.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -188,8 +192,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -199,7 +204,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb3.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -217,8 +222,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -228,7 +234,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb4.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -246,8 +252,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -259,7 +266,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb1.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="#" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -277,8 +284,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -288,7 +296,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb2.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -306,8 +314,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -317,7 +326,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb3.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -335,8 +344,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>
@@ -346,7 +356,7 @@ $route_publisher  =	'home.publisher';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb4.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="chitiet.php" class="more">
+											<a href="{{ route('home.detail' , $item->id) }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -364,8 +374,9 @@ $route_publisher  =	'home.publisher';
 													<span class="fa fa-check"></span>
 													THÊM VÀO GIỎ
 												</button>
-												<button class="over">
+												<button class="over is-over-check">
 													<span class="fa fa-bullhorn"></span>
+													<span class="fa fa-check"></span>
 													BÁO KHI CÓ HÀNG
 												</button>
 											</div>

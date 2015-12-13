@@ -16,6 +16,8 @@ $(function(){
 	thanhtoan(); //trang thanh toán
 	popup(); //script các popup
 	login(); //script cho các trang đăng ký, đăng nhập, quên mật khẩu, sửa mật khẩu
+	checkHeightCart();
+	cart();
 });
 /*--- CÁC HÀM Ở HEADER ---*/
 
@@ -708,11 +710,24 @@ function checkHeightCart(){
 	else $('.lib').jScrollPane();
 }
 function cart(){
-	$('.lica').find('.fa-trash-o').click(function(){
+	$('.fa-trash-o').click(function(){
 		var box = $(this).parent();
-		box.remove();
-		checkHeightCart();
-		$('.cart').find('.ab').html($('.lica').length);
+		var rowid = box.attr('id');
+		//alert(id);
+		$.ajax({
+			url: 'xoa-sach/'+rowid,
+			type: 'GET',
+			//data: {'id': rowid},
+		}).done(function(data){
+			//alert("deleted");
+			unBlockAllItem(data);
+			box.remove();
+			checkHeightCart();
+			$('.cart').find('.ab').html($('.lica').length);	
+		}).fail(function (argument) {
+			alert("Can't not delete. ")	
+		});
+		
 	});
 }
 function valueCart(){
@@ -722,52 +737,107 @@ function valueCart(){
 		var numbox = grfth.find(".n");
 		var num = parseInt(numbox.val()) + 1;
 		numbox.val(num);
+		var lica = grfth.parent().parent();
+		var qty = numbox.val();
+		var rowid = lica.attr('id');
+		$.ajax({
+			url: 'cap-nhat-sach/'+rowid+'/'+qty,
+			type: 'GET',
+			data: {id: 'id', qty: 'qty'},
+		}).done (function(data){
+				var cost = lica.find('.price').val();
+			//alert(cost);
+			var total = $('.total-price').val();
+			total = parseInt(total) + parseInt(cost);
+			var item = $('.total').find('span');
+			$('.total-price').val(total);
+			item.text(total.formatMoney(0)+'đ');
+		}).fail (function (){
+			numbox.val(num - 1);
+			alert("Can't update this time");
+		});
+		
 	});
 	$('.is-down').unbind('click').click(function(){
 		var fth = $(this).parent();
 		var grfth = fth.parent();
 		var numbox = grfth.find(".n");
 		var num = parseInt(numbox.val()) - 1;
-		if (num != 0) numbox.val(num);
+		if (num != 0) { 
+			numbox.val(num);
+			var lica = grfth.parent().parent();
+			var qty = numbox.val();
+			var rowid = lica.attr('id');
+			$.ajax({
+				url: 'cap-nhat-sach/'+rowid+'/'+qty,
+				type: 'GET',
+				data: {id: 'id', qty: 'qty'},
+			}).done (function(data){
+					var cost = lica.find('.price').val();
+					//alert(cost);
+					//var money = num * parseInt(cost);
+					var total = $('.total-price').val();
+					total = parseInt(total) - parseInt(cost);
+					var item = $('.total').find('span');
+					$('.total-price').val(total);
+					item.text(total.formatMoney(0)+'đ');
+			}).fail (function (){
+				numbox.val(num + 1);
+				alert("Can't update this time");
+			});
+			
+		}
 	});
 }
+function blockAllItem(id){
+	$('.cartbox').each(function(){
+		var cart = $(this);
+		if(cart.find('.b-id').val() == id) {
+			 cart.addClass('ck');
+
+		 	// console.log($(this).find('.b-id').val());
+		}
+	})
+}
+function unBlockAllItem(id){
+	//console.log(id);
+	$('.cartbox').each(function(){
+		var cart = $(this);
+		if(cart.find('.b-id').val() == id) {
+			
+			console.log(cart.find('.qty').val(1));
+			cart.removeClass('ck');			
+		 	// console.log(id);
+		}
+	})
+}
+
 function addToCart(){
 	valueCart();
 	$('.addcart').click(function(){
 		var button = $(this);
 		var ins = button.parent();
-		ins.addClass("ck");
-		var cartbox = $('.cart');
-		var ab = cartbox.find('.ab');
-		var lib = cartbox.find('.lib');
-		cartbox.removeClass('empty');
-		lib.append('\
-			<div class="lica mxClrAft">\
-				<div class="ttl left">\
-					<a href="chitiet.php" class="is-2r">\
-						Thương cho roi cho vọt, ghét cho ngọt cho bùi\
-					</a>\
-				</div>\
-				<div class="cartbox left">\
-					<div class="num left">\
-						<input type="text" class="n left" value="1">\
-						<div class="ctrlnum left">\
-							<div class="fa fa-angle-up is-up"></div>\
-							<div class="fa fa-angle-down is-down"></div>\
-						</div>\
-						<div class="clear"></div>\
-					</div>\
-				</div>\
-				<div class="sls left">\
-					259.000đ\
-				</div>\
-				<div class="fa fa-trash-o right"></div>\
-			</div>\
-		');
-		ab.html($('.lica').length);
-		checkHeightCart();
-		cart();
-		valueCart();
+		var qty = ins.find('.n').val();
+		var id = ins.find('.b-id').val();
+		$.ajax({
+			url: 'mua-sach/'+id+'/'+qty,
+			type: 'GET',
+			data: {"id": id, "qty": qty},
+		}).done(function(data){
+			var cartbox = $('.cart');
+			var ab = cartbox.find('.ab');
+			var lib = cartbox.find('.lib');
+			cartbox.removeClass('empty');
+			lib.find('.lica').remove();
+			lib.append(data);
+			ab.html($('.lica').length);
+			checkHeightCart();
+			cart();
+			valueCart();
+			blockAllItem(id);
+		}).fail(function (){
+			alert("Can't not buy this book now");
+		});
 	});
 	$('.is-over-check').click(function(){
 		$(this).addClass('atv');
@@ -815,3 +885,13 @@ function phantrang(){
 		});
 	});
 }
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "," : d, 
+    t = t == undefined ? "." : t, 
+    s = n < 0 ? "-" : "", 
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
