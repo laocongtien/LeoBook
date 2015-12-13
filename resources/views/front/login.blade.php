@@ -12,7 +12,7 @@
 		<div class="rgbox wrap mxClrAft">
 			<div class="tt">
 				<div>
-					Nhập thông tin đăng nhập
+					Nguyền rủa
 				</div>
 			</div>
 			<div class="rb birb">
