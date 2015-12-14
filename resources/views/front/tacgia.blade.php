@@ -21,7 +21,7 @@ Tác giả
 			      <div class="author_list">
 				    <?php $author = DB::table('authors')->where(DB::raw('substr(name,1,1)'),$value->alpha)->get();?>
 				    @foreach ($author as $item)
-			        	<div class="author_name is-menu" data-link="pp">
+			        	<div class="author_name is-menu" data-set="{{ $item->id }}"data-link="pp">
 			        		{{$item->name}}
 			        	</div>
 		        	@endforeach

@@ -745,18 +745,15 @@ function valueCart(){
 			type: 'GET',
 			data: {id: 'id', qty: 'qty'},
 		}).done (function(data){
-				var cost = lica.find('.price').val();
-			//alert(cost);
-			var total = $('.total-price').val();
-			total = parseInt(total) + parseInt(cost);
-			var item = $('.total').find('span');
-			$('.total-price').val(total);
-			item.text(total.formatMoney(0)+'đ');
+			// total = parseInt(data);
+			// var item = $('.total').find('span');
+			// item.text(total.formatMoney(0)+'đ');
+			var json1 = JSON.parse(data);
+			//var json2 = JSON.parse(json1);
+			console.log(json1.rowid);
 		}).fail (function (){
-			numbox.val(num - 1);
 			alert("Can't update this time");
 		});
-		
 	});
 	$('.is-down').unbind('click').click(function(){
 		var fth = $(this).parent();
@@ -773,19 +770,12 @@ function valueCart(){
 				type: 'GET',
 				data: {id: 'id', qty: 'qty'},
 			}).done (function(data){
-					var cost = lica.find('.price').val();
-					//alert(cost);
-					//var money = num * parseInt(cost);
-					var total = $('.total-price').val();
-					total = parseInt(total) - parseInt(cost);
-					var item = $('.total').find('span');
-					$('.total-price').val(total);
-					item.text(total.formatMoney(0)+'đ');
+				total = parseInt(data);
+				var item = $('.total').find('span');
+				item.text(total.formatMoney(0)+'đ');
 			}).fail (function (){
-				numbox.val(num + 1);
 				alert("Can't update this time");
 			});
-			
 		}
 	});
 }
@@ -804,12 +794,19 @@ function unBlockAllItem(id){
 	$('.cartbox').each(function(){
 		var cart = $(this);
 		if(cart.find('.b-id').val() == id) {
-			
 			console.log(cart.find('.qty').val(1));
-			cart.removeClass('ck');			
+			cart.removeClass('ck');
 		 	// console.log(id);
 		}
 	})
+}
+
+function updateCartValue(){
+	var i = 1;
+	$('.lica').each(function (){
+		console.log(i++);
+	})
+
 }
 
 function addToCart(){

@@ -39,12 +39,12 @@ $route_cate   =	'home.cate';
 				</div>
 			</div>
 			<div class="btb">
-				<div class="starbox is-ratebook mxClrAft" num="3.5">
+				<div class="starbox is-ratebook mxClrAft" num="{{ $item->rate }}">
 					<div class="nonestar bg left is-rate">
 						<div class="star bg left is-percent"></div>
 					</div>
 					<div class="rate right is-numrate">
-						{!! number_format(99000,0,',','.') !!}
+						{!! number_format($item->ratecount,0,',','.') !!}
 					</div>
 				</div>
 				<button class="lkbook is-like mxClrAft">
@@ -58,7 +58,7 @@ $route_cate   =	'home.cate';
 						</span>
 					</div>
 				</button>
-				@include('front.partials.cartbox')	
+				@include('front.partials.cartbox')
 			</div>
 			<div class="detail">
 				<div class="title">

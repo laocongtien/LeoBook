@@ -12,6 +12,7 @@ use App\Book;
 use App\OrderDetail;
 use App\Author;
 use Cart;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -31,81 +32,10 @@ class HomeController extends Controller
         ]);
     }
     public function test($id, $qty) {
-          Cart::destroy();
-        $book = book::where('id',$id)->first();
-        $price = $book->price - $book->price * $book->discount /100;
-        // Cart::add([
-        //     'id'=>$id, 
-        //     'name' => $book->name, 
-        //     'qty' => $qty,
-        //     'price' => $price,
-        //     'option' => ['image' => $book->image]
-        // ]);
-        Cart::add([
-            'id'=>$id, 
-            'name' => $book->name, 
-            'qty' => $qty,
-            'price' => $price,
-            'options' => ['image' => $book->image]
-        ]);
-        //return view('front.test');
-        //
-        
-        print_r(Cart::content()->toArray()) ;
-        
-        
+        echo (Cart::content());
     }
 
-    public function buy($id,$qty) {
-        $book = book::where('id',$id)->first();
-        $price = $book->price - $book->price * $book->discount /100;
-        Cart::add([
-            'id'=>$id, 
-            'name' => $book->name, 
-            'qty' => $qty,
-            'price' => $price,
-            'options' => ['image' => $book->image]
-        ]);
-        $data = '';
-        //print_r(Cart::content()->toArray()) ;
-        foreach (Cart::content() as $item) {
-            $data = $data.'
-            <div class="lica mxClrAft" id="'.$item->rowid.'">
-                <div class="ttl left">
-                    <a href="'.route('home.detail' , $item->id) .'" class="is-2r">
-                        '.$item->name.'
-                    </a>
-                </div>
-                <div class="cartbox left">
-                    <div class="num left">
-                        <input type="text" class="n left" value="'.$item->qty.'">
-                        <div class="ctrlnum left">
-                            <div class="fa fa-angle-up is-up"></div>
-                            <div class="fa fa-angle-down is-down"></div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="sls left" value="'.$item->price.'">
-                    '.number_format($item->price,0,',','.').'đ
-                </div>
-                <div class="fa fa-trash-o right"></div>
-            </div>
-            ';
-        }
-        echo $data;
-    }
-
-    public function delete($id) {
-        $data = Cart::get($id);
-        Cart::remove($id);
-        return $data->id;
-    }
-
-    public function update($id,$qty) {
-        Cart::update($id,['qty'=>$qty]);
-        echo "success";
-    }
+    
 
     public function detail($id) {
         $details = book::find($id);

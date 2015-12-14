@@ -32,7 +32,10 @@ $route_issuer     =	'home.issuer';
 $route_search     =	'home.search';
 $route_checkout   =	'home.checkout';
 $route_customer   =	'home.customer';
-$route_cate   =	'home.cate';
+$route_cate       =	'home.cate';
+$route_login      =	'home.login';
+$route_register     =	'home.register';
+
 ?>
 <body class="unselectable">
 	<div class="is-bg"></div>
@@ -512,12 +515,7 @@ $route_cate   =	'home.cate';
 									{{ number_format(Cart::total(),0,',','.') }}đ
 								</span>
 							</div>
-							<a href="{!! route($route_checkout) !!}" class="pay loggin right">
-								<button>
-									Thanh toán
-								</button>
-							</a>
-							<a href="login.php" class="pay unlog right">
+							<a href="{!! route($route_checkout) !!}" class="pay right">
 								<button>
 									Thanh toán
 								</button>
@@ -532,16 +530,9 @@ $route_cate   =	'home.cate';
 				<div class="prf left">
 					<div class="fa fa-user unlog"></div>
 					<div class="pri loggin"  style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
-					<div class="log unlog">
-						<a href="loggin.php" class="lg">
-							Đăng Nhập
-						</a>
-						<a href="register.php" class="lg">
-							Đăng Ký
-						</a>
-					</div>
-					<div class="log on loggin">
-						<a href="{!! route($route_customer) !!}" ref="" class="lg">
+					@if (Auth::check())
+					<div class="log on ">
+						<a href="{!! route($route_customer).'#profile' !!}" ref="" class="lg">
 							Tài khoản
 						</a>
 						<a href="{!! route($route_customer) !!}" ref="fav" class="lg">
@@ -556,10 +547,20 @@ $route_cate   =	'home.cate';
 						<a href="{!! route($route_customer) !!}" ref="noti" class="lg">
 							Thông báo
 						</a>
-						<a href="logout" class="lg">
+						<a href="{{ route('home.logout') }}" class="lg">
 							Đăng xuất
 						</a>
 					</div>
+					@else
+					<div class="log ">
+						<a href="{!! route($route_login) !!}" class="lg">
+							Đăng Nhập
+						</a>
+						<a href="{!! route($route_register) !!}" class="lg">
+							Đăng Ký
+						</a>
+					</div>
+					@endif
 				</div>
 				<div class="clear"></div>
 			</div>

@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
         foreach (range(1,20) as $index){
             DB::table('users')->insert([
                 'username'   => $faker->userName,
-                'password'    => $faker->password,
+                'password'    => Hash::make('123456'),
                 'fullname'      =>  $faker->name,
                 'phone'  => $faker->phoneNumber,
                 'email'      => $faker->freeEmail,

@@ -17,7 +17,7 @@
 					</a>
 				</div>
 				<div class="intt li">
-					NXB: 
+					NXB:
 						<a href="{!! route($route_publisher) !!}">{!! $item->publisher->name!!}</a>
 				</div>
 				<div class="sal">
