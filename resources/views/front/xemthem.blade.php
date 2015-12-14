@@ -69,13 +69,13 @@ Trang xem thêm sản phẩm
 				</div>
 				<div class="page_number">
 	        <div class="page_num">
-	        	<a class="num numprev fa fa-angle-double-left {{ ($data->currentPage() == 1) ? ('hide') : ('') }}" href="{!! $data->url($data->currentPage()-1) !!}"></a>
+	        	<div class="num numprev fa fa-angle-double-left hide"></div>
 	        	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
-	        	<a class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
+	        	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
 	        		{{ $i }}
-	        	</a>
+	        	</div>
 	        	@endfor
-	        	<a class="num numnext fa fa-angle-double-right {{ ($data->currentPage() == $data->lastPage()) ? ('hide') : ('') }}" href="{!! $data->url($data->currentPage() + 1)!!}"></a>
+	        	<div class="num numnext fa fa-angle-double-right"></div>
 	        	<div class="clear"></div>
 	        </div>
 	      </div>

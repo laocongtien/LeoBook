@@ -38,6 +38,7 @@ $route_register     =	'home.register';
 
 ?>
 <body class="unselectable">
+@if (Auth::check())
 	<div class="is-bg"></div>
 	<div class="pop is-pop" data-pop="hoanthanh">
 		<div class="head">
@@ -352,6 +353,7 @@ $route_register     =	'home.register';
 			</div>
 		</form>
 	</div>
+@endif
 	<div class="header">
 		<div class="head wrap">
 			<div class="top_left left">
@@ -424,7 +426,7 @@ $route_register     =	'home.register';
 							<?php $cates = DB::table('cates')->get(); ?>
 							@foreach ($cates as $cate)
 								<div class="title_c2">
-									<a href="{!! route($route_cate) !!}" class="name_menu">
+									<a href="{!! route('bestseller.cate',$cate->id) !!}" class="name_menu">
 										{!! $cate->name !!}
 									</a>
 								</div>
@@ -433,7 +435,7 @@ $route_register     =	'home.register';
 						<div class="clone2" sub="tt_2">
 							@foreach ($cates as $cate)
 								<div class="title_c2">
-									<a href="{!! route($route_cate) !!}" class="name_menu">
+									<a href="{!! route('newbook.cate',$cate->id)!!}" class="name_menu">
 										{!! $cate->name !!}
 									</a>
 								</div>
@@ -442,7 +444,7 @@ $route_register     =	'home.register';
 						<div class="clone2" sub="tt_3">
 							@foreach ($cates as $cate)
 								<div class="title_c2">
-									<a href="{!! route($route_cate) !!}" class="name_menu">
+									<a href="{!! route('comming.cate',$cate->id) !!}" class="name_menu">
 										{!! $cate->name !!}
 									</a>
 								</div>
@@ -451,7 +453,7 @@ $route_register     =	'home.register';
 						<div class="clone2" sub="tt_4">
 							@foreach ($cates as $cate)
 								<div class="title_c2">
-									<a href="{!! route($route_cate) !!}" class="name_menu">
+									<a href="{!! route('discount.cate',$cate->id) !!}" class="name_menu">
 										{!! $cate->name !!}
 									</a>
 								</div>

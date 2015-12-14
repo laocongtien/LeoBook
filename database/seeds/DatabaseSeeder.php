@@ -13,22 +13,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $this->call(UserSeeder::class);
-        $this->call(TypeSeeder::class);
-        $this->call(CateSeeder::class);
-        $this->call(AuthorSeeder::class);
-        $this->call(IssuerSeeder::class);
-        $this->call(PublisherSeeder::class);
-        $this->call(OtherSeeder::class);
-        $this->call(LocationSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(TypeSeeder::class);
+        // $this->call(CateSeeder::class);
+        // $this->call(AuthorSeeder::class);
+        // $this->call(IssuerSeeder::class);
+        // $this->call(PublisherSeeder::class);
+        // $this->call(OtherSeeder::class);
+        // $this->call(LocationSeeder::class);
         $this->call(BookSeeder::class);
-        $this->call(CommentSeeder::class);
-        $this->call(OrderSeeder::class);
-        $this->call(OrderDetailSeeder::class);
-        $this->call(WishlistSeeder::class);
-        $this->call(CoinSeeder::class);
-        $this->call(NotificationSeeder::class);
-        $this->call(CartSeeder::class);
+        // $this->call(CommentSeeder::class);
+        // $this->call(OrderSeeder::class);
+        // $this->call(OrderDetailSeeder::class);
+        // $this->call(WishlistSeeder::class);
+        // $this->call(CoinSeeder::class);
+        // $this->call(NotificationSeeder::class);
+        // $this->call(CartSeeder::class);
 
         Model::reguard();
     }

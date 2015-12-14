@@ -850,12 +850,13 @@ function phantrang(){
 		var numprev = bar.find('.numprev')
 		var numnext = bar.find('.numnext')
 		numpage.unbind('click').click(function(){
+			phantrangAjax();
 			var num = $(this);
 			numprev.removeClass('hide');
 			numnext.removeClass('hide');
 			numpage.removeClass('atv');
 			num.addClass('atv');
-			if (num.html() == '1') numprev.addClass('hide');
+			if (parseInt(num.html()) == 1) numprev.addClass('hide');
 			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
 		numprev.unbind('click').click(function(){
@@ -881,6 +882,23 @@ function phantrang(){
 			}
 		});
 	});
+}
+
+function phantrangAjax(){
+	//console.log(url:'/');
+	$.ajax({
+		url: 'ajax',
+		type: 'GET',
+		data: {param1: 'value1'},
+	})
+	.done(function() {
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	});
+	
+	
 }
 Number.prototype.formatMoney = function(c, d, t){
 var n = this, 

@@ -33,13 +33,13 @@
 						<div class="old intt">
 							Giá bìa: 
 							<span>
-								{!! $item->price !!}đ
+								{{ number_format($item->price,0,',','.') }}đ
 							</span>
 						</div>
 						<div class="new intt">
 							Giá bán: 
 								<span>
-									{!! $item->price - $item->price * $item->discount /100 !!}đ
+									{{ number_format($item->price - $item->price * $item->discount /100,0,',','.') }}đ
 								</span>
 						</div>
 					</div>
