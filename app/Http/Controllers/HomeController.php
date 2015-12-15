@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -14,6 +14,7 @@ use App\Author;
 use Cart;
 use Hash;
 use Input;
+//use Request; 
 
 class HomeController extends Controller
 {
@@ -42,6 +43,26 @@ class HomeController extends Controller
         $details = book::find($id);
         $cates = book::where('type_id',$details->type_id)->paginate(4);
         $authors = book::where('author_id',$details->author_id)->paginate(4);
+        if (Request::ajax())
+        {
+            $data = Request::get('data');
+            $page = Request::get('page');
+            //echo gettype($data);
+            if ($data == '01'){
+                return view('front.partials.list_book_item_info',[
+                    'data' => $authors
+                ]);
+            }elseif ($data == '03'){
+                return view('front.partials.list_book_item_info',[
+                    'data' => $cates
+                ]);
+            }elseif ($data == '02'){
+                return 'chưa làm';
+                // return view('front.partials.list_book_item_info',[
+                //     'data' => $cates
+                // ]);
+            }
+        }else
         return view('front.chitiet',[
             'item' => $details,
             'cates' =>  $cates,
@@ -87,36 +108,65 @@ class HomeController extends Controller
     public function bestseller_cate($id) {
         $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+
+            return view('front.partials.list_book_item_info',[
+                'data' => $bestsellers
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $bestsellers,
-            'name' =>  $cate_name
+            'name' =>  $cate_name,
+            'filter' => 'Bán chạy nhất'
         ]);
     }
 
     public function newbook_cate($id) {
         $newests = book::where('cate_id',$id)->orderBy('publishing_date','<',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $newests
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $newests,
-             'name' =>  $cate_name
+             'name' =>  $cate_name,
+            'filter' => 'Sách mới'
         ]);
     }
 
     public function comming_cate($id) {
         $commings = book::where('cate_id',$id)->orderBy('publishing_date','>',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $commings
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $commings,
-             'name' =>  $cate_name
+             'name' =>  $cate_name,
+            'filter' => 'Sắp phát hành'
         ]);
     }
 
     public function discount_cate($id) {
         $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $discounts
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $discounts,
-             'name' =>  $cate_name
+             'name' =>  $cate_name,
+            'filter' => 'Giảm giá'
         ]);
     }
 

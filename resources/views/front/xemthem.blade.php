@@ -18,7 +18,7 @@ Trang xem thêm sản phẩm
 	<div class="contain detai">
 		<!--Này là thống kê lúc click xem thêm-->
 		<div class="ltbanner">
-			{{ $name or 'Default' }}
+			{{ $name or '' }}
 		</div>
 		<div class="filterbox wrap is-box">
 			<div class="filterbar mxClrAft wrap">
@@ -28,8 +28,14 @@ Trang xem thêm sản phẩm
 							Trang chủ
 							<span class="fa fa-angle-double-right"></span>
 						</a>
-						<a class="cat">
-							{{ $name or 'Default' }}
+						@if ($filter)
+						<a  class="cat">
+							{{ $filter}}
+							<span class="fa fa-angle-double-right"></span>
+						</a>
+						@endif
+						<a  class="cat">
+							{{ $name or '' }}
 							<span class="fa fa-angle-double-right"></span>
 						</a>
 					</div>

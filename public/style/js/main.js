@@ -779,6 +779,7 @@ function valueCart(){
 		}
 	});
 }
+
 function blockAllItem(id){
 	$('.cartbox').each(function(){
 		var cart = $(this);
@@ -850,12 +851,14 @@ function phantrang(){
 		var numprev = bar.find('.numprev')
 		var numnext = bar.find('.numnext')
 		numpage.unbind('click').click(function(){
-			phantrangAjax();
 			var num = $(this);
 			numprev.removeClass('hide');
 			numnext.removeClass('hide');
 			numpage.removeClass('atv');
 			num.addClass('atv');
+			var gridbook = bar.parent();
+			var data = gridbook.attr('data-link');
+			phantrangAjax(parseInt(num.html()),data,gridbook);
 			if (parseInt(num.html()) == 1) numprev.addClass('hide');
 			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
@@ -884,24 +887,22 @@ function phantrang(){
 	});
 }
 
-function phantrangAjax(){
-	//console.log(url:'/');
+function phantrangAjax(page,data,gridbook){
 	$.ajax({
-		url: 'ajax',
+		url: window.location.href+'?page='+page,
 		type: 'GET',
-		data: {param1: 'value1'},
+		data: {'data' : data, 'page': page},
 	})
-	.done(function() {
-		console.log("success");
+	.done(function(result) {
+		gridbook.find('.grid').empty();
+		gridbook.find('.grid').append(result);
 	})
 	.fail(function() {
 		console.log("error");
 	});
-	
-	
 }
 Number.prototype.formatMoney = function(c, d, t){
-var n = this, 
+	var n = this, 
     c = isNaN(c = Math.abs(c)) ? 2 : c, 
     d = d == undefined ? "," : d, 
     t = t == undefined ? "." : t, 
