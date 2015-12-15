@@ -74,7 +74,13 @@ class HomeController extends Controller
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-         $bestsellers = book::orderBy('qty_saled','DESC')->take(10)->paginate(10);
+         $bestsellers = book::orderBy('qty_saled','DESC')->paginate(5);
+         if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $bestsellers
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $bestsellers,
              'name' =>  'Bán chạy nhất'
@@ -82,7 +88,13 @@ class HomeController extends Controller
     }
 
     public function newbook() {
-        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(10);
+        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $newests
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $newests,
              'name' =>  'Sách mới'
@@ -90,7 +102,13 @@ class HomeController extends Controller
     }
 
     public function comming() {
-        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(10);
+        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $commings
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $commings,
              'name' =>  'Sắp phát hành'
@@ -99,6 +117,12 @@ class HomeController extends Controller
 
     public function discount() {
         $discounts = book::orderBy('discount','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $discounts
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $discounts,
              'name' =>  'Sách giảm giá'
@@ -110,7 +134,6 @@ class HomeController extends Controller
         $cate_name = cate::where('id',$id)->first()->name;
         if (Request::ajax())
         {
-
             return view('front.partials.list_book_item_info',[
                 'data' => $bestsellers
             ]);
@@ -118,7 +141,8 @@ class HomeController extends Controller
         return view('front.xemthem',[
             'data' =>  $bestsellers,
             'name' =>  $cate_name,
-            'filter' => 'Bán chạy nhất'
+            'filter' => 'Bán chạy nhất',
+            'route' => 'home.bestseller'
         ]);
     }
 
@@ -134,7 +158,8 @@ class HomeController extends Controller
         return view('front.xemthem',[
             'data' =>  $newests,
              'name' =>  $cate_name,
-            'filter' => 'Sách mới'
+            'filter' => 'Sách mới',
+            'route' => 'home.newbook'
         ]);
     }
 
@@ -150,7 +175,8 @@ class HomeController extends Controller
         return view('front.xemthem',[
             'data' =>  $commings,
              'name' =>  $cate_name,
-            'filter' => 'Sắp phát hành'
+            'filter' => 'Sắp phát hành',
+            'route' => 'home.comming'
         ]);
     }
 
@@ -166,7 +192,8 @@ class HomeController extends Controller
         return view('front.xemthem',[
             'data' =>  $discounts,
              'name' =>  $cate_name,
-            'filter' => 'Giảm giá'
+            'filter' => 'Giảm giá',
+            'route' => 'home.discount'
         ]);
     }
 

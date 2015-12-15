@@ -896,6 +896,7 @@ function phantrangAjax(page,data,gridbook){
 	.done(function(result) {
 		gridbook.find('.grid').empty();
 		gridbook.find('.grid').append(result);
+		limited();
 	})
 	.fail(function() {
 		console.log("error");

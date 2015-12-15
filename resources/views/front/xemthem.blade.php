@@ -28,13 +28,13 @@ Trang xem thêm sản phẩm
 							Trang chủ
 							<span class="fa fa-angle-double-right"></span>
 						</a>
-						@if ($filter)
-						<a  class="cat">
-							{{ $filter}}
+						@if (isset($filter))
+						<a  href="{{ route($route) }}" class="cat">
+							{{ $filter }}
 							<span class="fa fa-angle-double-right"></span>
 						</a>
 						@endif
-						<a  class="cat">
+						<a herf="{{ url($data->first()->cate_id) }}" class="cat">
 							{{ $name or '' }}
 							<span class="fa fa-angle-double-right"></span>
 						</a>
