@@ -720,14 +720,14 @@ function cart(){
 			//data: {'id': rowid},
 		}).done(function(data){
 			//alert("deleted");
-			unBlockAllItem(data);
+			unBlockAllItem(data.id);
 			box.remove();
 			checkHeightCart();
-			$('.cart').find('.ab').html($('.lica').length);	
+			$('.cart').find('.ab').html($('.lica').length);
+			updateTotalPrice(data.total);
 		}).fail(function (argument) {
-			alert("Can't not delete. ")	
+			alert("Can't not delete. ")
 		});
-		
 	});
 }
 function valueCart(){
@@ -745,12 +745,7 @@ function valueCart(){
 			type: 'GET',
 			data: {id: 'id', qty: 'qty'},
 		}).done (function(data){
-			// total = parseInt(data);
-			// var item = $('.total').find('span');
-			// item.text(total.formatMoney(0)+'đ');
-			var json1 = JSON.parse(data);
-			//var json2 = JSON.parse(json1);
-			console.log(json1.rowid);
+			updateTotalPrice(data);
 		}).fail (function (){
 			alert("Can't update this time");
 		});
@@ -770,9 +765,7 @@ function valueCart(){
 				type: 'GET',
 				data: {id: 'id', qty: 'qty'},
 			}).done (function(data){
-				total = parseInt(data);
-				var item = $('.total').find('span');
-				item.text(total.formatMoney(0)+'đ');
+				updateTotalPrice(data);
 			}).fail (function (){
 				alert("Can't update this time");
 			});
@@ -802,12 +795,10 @@ function unBlockAllItem(id){
 	})
 }
 
-function updateCartValue(){
-	var i = 1;
-	$('.lica').each(function (){
-		console.log(i++);
-	})
-
+function updateTotalPrice(price){
+	var total = parseInt(price);
+	var item = $('.total').find('span');
+	item.text(total.formatMoney(0)+'đ');
 }
 
 function addToCart(){
@@ -827,7 +818,8 @@ function addToCart(){
 			var lib = cartbox.find('.lib');
 			cartbox.removeClass('empty');
 			lib.find('.lica').remove();
-			lib.append(data);
+			lib.html(data.cart);
+			updateTotalPrice(data.total);
 			ab.html($('.lica').length);
 			checkHeightCart();
 			cart();

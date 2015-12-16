@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Cart;
+use Cart, App\Book;
+
+
 
 class AjaxController extends Controller
 {
@@ -20,10 +22,10 @@ class AjaxController extends Controller
             'price' => $price,
             'options' => ['image' => $book->image]
         ]);
-        $data = '';
+        $cart = '';
         //print_r(Cart::content()->toArray()) ;
         foreach (Cart::content() as $item) {
-            $data = $data.'
+            $cart = $cart.'
             <div class="lica mxClrAft" id="'.$item->rowid.'">
                 <div class="ttl left">
                     <a href="'.route('home.detail' , $item->id) .'" class="is-2r">
@@ -47,13 +49,21 @@ class AjaxController extends Controller
             </div>
             ';
         }
-        echo $data;
+        $data = [
+        	'cart' => $cart,
+        	'total' => Cart::total()
+        ];
+        return $data;
     }
 
     public function delete($id) {
-        $data = Cart::get($id);
+        $book_id = Cart::get($id);
         Cart::remove($id);
-        return $data->id;
+        $data = [
+        	'id' => $book_id,
+        	'total' => Cart::total()
+        ];
+        return $data;
     }
 
     public function update($id,$qty) {

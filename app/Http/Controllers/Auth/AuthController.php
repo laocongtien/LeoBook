@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    protected $redirectPath = "/aaa";
+    protected $redirectPath = "/";
     protected $loginPath = "/dang-nhap";
     protected $redirectTo = "/dang-ky";
     public function __construct()
