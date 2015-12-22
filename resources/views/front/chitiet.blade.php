@@ -39,12 +39,12 @@ $route_cate   =	'home.cate';
 				</div>
 			</div>
 			<div class="btb">
-				<div class="starbox is-ratebook mxClrAft" num="3.5">
+				<div class="starbox is-ratebook mxClrAft" num="{{ $item->rate }}">
 					<div class="nonestar bg left is-rate">
 						<div class="star bg left is-percent"></div>
 					</div>
 					<div class="rate right is-numrate">
-						{!! number_format(99000,0,',','.') !!}
+						{!! number_format($item->ratecount,0,',','.') !!}
 					</div>
 				</div>
 				<button class="lkbook is-like mxClrAft">
@@ -58,7 +58,7 @@ $route_cate   =	'home.cate';
 						</span>
 					</div>
 				</button>
-				@include('front.partials.cartbox')	
+				@include('front.partials.cartbox')
 			</div>
 			<div class="detail">
 				<div class="title">
@@ -273,7 +273,7 @@ $route_cate   =	'home.cate';
 								Người đọc đã mua
 							</div>
 							<div class="mn is-is-menu" data-link="03">
-								Sách tại Tiểu thuyết
+								Sách cùng thể loại
 							</div>
 						</div>
 						<div class="fil slfilter right">
@@ -312,11 +312,11 @@ $route_cate   =	'home.cate';
 							<div class="page_number">
 				        <div class="page_num">
 				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	<div class="num numpage atv">1</div>
-				        	<div class="num numpage">2</div>
-				        	<div class="num numpage">3</div>
-				        	<div class="num numpage">4</div>
-				        	<div class="num numpage">5</div>
+				        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
+					        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
+					        		{{ $i }}
+					        	</div>
+				        	@endfor
 				        	<div class="num numnext fa fa-angle-double-right"></div>
 				        	<div class="clear"></div>
 				        </div>
@@ -422,11 +422,11 @@ $route_cate   =	'home.cate';
 							<div class="page_number">
 				        <div class="page_num">
 				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	<div class="num numpage atv">1</div>
-				        	<div class="num numpage">2</div>
-				        	<div class="num numpage">3</div>
-				        	<div class="num numpage">4</div>
-				        	<div class="num numpage">5</div>
+				        	@for ($i = 1; $i <= $cates->lastPage(); $i = $i + 1)
+					        	<div class="num numpage {{$cates->currentPage() == $i ? 'atv' : '' }}" href="{!! $cates->url($i) !!}">
+					        		{{ $i }}
+					        	</div>
+				        	@endfor
 				        	<div class="num numnext fa fa-angle-double-right"></div>
 				        	<div class="clear"></div>
 				        </div>

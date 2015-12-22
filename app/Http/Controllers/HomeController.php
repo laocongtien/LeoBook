@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -12,6 +12,9 @@ use App\Book;
 use App\OrderDetail;
 use App\Author;
 use Cart;
+use Hash;
+use Input;
+//use Request; 
 
 class HomeController extends Controller
 {
@@ -31,86 +34,35 @@ class HomeController extends Controller
         ]);
     }
     public function test($id, $qty) {
-          Cart::destroy();
-        $book = book::where('id',$id)->first();
-        $price = $book->price - $book->price * $book->discount /100;
-        // Cart::add([
-        //     'id'=>$id, 
-        //     'name' => $book->name, 
-        //     'qty' => $qty,
-        //     'price' => $price,
-        //     'option' => ['image' => $book->image]
-        // ]);
-        Cart::add([
-            'id'=>$id, 
-            'name' => $book->name, 
-            'qty' => $qty,
-            'price' => $price,
-            'options' => ['image' => $book->image]
-        ]);
-        //return view('front.test');
-        //
-        
-        print_r(Cart::content()->toArray()) ;
-        
-        
+        echo (Cart::content());
     }
 
-    public function buy($id,$qty) {
-        $book = book::where('id',$id)->first();
-        $price = $book->price - $book->price * $book->discount /100;
-        Cart::add([
-            'id'=>$id, 
-            'name' => $book->name, 
-            'qty' => $qty,
-            'price' => $price,
-            'options' => ['image' => $book->image]
-        ]);
-        $data = '';
-        //print_r(Cart::content()->toArray()) ;
-        foreach (Cart::content() as $item) {
-            $data = $data.'
-            <div class="lica mxClrAft" id="'.$item->rowid.'">
-                <div class="ttl left">
-                    <a href="'.route('home.detail' , $item->id) .'" class="is-2r">
-                        '.$item->name.'
-                    </a>
-                </div>
-                <div class="cartbox left">
-                    <div class="num left">
-                        <input type="text" class="n left" value="'.$item->qty.'">
-                        <div class="ctrlnum left">
-                            <div class="fa fa-angle-up is-up"></div>
-                            <div class="fa fa-angle-down is-down"></div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="sls left" value="'.$item->price.'">
-                    '.number_format($item->price,0,',','.').'đ
-                </div>
-                <div class="fa fa-trash-o right"></div>
-            </div>
-            ';
-        }
-        echo $data;
-    }
-
-    public function delete($id) {
-        $data = Cart::get($id);
-        Cart::remove($id);
-        return $data->id;
-    }
-
-    public function update($id,$qty) {
-        Cart::update($id,['qty'=>$qty]);
-        echo "success";
-    }
+    
 
     public function detail($id) {
         $details = book::find($id);
-        $cates = book::where('type_id',$details->type_id)->get();
-        $authors = book::where('author_id',$details->author_id)->get();
+        $cates = book::where('type_id',$details->type_id)->paginate(4);
+        $authors = book::where('author_id',$details->author_id)->paginate(4);
+        if (Request::ajax())
+        {
+            $data = Request::get('data');
+            $page = Request::get('page');
+            //echo gettype($data);
+            if ($data == '01'){
+                return view('front.partials.list_book_item_info',[
+                    'data' => $authors
+                ]);
+            }elseif ($data == '03'){
+                return view('front.partials.list_book_item_info',[
+                    'data' => $cates
+                ]);
+            }elseif ($data == '02'){
+                return 'chưa làm';
+                // return view('front.partials.list_book_item_info',[
+                //     'data' => $cates
+                // ]);
+            }
+        }else
         return view('front.chitiet',[
             'item' => $details,
             'cates' =>  $cates,
@@ -122,7 +74,13 @@ class HomeController extends Controller
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-         $bestsellers = book::orderBy('qty_saled','DESC')->take(10)->paginate(10);
+         $bestsellers = book::orderBy('qty_saled','DESC')->paginate(5);
+         if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $bestsellers
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $bestsellers,
              'name' =>  'Bán chạy nhất'
@@ -130,7 +88,13 @@ class HomeController extends Controller
     }
 
     public function newbook() {
-        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(10);
+        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $newests
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $newests,
              'name' =>  'Sách mới'
@@ -138,7 +102,13 @@ class HomeController extends Controller
     }
 
     public function comming() {
-        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(10);
+        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $commings
+            ]);
+        }
         return view('front.xemthem',[
             'data' =>  $commings,
              'name' =>  'Sắp phát hành'
@@ -146,11 +116,111 @@ class HomeController extends Controller
     }
 
     public function discount() {
-        $counts = book::orderBy('discount','DESC')->paginate(10);
+        $discounts = book::orderBy('discount','DESC')->paginate(5);
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $discounts
+            ]);
+        }
         return view('front.xemthem',[
-            'data' =>  $counts,
+            'data' =>  $discounts,
              'name' =>  'Sách giảm giá'
         ]);
+    }
+
+    public function bestseller_cate($id) {
+        $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $bestsellers
+            ]);
+        }
+        return view('front.xemthem',[
+            'data' =>  $bestsellers,
+            'name' =>  $cate_name,
+            'filter' => 'Bán chạy nhất',
+            'route' => 'home.bestseller'
+        ]);
+    }
+
+    public function newbook_cate($id) {
+        $newests = book::where('cate_id',$id)->orderBy('publishing_date','<',date('y-m-d'))->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $newests
+            ]);
+        }
+        return view('front.xemthem',[
+            'data' =>  $newests,
+             'name' =>  $cate_name,
+            'filter' => 'Sách mới',
+            'route' => 'home.newbook'
+        ]);
+    }
+
+    public function comming_cate($id) {
+        $commings = book::where('cate_id',$id)->orderBy('publishing_date','>',date('y-m-d'))->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $commings
+            ]);
+        }
+        return view('front.xemthem',[
+            'data' =>  $commings,
+             'name' =>  $cate_name,
+            'filter' => 'Sắp phát hành',
+            'route' => 'home.comming'
+        ]);
+    }
+
+    public function discount_cate($id) {
+        $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
+        if (Request::ajax())
+        {
+            return view('front.partials.list_book_item_info',[
+                'data' => $discounts
+            ]);
+        }
+        return view('front.xemthem',[
+            'data' =>  $discounts,
+             'name' =>  $cate_name,
+            'filter' => 'Giảm giá',
+            'route' => 'home.discount'
+        ]);
+    }
+
+    public function cate() {
+        // $order = Input::get('order');
+        // if($order == 'bestseller'){
+        //     $cate = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
+        //     $cate_name = cate::where('id',$id)->first()->name;
+        // }elseif($order == 'new'){
+        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','<',date('y-m-d'))->paginate(5);
+        //     $cate_name = cate::where('id',$id)->first()->name;
+        // }elseif($order == 'comming'){
+        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','>',date('y-m-d'))->paginate(5);
+        //     $cate_name = cate::where('id',$id)->first()->name;
+        // }elseif($order == 'discount'){
+        //     $cate = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
+        //     $cate_name = cate::where('id',$id)->first()->name;
+        // }else{
+        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','DESC')->paginate(5);
+        //     $cate_name = cate::where('id',$id)->first()->name;
+        // }
+        
+        // return view('front.xemthem',[
+        //     'data' =>  $cate,
+        //      'name' =>  $cate_name
+        // ]);
+        return view('front.danhmuc');
     }
 
     public function combo() {
@@ -188,9 +258,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function cate() {
-        return view('front.danhmuc');
-    }
+    
 
     
 }

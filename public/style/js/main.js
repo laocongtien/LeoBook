@@ -720,14 +720,14 @@ function cart(){
 			//data: {'id': rowid},
 		}).done(function(data){
 			//alert("deleted");
-			unBlockAllItem(data);
+			unBlockAllItem(data.id);
 			box.remove();
 			checkHeightCart();
-			$('.cart').find('.ab').html($('.lica').length);	
+			$('.cart').find('.ab').html($('.lica').length);
+			updateTotalPrice(data.total);
 		}).fail(function (argument) {
-			alert("Can't not delete. ")	
+			alert("Can't not delete. ")
 		});
-		
 	});
 }
 function valueCart(){
@@ -745,18 +745,10 @@ function valueCart(){
 			type: 'GET',
 			data: {id: 'id', qty: 'qty'},
 		}).done (function(data){
-				var cost = lica.find('.price').val();
-			//alert(cost);
-			var total = $('.total-price').val();
-			total = parseInt(total) + parseInt(cost);
-			var item = $('.total').find('span');
-			$('.total-price').val(total);
-			item.text(total.formatMoney(0)+'đ');
+			updateTotalPrice(data);
 		}).fail (function (){
-			numbox.val(num - 1);
 			alert("Can't update this time");
 		});
-		
 	});
 	$('.is-down').unbind('click').click(function(){
 		var fth = $(this).parent();
@@ -773,22 +765,14 @@ function valueCart(){
 				type: 'GET',
 				data: {id: 'id', qty: 'qty'},
 			}).done (function(data){
-					var cost = lica.find('.price').val();
-					//alert(cost);
-					//var money = num * parseInt(cost);
-					var total = $('.total-price').val();
-					total = parseInt(total) - parseInt(cost);
-					var item = $('.total').find('span');
-					$('.total-price').val(total);
-					item.text(total.formatMoney(0)+'đ');
+				updateTotalPrice(data);
 			}).fail (function (){
-				numbox.val(num + 1);
 				alert("Can't update this time");
 			});
-			
 		}
 	});
 }
+
 function blockAllItem(id){
 	$('.cartbox').each(function(){
 		var cart = $(this);
@@ -804,12 +788,17 @@ function unBlockAllItem(id){
 	$('.cartbox').each(function(){
 		var cart = $(this);
 		if(cart.find('.b-id').val() == id) {
-			
 			console.log(cart.find('.qty').val(1));
-			cart.removeClass('ck');			
+			cart.removeClass('ck');
 		 	// console.log(id);
 		}
 	})
+}
+
+function updateTotalPrice(price){
+	var total = parseInt(price);
+	var item = $('.total').find('span');
+	item.text(total.formatMoney(0)+'đ');
 }
 
 function addToCart(){
@@ -829,7 +818,8 @@ function addToCart(){
 			var lib = cartbox.find('.lib');
 			cartbox.removeClass('empty');
 			lib.find('.lica').remove();
-			lib.append(data);
+			lib.html(data.cart);
+			updateTotalPrice(data.total);
 			ab.html($('.lica').length);
 			checkHeightCart();
 			cart();
@@ -858,7 +848,10 @@ function phantrang(){
 			numnext.removeClass('hide');
 			numpage.removeClass('atv');
 			num.addClass('atv');
-			if (num.html() == '1') numprev.addClass('hide');
+			var gridbook = bar.parent();
+			var data = gridbook.attr('data-link');
+			phantrangAjax(parseInt(num.html()),data,gridbook);
+			if (parseInt(num.html()) == 1) numprev.addClass('hide');
 			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
 		numprev.unbind('click').click(function(){
@@ -885,8 +878,24 @@ function phantrang(){
 		});
 	});
 }
+
+function phantrangAjax(page,data,gridbook){
+	$.ajax({
+		url: window.location.href+'?page='+page,
+		type: 'GET',
+		data: {'data' : data, 'page': page},
+	})
+	.done(function(result) {
+		gridbook.find('.grid').empty();
+		gridbook.find('.grid').append(result);
+		limited();
+	})
+	.fail(function() {
+		console.log("error");
+	});
+}
 Number.prototype.formatMoney = function(c, d, t){
-var n = this, 
+	var n = this, 
     c = isNaN(c = Math.abs(c)) ? 2 : c, 
     d = d == undefined ? "," : d, 
     t = t == undefined ? "." : t, 
