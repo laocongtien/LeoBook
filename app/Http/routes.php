@@ -13,6 +13,7 @@
 
 Route::get('/', ['as' => 'home.index','uses' => 'HomeController@index']);
 Route::get('test/{id}/{qty}', ['as' => 'home.test','uses' => 'HomeController@test']);
+
 Route::get('chi-tiet/{id}', ['as' => 'home.detail','uses' => 'HomeController@detail']);
 
 Route::get('ban-chay-nhat', ['as' =>'home.bestseller','uses' => 'HomeController@bestseller']);
@@ -54,3 +55,9 @@ Route::post('dang-ky', ['as' =>'home.register','uses' => 'Auth\AuthController@po
 
 Route::get('dang-xuat', ['as' =>'home.logout','uses' => 'Auth\AuthController@getLogout']);
 
+Route::group(['prefix'=>'admin'],function(){
+	Route::group(['prefix' => 'cate'], function() {
+		Route::get('add', ['as' => 'admin.cate.getAdd', 'uses' => 'CateController@getAdd']);
+		Route::post('add', ['as' => 'admin.cate.postAdd', 'uses' => 'CateController@postAdd']);
+	});
+});
