@@ -310,19 +310,19 @@ $route_cate   =	'home.cate';
 								@endforeach
 							</div>
 							<div class="page_number">
-				        <div class="page_num">
-				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
-					        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
-					        		{{ $i }}
-					        	</div>
-				        	@endfor
-				        	<div class="num numnext fa fa-angle-double-right"></div>
-				        	<div class="clear"></div>
-				        </div>
-				      </div>
-			      </div>
-			      <div class="is-is-tab gridbook" data-link="02">
+						        <div class="page_num">
+						        	<div class="num numprev fa fa-angle-double-left hide"></div>
+						        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
+							        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
+							        		{{ $i }}
+							        	</div>
+						        	@endfor
+						        	<div class="num numnext fa fa-angle-double-right"></div>
+						        	<div class="clear"></div>
+						        </div>
+				      		</div>
+			      		</div>
+			      		<div class="is-is-tab gridbook" data-link="02">
 							<div class="lbook grid mxClrAft">
 								<?php   for ($i = 6; $i < 10;$i++): ?>
 									<div class="book_item">
@@ -414,23 +414,23 @@ $route_cate   =	'home.cate';
 				      </div>
 			      </div>
 			      <div class="is-is-tab gridbook" data-link="03">
-							<div class="lbook grid mxClrAft">
-								@foreach ($cates as $item)
-									@include('front.partials.book_item_info')
-								@endforeach
-							</div>
-							<div class="page_number">
-				        <div class="page_num">
-				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	@for ($i = 1; $i <= $cates->lastPage(); $i = $i + 1)
-					        	<div class="num numpage {{$cates->currentPage() == $i ? 'atv' : '' }}" href="{!! $cates->url($i) !!}">
-					        		{{ $i }}
-					        	</div>
-				        	@endfor
-				        	<div class="num numnext fa fa-angle-double-right"></div>
-				        	<div class="clear"></div>
-				        </div>
-				      </div>
+						<div class="lbook grid mxClrAft">
+							@foreach ($cates as $item)
+								@include('front.partials.book_item_info')
+							@endforeach
+						</div>
+						<div class="page_number">
+					        <div class="page_num">
+					        	<div class="num numprev fa fa-angle-double-left hide"></div>
+					        	@for ($i = 1; $i <= $cates->lastPage(); $i = $i + 1)
+						        	<div class="num numpage {{$cates->currentPage() == $i ? 'atv' : '' }}" href="{!! $cates->url($i) !!}">
+						        		{{ $i }}
+						        	</div>
+					        	@endfor
+					        	<div class="num numnext fa fa-angle-double-right"></div>
+					        	<div class="clear"></div>
+					        </div>
+			      		</div>
 			      </div>
 					</div>
 				</div>

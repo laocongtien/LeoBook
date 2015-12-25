@@ -96,6 +96,12 @@ function limited(){
 function selectbox(){
 	if($('.is-sl').length == 0) return;
 	$(".is-sl").selectbox({
+		onChange: function (val, inst){
+			var url = window.location.href;
+			var limit = val;
+
+			alert(url);
+		},
 		effect: "fade"
 	});
 }
@@ -145,6 +151,8 @@ function viewmode(){
 		}
 	});
 }
+
+
 
 /* Hàm chuyển tab */
 function tabbox(){
@@ -714,10 +722,11 @@ function cart(){
 		var box = $(this).parent();
 		var rowid = box.attr('id');
 		//alert(id);
+		var url = $('.logo').attr('href');
 		$.ajax({
-			url: 'xoa-sach/'+rowid,
+			url: url + 'xoa-sach',
 			type: 'GET',
-			//data: {'id': rowid},
+			data: {'rowid': rowid},
 		}).done(function(data){
 			//alert("deleted");
 			unBlockAllItem(data.id);
@@ -727,6 +736,7 @@ function cart(){
 			updateTotalPrice(data.total);
 		}).fail(function (argument) {
 			alert("Can't not delete. ")
+			window.location.reload();
 		});
 	});
 }
@@ -740,14 +750,16 @@ function valueCart(){
 		var lica = grfth.parent().parent();
 		var qty = numbox.val();
 		var rowid = lica.attr('id');
+		var url = $('.logo').attr('href');
 		$.ajax({
-			url: 'cap-nhat-sach/'+rowid+'/'+qty,
+			url: url + 'cap-nhat-sach',
 			type: 'GET',
-			data: {id: 'id', qty: 'qty'},
+			data: {'rowid': rowid, 'qty': qty},
 		}).done (function(data){
 			updateTotalPrice(data);
 		}).fail (function (){
 			alert("Can't update this time");
+			window.location.reload();
 		});
 	});
 	$('.is-down').unbind('click').click(function(){
@@ -760,14 +772,16 @@ function valueCart(){
 			var lica = grfth.parent().parent();
 			var qty = numbox.val();
 			var rowid = lica.attr('id');
+			var url = $('.logo').attr('href');
 			$.ajax({
-				url: 'cap-nhat-sach/'+rowid+'/'+qty,
+				url: url + 'cap-nhat-sach',
 				type: 'GET',
-				data: {id: 'id', qty: 'qty'},
+				data: {'rowid': rowid, 'qty': qty},
 			}).done (function(data){
 				updateTotalPrice(data);
 			}).fail (function (){
 				alert("Can't update this time");
+				window.location.reload();
 			});
 		}
 	});
@@ -808,8 +822,9 @@ function addToCart(){
 		var ins = button.parent();
 		var qty = ins.find('.n').val();
 		var id = ins.find('.b-id').val();
+		var url = $('.logo').attr('href');
 		$.ajax({
-			url: 'mua-sach/'+id+'/'+qty,
+			url: url + 'mua-sach',
 			type: 'GET',
 			data: {"id": id, "qty": qty},
 		}).done(function(data){
@@ -827,6 +842,7 @@ function addToCart(){
 			blockAllItem(id);
 		}).fail(function (){
 			alert("Can't not buy this book now");
+			window.location.reload();
 		});
 	});
 	$('.is-over-check').click(function(){
@@ -881,7 +897,7 @@ function phantrang(){
 
 function phantrangAjax(page,data,gridbook){
 	$.ajax({
-		url: window.location.href+'?page='+page,
+		//url: window.location.href+'?page='+page,
 		type: 'GET',
 		data: {'data' : data, 'page': page},
 	})
@@ -889,9 +905,11 @@ function phantrangAjax(page,data,gridbook){
 		gridbook.find('.grid').empty();
 		gridbook.find('.grid').append(result);
 		limited();
+		//window.location.href = '?page=' + page
 	})
 	.fail(function() {
-		console.log("error");
+		window.location.reload();
+		//console.log("error");
 	});
 }
 Number.prototype.formatMoney = function(c, d, t){

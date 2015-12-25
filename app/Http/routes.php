@@ -40,12 +40,9 @@ Route::get('thanh-toan', ['middleware' => 'auth', 'as' =>'home.checkout','uses' 
 Route::get('tai-khoan', ['middleware' => 'auth', 'as' =>'home.customer','uses' => 'HomeController@customer']);
 
 //Ajax
-Route::get('mua-sach/{id}/{qty}', ['as' =>'home.buy','uses' => 'AjaxController@buy']);
-Route::get('xoa-sach/{id}', ['as' =>'home.delete','uses' => 'AjaxController@delete']);
-Route::get('cap-nhat-sach/{id}/{qty}', ['as' =>'home.update','uses' => 'AjaxController@update']);
-Route::get('chi-tiet/mua-sach/{id}/{qty}', ['as' =>'home.buy','uses' => 'AjaxController@buy']);
-Route::get('chi-tiet/xoa-sach/{id}', ['as' =>'home.delete','uses' => 'AjaxController@delete']);
-Route::get('chi-tiet/cap-nhat-sach/{id}/{qty}', ['as' =>'home.update','uses' => 'AjaxController@update']);
+Route::get('mua-sach', ['as' =>'home.buy','uses' => 'AjaxController@buy']);
+Route::get('xoa-sach', ['as' =>'home.delete','uses' => 'AjaxController@delete']);
+Route::get('cap-nhat-sach', ['as' =>'home.update','uses' => 'AjaxController@update']);
 //Authentication
 Route::get('dang-nhap', ['as' =>'home.login','uses' => 'Auth\AuthController@getLogin']);
 Route::post('dang-nhap', ['as' =>'home.login','uses' => 'Auth\AuthController@postLogin']);

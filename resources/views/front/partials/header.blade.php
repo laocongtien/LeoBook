@@ -6,19 +6,19 @@
 	<meta name="viewport" content="minimal-ui, width=1024, user-scalable=no">
  	<meta name="apple-mobile-web-app-capable" content="yes">
 	<title> @yield('head.title')</title>
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/font.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/jquery.selectbox.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/jquery.jscrollpane.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/animate-animo.min.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/main.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/xemthem.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/danhmuc.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/tacgia.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/chitiet.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/trangcanhan.css">
-	<link rel="stylesheet" type="text/css" href="{!!asset('')!!}style/css/thanhtoan.css">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/reset.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/font.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/font-awesome.min.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/jquery.selectbox.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/jquery.jscrollpane.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/animate-animo.min.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/main.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/xemthem.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/danhmuc.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/tacgia.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/chitiet.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/trangcanhan.css') !!}">
+	<link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/thanhtoan.css') !!}">
 </head>
 <?php
 $route_bestseller = 'home.bestseller';

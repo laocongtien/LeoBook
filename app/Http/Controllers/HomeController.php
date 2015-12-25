@@ -14,7 +14,6 @@ use App\Author;
 use Cart;
 use Hash;
 use Input;
-//use Request; 
 
 class HomeController extends Controller
 {
@@ -147,7 +146,7 @@ class HomeController extends Controller
     }
 
     public function newbook_cate($id) {
-        $newests = book::where('cate_id',$id)->orderBy('publishing_date','<',date('y-m-d'))->paginate(5);
+        $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         if (Request::ajax())
         {
@@ -164,7 +163,7 @@ class HomeController extends Controller
     }
 
     public function comming_cate($id) {
-        $commings = book::where('cate_id',$id)->orderBy('publishing_date','>',date('y-m-d'))->paginate(5);
+        $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         if (Request::ajax())
         {
