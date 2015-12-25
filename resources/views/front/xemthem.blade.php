@@ -76,9 +76,7 @@
 			@if ($data->count() > 0)
 			<div class="gridbook wrap">
 				<div class="grid mxClrAft">
-					@foreach($data as $item)
-						@include('front.partials.book_item_info')
-					@endforeach
+					@include('front.partials.list_book_item_info')
 				</div>
 				@if ($data->lastPage() > 1)
 				<div class="page_number">

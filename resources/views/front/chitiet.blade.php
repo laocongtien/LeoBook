@@ -276,26 +276,7 @@ $route_cate   =	'home.cate';
 								Sách cùng thể loại
 							</div>
 						</div>
-						<div class="fil slfilter right">
-							<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
-								<option value="">Sách mới</option>
-								<option value="">Sắp xếp theo: A - Z</option>
-								<option value="">Sắp xếp theo: Z - A</option>
-								<option value="">Giá: cao đến thấp</option>
-								<option value="">Giá: thấp đến cao</option>
-								<option value="">Giá giảm: cao đến thấp</option>
-								<option value="">Giá giảm: thấp đến cao</option>
-								<option value="">Bán chạy nhất</option>
-							</select>
-						</div>
-						<div class="numbook slfilter right">
-							<select name="Soluong" class="is-sl" value="Sắp xếp">
-								<option value="5">Hiển thị: 5</option>
-								<option value="10">Hiển thị: 10</option>
-								<option value="20">Hiển thị: 20</option>
-								<option value="">Hiển thị: Tất cả</option>
-							</select>
-						</div>
+						
 						<div class="viewmode right">
 							<div class="fa fa-th atv"></div>
 							<div class="fa fa-list"></div>

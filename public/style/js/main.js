@@ -99,8 +99,9 @@ function selectbox(){
 		onChange: function (val, inst){
 			var url = window.location.href;
 			var limit = val;
-
-			alert(url);
+			var grid = $('.gridbook');
+			phantrangAjax(1,"list",grid,limit);
+			alert(limit);
 		},
 		effect: "fade"
 	});
@@ -866,7 +867,8 @@ function phantrang(){
 			num.addClass('atv');
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
-			phantrangAjax(parseInt(num.html()),data,gridbook);
+			var limit = $('.numbook').find('select').val();
+			phantrangAjax(parseInt(num.html()),data,gridbook, limit);
 			if (parseInt(num.html()) == 1) numprev.addClass('hide');
 			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
@@ -895,15 +897,20 @@ function phantrang(){
 	});
 }
 
-function phantrangAjax(page,data,gridbook){
+function phantrangAjax(page,data,gridbook,limit){
 	$.ajax({
 		//url: window.location.href+'?page='+page,
 		type: 'GET',
-		data: {'data' : data, 'page': page},
+		data: {'data' : data, 'page': page, 'limit': limit},
 	})
 	.done(function(result) {
+		if(page == 1 && data == 'list') {
+			gridbook.empty();
+			gridbook.append(result);
+		}else{
 		gridbook.find('.grid').empty();
 		gridbook.find('.grid').append(result);
+		}
 		limited();
 		//window.location.href = '?page=' + page
 	})

@@ -129,14 +129,25 @@ class HomeController extends Controller
     }
 
     public function bestseller_cate($id) {
-        $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
-        $cate_name = cate::where('id',$id)->first()->name;
+        
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate($limit);
+            $cate_name = cate::where('id',$id)->first()->name;
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $bestsellers,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $bestsellers
-            ]);
+            ]);}
         }
+        $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $bestsellers,
             'name' =>  $cate_name,
@@ -146,14 +157,17 @@ class HomeController extends Controller
     }
 
     public function newbook_cate($id) {
-        $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
-        $cate_name = cate::where('id',$id)->first()->name;
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate($limit);
+            $cate_name = cate::where('id',$id)->first()->name;
             return view('front.partials.list_book_item_info',[
                 'data' => $newests
             ]);
         }
+        $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $newests,
              'name' =>  $cate_name,
@@ -163,14 +177,19 @@ class HomeController extends Controller
     }
 
     public function comming_cate($id) {
-        $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate(5);
-        $cate_name = cate::where('id',$id)->first()->name;
+        
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+
+            $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate($limit);
+            $cate_name = cate::where('id',$id)->first()->name;
             return view('front.partials.list_book_item_info',[
                 'data' => $commings
             ]);
         }
+        $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $commings,
              'name' =>  $cate_name,
@@ -180,14 +199,18 @@ class HomeController extends Controller
     }
 
     public function discount_cate($id) {
-        $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
-        $cate_name = cate::where('id',$id)->first()->name;
+        
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate($limit);
+            $cate_name = cate::where('id',$id)->first()->name;
             return view('front.partials.list_book_item_info',[
                 'data' => $discounts
             ]);
         }
+        $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $discounts,
              'name' =>  $cate_name,
