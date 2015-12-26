@@ -31,8 +31,12 @@ Route::get('giam-gia/{id}', ['as' =>'discount.cate','uses' => 'HomeController@di
 
 Route::get('combo', ['as' =>'home.combo','uses' => 'HomeController@combo']);
 Route::get('tac-gia', ['as' =>'home.author','uses' => 'HomeController@author']);
+Route::get('tac-gia/{id}', ['as' =>'author.detail','uses' => 'HomeController@author_detail']);
+
 Route::get('nha-xuat-ban', ['as' =>'home.publisher','uses' => 'HomeController@publisher']);
+
 Route::get('cong-ty-phat-hanh', ['as' =>'home.issuer','uses' => 'HomeController@issuer']);
+
 Route::get('tim-kiem', ['as' =>'home.search','uses' => 'HomeController@search']);
 
 Route::get('danh-muc/{id}', ['as' =>'home.cate','uses' => 'HomeController@cate']);

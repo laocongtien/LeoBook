@@ -140,11 +140,12 @@ function viewmode(){
 		btn.addClass('atv');
 		if(btn.hasClass('fa-th')) {
 			$('.grid').removeClass('list');
-			$('.numbook').hide();
+			//limited();
+			//$('.numbook').show();
 		}
 		else {
 			$('.grid').addClass('list');
-			$('.numbook').show();
+			//$('.numbook').show();
 			$('.trig').ellipsis({
 				row: 3, 
 				onlyFullWords: true,
@@ -748,28 +749,7 @@ function valueCart(){
 		var numbox = grfth.find(".n");
 		var num = parseInt(numbox.val()) + 1;
 		numbox.val(num);
-		var lica = grfth.parent().parent();
-		var qty = numbox.val();
-		var rowid = lica.attr('id');
-		var url = $('.logo').attr('href');
-		$.ajax({
-			url: url + 'cap-nhat-sach',
-			type: 'GET',
-			data: {'rowid': rowid, 'qty': qty},
-		}).done (function(data){
-			updateTotalPrice(data);
-		}).fail (function (){
-			alert("Can't update this time");
-			window.location.reload();
-		});
-	});
-	$('.is-down').unbind('click').click(function(){
-		var fth = $(this).parent();
-		var grfth = fth.parent();
-		var numbox = grfth.find(".n");
-		var num = parseInt(numbox.val()) - 1;
-		if (num != 0) { 
-			numbox.val(num);
+		if ($(this).hasClass('up-cart')){
 			var lica = grfth.parent().parent();
 			var qty = numbox.val();
 			var rowid = lica.attr('id');
@@ -782,8 +762,33 @@ function valueCart(){
 				updateTotalPrice(data);
 			}).fail (function (){
 				alert("Can't update this time");
-				window.location.reload();
+				//window.location.reload();
 			});
+		}
+	});
+	$('.is-down').unbind('click').click(function(){
+		var fth = $(this).parent();
+		var grfth = fth.parent();
+		var numbox = grfth.find(".n");
+		var num = parseInt(numbox.val()) - 1;
+		if (num != 0) {
+			numbox.val(num);
+			if ($(this).hasClass('down-cart')){
+				var lica = grfth.parent().parent();
+				var qty = numbox.val();
+				var rowid = lica.attr('id');
+				var url = $('.logo').attr('href');
+				$.ajax({
+					url: url + 'cap-nhat-sach',
+					type: 'GET',
+					data: {'rowid': rowid, 'qty': qty},
+				}).done (function(data){
+					updateTotalPrice(data);
+				}).fail (function (){
+					alert("Can't update this time");
+					//window.location.reload();
+				});
+			}
 		}
 	});
 }
@@ -907,6 +912,9 @@ function phantrangAjax(page,data,gridbook,limit){
 		if(page == 1 && data == 'list') {
 			gridbook.empty();
 			gridbook.append(result);
+			phantrang();
+			addToCart();
+			limited();
 		}else{
 		gridbook.find('.grid').empty();
 		gridbook.find('.grid').append(result);

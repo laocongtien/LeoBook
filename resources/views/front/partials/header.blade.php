@@ -494,8 +494,8 @@ $route_register     =	'home.register';
 											<div class="num left">
 												<input type="text" class="n left qty" value="{{ $item->qty }}">
 												<div class="ctrlnum left">
-													<div class="fa fa-angle-up is-up"></div>
-													<div class="fa fa-angle-down is-down"></div>
+													<div class="fa fa-angle-up is-up up-cart"></div>
+													<div class="fa fa-angle-down is-down down-cart"></div>
 												</div>
 												<div class="clear"></div>
 											</div>

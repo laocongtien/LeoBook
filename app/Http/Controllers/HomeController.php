@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function index() {
         $books = book::all()->take(10);
         //$bestseller = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->take(10)->get();
-        $bestseller = book::orderBy('qty_saled','DESC')->take(10)->get();
+        $bestseller = book::orderBy('qty_saled','DESC')->orderBy('name','DESC')->take(10)->get();
         $comings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();
         $counts = book::orderBy('discount','DESC')->take(10)->get();
         $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();        
@@ -73,8 +73,9 @@ class HomeController extends Controller
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-         $bestsellers = book::orderBy('qty_saled','DESC')->paginate(5);
-         if (Request::ajax())
+        $temp = book::orderBy('qty_saled','DESC')->orderBy('name');
+        $bestsellers = $temp->paginate(5);
+        if (Request::ajax())
         {
             return view('front.partials.list_book_item_info',[
                 'data' => $bestsellers
@@ -250,11 +251,14 @@ class HomeController extends Controller
     }
 
     public function author() {
-        $author = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
-
+        
+        $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
+        $author_list = Author::orderBy('name','ASC')->paginate(9);
         return view('front.tacgia',[
-            'author_word' => $author
+            'author_word' => $author_word,
+            'data'          =>  $author_list
         ]);
+        
     }
 
     public function publisher() {

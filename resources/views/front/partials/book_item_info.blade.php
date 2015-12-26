@@ -10,9 +10,8 @@
 				<a href="{{ route('home.detail' , $item->id) }}" class="book_title is-1r">
 					{{ $item->name }}
 				</a>
-				<div class="book_author intt">
-					Tác giả: 
-					<a href="tacgia.php" >
+				<div class="book_author intt is-1r">
+					<a href="tacgia.php" class="" >
 						{{ $item->author->name }}
 					</a>
 				</div>
