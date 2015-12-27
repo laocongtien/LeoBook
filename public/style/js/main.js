@@ -1,14 +1,5 @@
 $(function(){
-	openMenu();
-	searchfunc();
-	slidebook();
-	limited();
-	selectbox();
-	addToCart();
-	phantrang();
-	viewmode();
-	tabbox();
-	box();
+	starup();
 	index(); //script trang chủ
 	authorPage(); //trang nxb, tác giả
 	chitietsach(); //trang chi tiết sách
@@ -19,6 +10,26 @@ $(function(){
 	checkHeightCart();
 	cart();
 });
+
+/* star up*/
+
+function starup(){
+	$('.cartbox').each(function(){
+		var box = $(this);
+		if(box.parent().hasClass('lica')) return;
+		box.find('.n').val('1');
+	});	
+	openMenu();
+	searchfunc();
+	slidebook();
+	limited();
+	selectbox();
+	addToCart();
+	phantrang();
+	viewmode();
+	tabbox();
+	box();
+}
 /*--- CÁC HÀM Ở HEADER ---*/
 
 function openMenu(){
@@ -101,7 +112,9 @@ function selectbox(){
 			var limit = val;
 			var grid = $('.gridbook');
 			phantrangAjax(1,"list",grid,limit);
-			alert(limit);
+			
+			
+			// alert(limit);
 		},
 		effect: "fade"
 	});
@@ -140,12 +153,12 @@ function viewmode(){
 		btn.addClass('atv');
 		if(btn.hasClass('fa-th')) {
 			$('.grid').removeClass('list');
-			//limited();
-			//$('.numbook').show();
+			limited();
+			$('.numbook').hide();
 		}
 		else {
 			$('.grid').addClass('list');
-			//$('.numbook').show();
+			$('.numbook').show();
 			$('.trig').ellipsis({
 				row: 3, 
 				onlyFullWords: true,
@@ -177,6 +190,7 @@ function tabbox(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
 					tb.show();
+					//alert('tab');
 					limited();
 				}
 			});
@@ -860,44 +874,46 @@ function phantrang(){
 	if($('.numpage').length == 0) return;
 	$('.page_number').each(function(){
 		var bar=$(this);
-		var n = bar.find('.numpage').length;
+		
 		var numpage = bar.find('.numpage');
-		var numprev = bar.find('.numprev')
-		var numnext = bar.find('.numnext')
+		var numprev = bar.find('.numprev');
+		var numnext = bar.find('.numnext');
+		var n = numpage.length;
 		numpage.unbind('click').click(function(){
 			var num = $(this);
-			numprev.removeClass('hide');
-			numnext.removeClass('hide');
-			numpage.removeClass('atv');
-			num.addClass('atv');
+			// numprev.removeClass('hide');
+			// numnext.removeClass('hide');
+			// numpage.removeClass('atv');
+			// num.addClass('atv');
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
+			if ($('.grid').hasClass('list')) {data = 'list'};
 			var limit = $('.numbook').find('select').val();
 			phantrangAjax(parseInt(num.html()),data,gridbook, limit);
-			if (parseInt(num.html()) == 1) numprev.addClass('hide');
-			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
+			// if (parseInt(num.html()) == 1) numprev.addClass('hide');
+			// if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
 		numprev.unbind('click').click(function(){
-			var num;
-			for (var i = 0; i <= n; i++) {
-				if(numpage.eq(i).hasClass('atv')) 
-					{
-						num = parseInt(numpage.eq(i).html());
-						numpage.eq(i - 1).trigger('click');
-						return;
-					}
-			}
+			// var num;
+			// for (var i = 0; i <= n; i++) {
+			// 	if(numpage.eq(i).hasClass('atv')) 
+			// 		{
+			// 			num = parseInt(numpage.eq(i).html());
+			// 			numpage.eq(i - 1).trigger('click');
+			// 			return;
+			// 		}
+			// }
 		});
 		numnext.unbind('click').click(function(){
-			var num;
-			for (var i = 0; i <= n; i++) {
-				if(numpage.eq(i).hasClass('atv')) 
-				{
-					num = parseInt(numpage.eq(i).html());
-					numpage.eq(i + 1).trigger('click');
-					return;
-				}
-			}
+			// var num;
+			// for (var i = 0; i <= n; i++) {
+			// 	if(numpage.eq(i).hasClass('atv')) 
+			// 	{
+			// 		num = parseInt(numpage.eq(i).html());
+			// 		numpage.eq(i + 1).trigger('click');
+			// 		return;
+			// 	}
+			// }
 		});
 	});
 }
@@ -909,16 +925,15 @@ function phantrangAjax(page,data,gridbook,limit){
 		data: {'data' : data, 'page': page, 'limit': limit},
 	})
 	.done(function(result) {
-		if(page == 1 && data == 'list') {
+		// if(page == 1 && data == 'list') {
 			gridbook.empty();
 			gridbook.append(result);
 			phantrang();
 			addToCart();
-			limited();
-		}else{
-		gridbook.find('.grid').empty();
-		gridbook.find('.grid').append(result);
-		}
+		// }else{
+		// gridbook.find('.pagination').empty();
+		// gridbook.find('.pagination').append(result);
+		// }
 		limited();
 		//window.location.href = '?page=' + page
 	})

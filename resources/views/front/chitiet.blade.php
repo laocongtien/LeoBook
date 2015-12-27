@@ -292,13 +292,13 @@ $route_cate   =	'home.cate';
 							</div>
 							<div class="page_number">
 						        <div class="page_num">
-						        	<div class="num numprev fa fa-angle-double-left hide"></div>
+						        	<div class="num numprev fa fa-angle-double-left {{$authors->currentPage() == 1 ? 'hide' : '' }}" href="{{ $authors->url($authors->currentPage() - 1) }}"></div>
 						        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
 							        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
 							        		{{ $i }}
 							        	</div>
 						        	@endfor
-						        	<div class="num numnext fa fa-angle-double-right"></div>
+						        	<div class="num numnext fa fa-angle-double-right {{$authors->currentPage() == $authors->lastPage() ? 'hide' : '' }}" href="{{ $authors->url($authors->currentPage() + 1) }}"></div>
 						        	<div class="clear"></div>
 						        </div>
 				      		</div>
