@@ -55,9 +55,59 @@ Route::post('dang-ky', ['as' =>'home.register','uses' => 'Auth\AuthController@po
 
 Route::get('dang-xuat', ['as' =>'home.logout','uses' => 'Auth\AuthController@getLogout']);
 
+
+
+
 Route::group(['prefix'=>'admin'],function(){
+
+	Route::get('/', ['as' => 'admin.index', 'uses' => 'AdminController@index']);
+	Route::get('oder', ['as' => 'admin.oder', 'uses' => 'OderController@oder']);
+
+	Route::group(['prefix' => 'author'], function() {
+		Route::get('add', ['as' => 'admin.author.getAdd', 'uses' => 'AuthorController@getAdd']);
+		Route::post('add', ['as' => 'admin.author.postAdd', 'uses' => 'AuthorController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.author.getList', 'uses' => 'AuthorController@getList']);
+		Route::post('list', ['as' => 'admin.author.postList', 'uses' => 'AuthorController@postList']);
+	});
+
 	Route::group(['prefix' => 'cate'], function() {
 		Route::get('add', ['as' => 'admin.cate.getAdd', 'uses' => 'CateController@getAdd']);
 		Route::post('add', ['as' => 'admin.cate.postAdd', 'uses' => 'CateController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.cate.getList', 'uses' => 'CateController@getList']);
+		Route::post('list', ['as' => 'admin.cate.postList', 'uses' => 'CateController@postList']);
 	});
+
+	Route::group(['prefix' => 'issuer'], function() {
+		Route::get('add', ['as' => 'admin.issuer.getAdd', 'uses' => 'IssuerController@getAdd']);
+		Route::post('add', ['as' => 'admin.issuer.postAdd', 'uses' => 'IssuerController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.issuer.getList', 'uses' => 'IssuerController@getList']);
+		Route::post('list', ['as' => 'admin.issuer.postList', 'uses' => 'IssuerController@postList']);
+	});
+
+	Route::group(['prefix' => 'book'], function() {
+		Route::get('add', ['as' => 'admin.book.getAdd', 'uses' => 'BookController@getAdd']);
+		Route::post('add', ['as' => 'admin.book.postAdd', 'uses' => 'BookController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.book.getList', 'uses' => 'BookController@getList']);
+		Route::post('list', ['as' => 'admin.book.postList', 'uses' => 'BookController@postList']);
+	});
+	Route::group(['prefix' => 'publisher'], function() {
+		Route::get('add', ['as' => 'admin.publisher.getAdd', 'uses' => 'PublisherController@getAdd']);
+		Route::post('add', ['as' => 'admin.publisher.postAdd', 'uses' => 'PublisherController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.publisher.getList', 'uses' => 'PublisherController@getList']);
+		Route::post('list', ['as' => 'admin.publisher.postList', 'uses' => 'PublisherController@postList']);
+	});
+	
+	Route::group(['prefix' => 'user'], function() {
+		Route::get('add', ['as' => 'admin.user.getAdd', 'uses' => 'UserController@getAdd']);
+		Route::post('add', ['as' => 'admin.user.postAdd', 'uses' => 'UserController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.user.getList', 'uses' => 'UserController@getList']);
+		Route::post('list', ['as' => 'admin.user.postList', 'uses' => 'UserController@postList']);
+	});
+
 });

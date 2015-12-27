@@ -7,22 +7,27 @@
     <title>Admin - Leo Book</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ url('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{{ url('admin/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ url('admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{ url('admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('public/admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- DataTables CSS -->
-    <link href="{{ url('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="{{ url('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
+    <link href="{{ url('public/admin/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/font.css">
+    <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/jquery.selectbox.css">
+    <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/admin.css">
 </head>
 
 <body>
@@ -38,7 +43,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admin Area - Leo Book</a>
+                <a class="navbar-brand" href="/">
+                    <img src="{!!asset('')!!}public/style/images/theme/logo-gray.png" alt="Leobook.com">
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -49,12 +56,9 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Cài đặt</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -68,7 +72,7 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
@@ -78,40 +82,93 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ route('admin.index') }}">
+                              Tổng quan
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
+                            <a href="{{ route('admin.oder') }}">Đơn hàng</a>
+                        </li>
+                        <li>
+                            <a href="#">Danh mục<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List Category</a>
+                                    <a href="{{ route('admin.cate.getList') }}"> Quản lý danh mục</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Category</a>
+                                    <a href="{{ route('admin.cate.getAdd') }}">Thêm danh mục</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
+                            <a href="#">Thể loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List Product</a>
+                                    <a href="{{ route('admin.cate.getList') }}">Quản lý thể loại</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add Product</a>
+                                    <a href="{{ route('admin.cate.getAdd') }}">Thêm thể loại</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
+                            <a href="#"> Tác giả<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List User</a>
+                                    <a href="{{ route('admin.author.getList') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add User</a>
+                                    <a href="{{ route('admin.author.getAdd') }}">Thêm tác giả</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#">Sách<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.book.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.book.getAdd') }}">Thêm sách mới</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#">Nhà sản xuất<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.publisher.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.publisher.getAdd') }}">Thêm nhà sản xuất</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#">Nhà xuất bản<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.issuer.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.issuer.getAdd') }}">Thêm nhà xuất bản</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"> User<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.user.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.user.getAdd') }}">Thêm User</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -125,20 +182,16 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">@yield('Category')
-                    <small>@yield('action')</small>
-                </h1>
-            </div>
-            <!-- /.col-lg-12 -->
-            @yield('content')
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</div>
+          <div class="container-fluid">
+              <div class="row">
+                  
+                  <!-- /.col-lg-12 -->
+                  @yield('content')
+              </div>
+              <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+      </div>
         
         <!-- /#page-wrapper -->
 
@@ -146,21 +199,22 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ url('admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url('public/admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('public/admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{{ url('admin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <script src="{{ url('public/admin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{ url('admin/dist/js/sb-admin-2.js') }}"></script>
+    <script src="{{ url('public/admin/dist/js/sb-admin-2.js') }}"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="{{ url('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ url('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
-
+    <script src="{{ url('public/admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('public/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
+  <script type='text/javascript' src='{!!asset('')!!}public/style/js/jquery.selectbox-0.2.js'></script>
+    <script src="{{ url('public/style/js/admin.js') }}"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {

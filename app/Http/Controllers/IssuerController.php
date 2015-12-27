@@ -8,10 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CateRequest;
 
-class CateController extends Controller
+class IssuerController extends Controller
 {
     public function getAdd() {
-    	return view('admin.cate.add');
+    	return view('admin.issuer.add');
     }
 
     public function postAdd(CateRequest $request) {
@@ -19,7 +19,7 @@ class CateController extends Controller
     }
    
     public function getList() {
-    	return view('admin.cate.list');
+    	return view('admin.issuer.list');
     }
 
     public function postList(CateRequest $request) {

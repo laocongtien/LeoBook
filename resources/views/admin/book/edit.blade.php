@@ -131,43 +131,53 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Product
-                            <small>List</small>
+                            <small>Edit</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <tr align="center">
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="odd gradeX" align="center">
-                                <td>1</td>
-                                <td>Áo Thun Nana</td>
-                                <td>200.000 VNĐ</td>
-                                <td>3 Minutes Age</td>
-                                <td>Hiện</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
-                            <tr class="even gradeC" align="center">
-                                <td>2</td>
-                                <td>Áo Thun Polo</td>
-                                <td>250.000 VNĐ</td>
-                                <td>1 Hours Age</td>
-                                <td>Ẩn</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-lg-7" style="padding-bottom:120px">
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" name="txtName" placeholder="Please Enter Username" />
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
+                            </div>
+                            <div class="form-group">
+                                <label>Intro</label>
+                                <textarea class="form-control" rows="3" name="txtIntro"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea class="form-control" rows="3" name="txtContent"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Images</label>
+                                <input type="file" name="fImages">
+                            </div>
+                            <div class="form-group">
+                                <label>Product Keywords</label>
+                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+                            </div>
+                            <div class="form-group">
+                                <label>Product Description</label>
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Product Status</label>
+                                <label class="radio-inline">
+                                    <input name="rdoStatus" value="1" checked="" type="radio">Visible
+                                </label>
+                                <label class="radio-inline">
+                                    <input name="rdoStatus" value="2" type="radio">Invisible
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-default">Product Edit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        <form>
+                    </div>
                 </div>
                 <!-- /.row -->
             </div>

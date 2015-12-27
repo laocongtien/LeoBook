@@ -42,7 +42,7 @@ Trang xem thêm sản phẩm
 					<div class="clear"></div>
 				</div>
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
+					<select name="TenDanhSach" class="is-sl" value="sap_xep">
 						<option value="">Sách mới</option>
 						<option value="">Sắp xếp theo: A - Z</option>
 						<option value="">Sắp xếp theo: Z - A</option>
@@ -54,7 +54,7 @@ Trang xem thêm sản phẩm
 					</select>
 				</div>
 				<div class="numbook slfilter right">
-					<select name="Soluong" class="is-sl" value="Sắp xếp">
+					<select name="Soluong" class="is-sl" value="num">
 						<option value="5">Hiển thị: 5</option>
 						<option value="10">Hiển thị: 10</option>
 						<option value="20">Hiển thị: 20</option>

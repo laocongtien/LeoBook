@@ -3,7 +3,11 @@
 @section('action', 'Thêm mới')
 @section('content')
 
-
+<div class="col-lg-12">
+    <h1 class="page-header">Danh mục
+        <small>Thêm mới</small>
+    </h1>
+</div>
 <div class="col-lg-7" style="padding-bottom:120px">
  @if(count($errors) > 0)
     <div class="alert alert-danger">
