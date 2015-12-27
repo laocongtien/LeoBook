@@ -145,7 +145,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider'
+        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+
 
     ],
 
@@ -198,6 +199,7 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Cart'      => 'Gloudemans\Shoppingcart\Facades\Cart',
+        'Func'      =>  'app\Htt\functions'
     ],
 
 ];

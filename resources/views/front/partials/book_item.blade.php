@@ -4,7 +4,7 @@
 			<a href="{{ route('home.detail' , $item->id) }}"><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
 		</div>
 		<div class="smdt">
-			<a href="{{ route('home.detail' , $item->id) }}" class="book_title is-1r">
+			<a href="{{ route('home.detail' , $item->id) }}" class="book_title">
 				{!! $item->name !!}
 			</a>
 			<a href="#" class="book_author">{!! $item->author->name!!}</a>
@@ -12,7 +12,7 @@
 	</div>
 	<div class="book_item_detail">
 		<div class="cver left">
-			<a href="{{ route('home.detail' , $item->id) }}"><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
+			<a href="{{ route('home.detail' , $item->id) }} is-2r"><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
 		</div>
 		<div href="{{ route('home.detail' , $item->id) }}" class="txtbook left">
 			<a href="{{ route('home.detail' , $item->id) }}" class="title">

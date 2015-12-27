@@ -7,10 +7,10 @@
 		</div>
 		<div class="smdt">
 			<div class="dt">
-				<a href="{{ route('home.detail' , $item->id) }}" class="book_title is-1r">
+				<a href="{{ route('home.detail' , $item->id) }}" class="book_title ">
 					{{ $item->name }}
 				</a>
-				<div class="book_author intt is-1r">
+				<div class="book_author intt ">
 					<a href="tacgia.php" class="" >
 						{{ $item->author->name }}
 					</a>
