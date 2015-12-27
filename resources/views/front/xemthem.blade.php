@@ -75,23 +75,7 @@
 			</div>
 			@if ($data->count() > 0)
 			<div class="gridbook wrap">
-				<div class="grid mxClrAft pagination">
-					@include('front.partials.list_book_item_info')
-				</div>
-				@if ($data->lastPage() > 1)
-				<div class="page_number">
-			        <div class="page_num">
-			        	<div class="num numprev fa fa-angle-double-left {{$data->currentPage() == 1 ? 'hide' : '' }}"></div>
-			        	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
-			        	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
-			        		{{ $i }}
-			        	</div>
-			        	@endfor
-			        	<div class="num numnext fa fa-angle-double-right {{$data->currentPage() == $data->lastPage() ? 'hide' : '' }}"></div>
-			        	<div class="clear"></div>
-			        </div>
-	      		</div>
-	      		@endif
+				@include('front.partials.list_book_item_info_page')
 			</div>
 			@endif
 		</div>

@@ -80,15 +80,17 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $bestsellers = book::orderBy('qty_saled','DESC')->paginate($limit);
-            if($page == 1 && $data == 'list'){
+            if($data == 'list'){
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
                 'list' => 'list'
             ]);}else{
-            return view('front.partials.list_book_item_info',[
-                'data' => $bestsellers
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $bestsellers,
+                'list' => ''
             ]);}
         }
+
         $bestsellers = book::orderBy('qty_saled','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $bestsellers,
