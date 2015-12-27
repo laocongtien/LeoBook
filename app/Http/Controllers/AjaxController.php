@@ -93,4 +93,9 @@ class AjaxController extends Controller
         return redirect()->route('home.index');
 
     }
+    public function getAuthor(){
+        if(Request::ajax()){
+        $author_list = Author::orderBy('name','ASC')->paginate(9);
+        }
+    }
 }

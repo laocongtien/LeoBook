@@ -73,14 +73,23 @@ class HomeController extends Controller
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-        $temp = book::orderBy('qty_saled','DESC')->orderBy('name');
-        $bestsellers = $temp->paginate(5);
+        
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $bestsellers = book::orderBy('qty_saled','DESC')->paginate($limit);
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $bestsellers,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $bestsellers
-            ]);
+            ]);}
         }
+        $bestsellers = book::orderBy('qty_saled','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $bestsellers,
              'name' =>  'Bán chạy nhất'
@@ -88,13 +97,22 @@ class HomeController extends Controller
     }
 
     public function newbook() {
-        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate($limit);
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $newests,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $newests
-            ]);
+            ]);}
         }
+        $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $newests,
              'name' =>  'Sách mới'
@@ -102,13 +120,22 @@ class HomeController extends Controller
     }
 
     public function comming() {
-        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate($limit);
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $commings,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $commings
-            ]);
+            ]);}
         }
+        $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $commings,
              'name' =>  'Sắp phát hành'
@@ -116,13 +143,22 @@ class HomeController extends Controller
     }
 
     public function discount() {
-        $discounts = book::orderBy('discount','DESC')->paginate(5);
         if (Request::ajax())
         {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $discounts = book::orderBy('discount','DESC')->paginate($limit);
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $discounts,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $discounts
-            ]);
+            ]);}
         }
+        $discounts = book::orderBy('discount','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $discounts,
              'name' =>  'Sách giảm giá'
@@ -133,11 +169,12 @@ class HomeController extends Controller
         
         if (Request::ajax())
         {
+            //get from ajax
             $limit = Request::get('limit');
             $page = Request::get('page');
             $data = Request::get('data');
             $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate($limit);
-            $cate_name = cate::where('id',$id)->first()->name;
+            
             if($page == 1 && $data == 'list'){
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
@@ -161,11 +198,18 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
             $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate($limit);
             $cate_name = cate::where('id',$id)->first()->name;
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $newests,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $newests
-            ]);
+            ]);}
         }
         $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
@@ -182,12 +226,18 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-
+            $page = Request::get('page');
+            $data = Request::get('data');
             $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate($limit);
             $cate_name = cate::where('id',$id)->first()->name;
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $commings,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $commings
-            ]);
+            ]);}
         }
         $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
@@ -204,11 +254,18 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
             $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate($limit);
             $cate_name = cate::where('id',$id)->first()->name;
+            if($page == 1 && $data == 'list'){
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $discounts,
+                'list' => 'list'
+            ]);}else{
             return view('front.partials.list_book_item_info',[
                 'data' => $discounts
-            ]);
+            ]);}
         }
         $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
@@ -251,9 +308,14 @@ class HomeController extends Controller
     }
 
     public function author() {
-        
-        $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
         $author_list = Author::orderBy('name','ASC')->paginate(9);
+        if(Request::ajax()){
+            return view('front.partials.list_item',[
+                'data'          =>  $author_list
+            ]);
+        }
+        $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
+        
         return view('front.tacgia',[
             'author_word' => $author_word,
             'data'          =>  $author_list

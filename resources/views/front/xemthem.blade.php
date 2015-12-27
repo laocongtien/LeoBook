@@ -75,7 +75,7 @@
 			</div>
 			@if ($data->count() > 0)
 			<div class="gridbook wrap">
-				<div class="grid mxClrAft">
+				<div class="grid mxClrAft pagination">
 					@include('front.partials.list_book_item_info')
 				</div>
 				@if ($data->lastPage() > 1)

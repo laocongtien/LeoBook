@@ -1,14 +1,5 @@
 $(function(){
-	openMenu();
-	searchfunc();
-	slidebook();
-	limited();
-	selectbox();
-	addToCart();
-	phantrang();
-	viewmode();
-	tabbox();
-	box();
+	starup();
 	index(); //script trang chủ
 	authorPage(); //trang nxb, tác giả
 	chitietsach(); //trang chi tiết sách
@@ -19,6 +10,26 @@ $(function(){
 	checkHeightCart();
 	cart();
 });
+
+/* star up*/
+
+function starup(){
+	$('.cartbox').each(function(){
+		var box = $(this);
+		if(box.parent().hasClass('lica')) return;
+		box.find('.n').val('1');
+	});	
+	openMenu();
+	searchfunc();
+	slidebook();
+	limited();
+	selectbox();
+	addToCart();
+	phantrang();
+	viewmode();
+	tabbox();
+	box();
+}
 /*--- CÁC HÀM Ở HEADER ---*/
 
 function openMenu(){
@@ -101,7 +112,9 @@ function selectbox(){
 			var limit = val;
 			var grid = $('.gridbook');
 			phantrangAjax(1,"list",grid,limit);
-			alert(limit);
+			
+			
+			// alert(limit);
 		},
 		effect: "fade"
 	});
@@ -140,12 +153,12 @@ function viewmode(){
 		btn.addClass('atv');
 		if(btn.hasClass('fa-th')) {
 			$('.grid').removeClass('list');
-			//limited();
-			//$('.numbook').show();
+			limited();
+			$('.numbook').hide();
 		}
 		else {
 			$('.grid').addClass('list');
-			//$('.numbook').show();
+			$('.numbook').show();
 			$('.trig').ellipsis({
 				row: 3, 
 				onlyFullWords: true,
@@ -177,6 +190,7 @@ function tabbox(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
 					tb.show();
+					//alert('tab');
 					limited();
 				}
 			});
@@ -914,10 +928,9 @@ function phantrangAjax(page,data,gridbook,limit){
 			gridbook.append(result);
 			phantrang();
 			addToCart();
-			limited();
 		}else{
-		gridbook.find('.grid').empty();
-		gridbook.find('.grid').append(result);
+		gridbook.find('.pagination').empty();
+		gridbook.find('.pagination').append(result);
 		}
 		limited();
 		//window.location.href = '?page=' + page

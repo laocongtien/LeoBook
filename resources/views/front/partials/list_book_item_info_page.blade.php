@@ -12,7 +12,7 @@ $route_checkout   =	'home.checkout';
 $route_customer   =	'home.customer';
 $route_cate   =	'home.cate';
 ?>
-<div class="grid mxClrAft {{ $list or '' }}">
+<div class="grid mxClrAft {{ $list or '' }} pagination">
 	@include('front.partials.list_book_item_info')
 </div>
 @if ($data->lastPage() > 1)
