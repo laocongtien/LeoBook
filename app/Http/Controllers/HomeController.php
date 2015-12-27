@@ -62,6 +62,7 @@ class HomeController extends Controller
 
     public function detail($id) {
         $details = book::find($id);
+        $cates_slide = book::where('type_id',$details->type_id)->take(15)->get();
         $cates = book::where('type_id',$details->type_id)->paginate(4);
         $authors = book::where('author_id',$details->author_id)->paginate(4);
         if (Request::ajax())
@@ -70,12 +71,12 @@ class HomeController extends Controller
             $page = Request::get('page');
             //echo gettype($data);
             if ($data == '01'){
-                return view('front.partials.list_book_detail_item_page',[
+                return view('front.partials.list_book_item_info_page_lbook',[
                     'data' => $authors,
                     'list' => ''
                 ]);
             }elseif ($data == '03'){
-                return view('front.partials.list_book_detail_item_page',[
+                return view('front.partials.list_book_item_info_page_lbook',[
                     'data' => $cates,
                     'list' => ''
                 ]);
@@ -87,9 +88,10 @@ class HomeController extends Controller
             }
         }else
         return view('front.chitiet',[
-            'item' => $details,
-            'cates' =>  $cates,
-            'authors'   =>  $authors
+            'item'       => $details,
+            'cates_slide' =>  $cates_slide,
+            'cates'      =>  $cates,
+            'authors'    =>  $authors
         ]);
     }
 
@@ -166,14 +168,14 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $discounts = book::orderBy('discount','DESC');
+            $discounts = book::where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
             $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
                 'list' => $data
             ]);
         }
-        $discounts = book::orderBy('discount','DESC')->paginate(5);
+        $discounts = book::where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC')->paginate(5);
         return view('front.xemthem',[
             'data' =>  $discounts,
              'name' =>  'Sách giảm giá'
@@ -189,7 +191,7 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC');
+            $bestsellers = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
             $bestsellers = HomeController::sort($bestsellers,$sort)->paginate($limit);
             
             return view('front.partials.list_book_item_info_page',[
@@ -197,7 +199,7 @@ class HomeController extends Controller
                 'list' => $data
             ]);
         }
-        $bestsellers = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
+        $bestsellers = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $bestsellers,
@@ -214,14 +216,14 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'));
+            $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
             $newests = HomeController::sort($newests,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $newests,
                 'list' => $data
             ]);
         }
-        $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
+        $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $newests,
@@ -239,7 +241,7 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'));
+            $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
             $commings = HomeController::sort($commings,$sort)->paginate($limit);
 
             return view('front.partials.list_book_item_info_page',[
@@ -247,7 +249,7 @@ class HomeController extends Controller
                 'list' => $data
             ]);
         }
-        $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->paginate(5);
+        $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $commings,
@@ -265,14 +267,14 @@ class HomeController extends Controller
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $discounts = book::where('cate_id',$id)->orderBy('discount','DESC');
+            $discounts = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
             $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
                 'list' => $data
             ]);
         }
-        $discounts = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
+        $discounts = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
         return view('front.xemthem',[
             'data' =>  $discounts,
@@ -282,30 +284,42 @@ class HomeController extends Controller
         ]);
     }
 
-    public function cate() {
-        // $order = Input::get('order');
-        // if($order == 'bestseller'){
-        //     $cate = book::where('cate_id',$id)->orderBy('qty_saled','DESC')->paginate(5);
-        //     $cate_name = cate::where('id',$id)->first()->name;
-        // }elseif($order == 'new'){
-        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','<',date('y-m-d'))->paginate(5);
-        //     $cate_name = cate::where('id',$id)->first()->name;
-        // }elseif($order == 'comming'){
-        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','>',date('y-m-d'))->paginate(5);
-        //     $cate_name = cate::where('id',$id)->first()->name;
-        // }elseif($order == 'discount'){
-        //     $cate = book::where('cate_id',$id)->orderBy('discount','DESC')->paginate(5);
-        //     $cate_name = cate::where('id',$id)->first()->name;
-        // }else{
-        //     $cate = book::where('cate_id',$id)->orderBy('publishing_date','DESC')->paginate(5);
-        //     $cate_name = cate::where('id',$id)->first()->name;
-        // }
+    public function cate($id) {
         
-        // return view('front.xemthem',[
-        //     'data' =>  $cate,
-        //      'name' =>  $cate_name
-        // ]);
-        return view('front.danhmuc');
+        if (Request::ajax())
+        {
+            $limit = Request::get('limit');
+            $page = Request::get('page');
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            switch ($data) {
+                case 1:
+                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
+                    break;
+                case 2:
+                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
+                    break;
+                case 3:
+                    $model = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
+                    break;
+                default:
+                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
+                    break;
+            }
+            $model = HomeController::sort($model,$sort)->paginate($limit);
+            return view('front.partials.list_book_item_info_page_lbook',[
+                'data' => $model,
+                'list' => $list
+            ]);
+        }
+
+        $bestsellers = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->paginate(5);
+        $cate_name = cate::where('id',$id)->first()->name;
+        return view('front.danhmuc',[
+            'data' =>  $bestsellers,
+             'name' => $cate_name ,
+        ]);
     }
 
     public function combo() {

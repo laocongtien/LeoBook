@@ -195,6 +195,7 @@ function tabbox(){
 		box.find('.is-tab:first').show();
 		box.find('.is-menu:first').addClass('atv');
 		menu.click(function(){
+			//console.log('chuyen tab');
 			var mn = $(this);
 			menu.removeClass('atv');
 			mn.addClass('atv');
@@ -203,9 +204,18 @@ function tabbox(){
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
-					tb.show();
-					//alert('tab');
-					limited();
+					if(!tb.find('div.grid').length) {
+						console.log('add them');
+						var limit = $('.numbook').find('select').val();
+						var sort = $('.fil').find('select').val();
+						if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+						//alert(list);
+						phantrangAjax(window.location.href,link,tb,limit, sort, list);
+					}
+						tb.show();
+						//alert(data);
+						limited();
+					
 				}
 			});
 		});
@@ -902,7 +912,7 @@ function phantrang(){
 			if ($('.grid').hasClass('list')) {data = 'list'};
 			var link = num.attr('href');
 			var sort = $('.fil').find('select').val();
-			phantrangAjax(link,data,gridbook, limit,sort);
+			phantrangAjax(link, data, gridbook, limit, sort);
 		});
 		numprev.unbind('click').click(function(){
 
@@ -913,11 +923,11 @@ function phantrang(){
 	});
 }
 
-function phantrangAjax(link,data,gridbook,limit,sort){
+function phantrangAjax(link,data,gridbook,limit,sort,list){
 	$.ajax({
 		url: link,
 		type: 'GET',
-		data: {'data' : data, 'limit': limit, 'sort': sort},
+		data: {'data' : data, 'limit': limit, 'sort': sort, 'list': list},
 	})
 	.done(function(result) {
 			gridbook.empty();
