@@ -1,7 +1,7 @@
 @extends('front.layouts.base')
 
 @section('head.title')
-Trang xem thêm sản phẩm
+{{ $name or '' }} - LeoBook
 @stop
 
 @section('body.content')
@@ -34,15 +34,20 @@ Trang xem thêm sản phẩm
 							<span class="fa fa-angle-double-right"></span>
 						</a>
 						@endif
-						<a herf="{{ url($data->first()->cate_id) }}" class="cat">
+						<a 
+						@if($data->count() > 0)
+							herf="{{ url('danh-muc/'.$data->first()->cate_id) }}"
+						@endif
+						 class="cat">
 							{{ $name or '' }}
 							<span class="fa fa-angle-double-right"></span>
 						</a>
 					</div>
 					<div class="clear"></div>
 				</div>
+				@if ($data->count() > 0)
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
+					<select name="TenDanhSach" class="is-sl" value="sap_xep">
 						<option value="">Sách mới</option>
 						<option value="">Sắp xếp theo: A - Z</option>
 						<option value="">Sắp xếp theo: Z - A</option>
@@ -54,11 +59,11 @@ Trang xem thêm sản phẩm
 					</select>
 				</div>
 				<div class="numbook slfilter right">
-					<select name="Soluong" class="is-sl" value="Sắp xếp">
+					<select name="Soluong" class="is-sl" value="num">
 						<option value="5">Hiển thị: 5</option>
 						<option value="10">Hiển thị: 10</option>
 						<option value="20">Hiển thị: 20</option>
-						<option value="">Hiển thị: Tất cả</option>
+						<option value="0">Hiển thị: Tất cả</option>
 					</select>
 				</div>
 				<div class="viewmode right">
@@ -66,26 +71,29 @@ Trang xem thêm sản phẩm
 					<div class="fa fa-list"></div>
 					<div class="clear"></div>
 				</div>
+				@endif
 			</div>
+			@if ($data->count() > 0)
 			<div class="gridbook wrap">
 				<div class="grid mxClrAft">
-					@foreach($data as $item)
-						@include('front.partials.book_item_info')
-					@endforeach
+					@include('front.partials.list_book_item_info')
 				</div>
+				@if ($data->lastPage() > 1)
 				<div class="page_number">
-	        <div class="page_num">
-	        	<div class="num numprev fa fa-angle-double-left hide"></div>
-	        	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
-	        	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
-	        		{{ $i }}
-	        	</div>
-	        	@endfor
-	        	<div class="num numnext fa fa-angle-double-right"></div>
-	        	<div class="clear"></div>
-	        </div>
-	      </div>
+			        <div class="page_num">
+			        	<div class="num numprev fa fa-angle-double-left {{$data->currentPage() == 1 ? 'hide' : '' }}"></div>
+			        	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
+			        	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
+			        		{{ $i }}
+			        	</div>
+			        	@endfor
+			        	<div class="num numnext fa fa-angle-double-right {{$data->currentPage() == $data->lastPage() ? 'hide' : '' }}"></div>
+			        	<div class="clear"></div>
+			        </div>
+	      		</div>
+	      		@endif
 			</div>
+			@endif
 		</div>
 	</div>
 @stop

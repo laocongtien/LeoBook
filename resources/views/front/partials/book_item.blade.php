@@ -44,7 +44,7 @@
 						{!! $item->discount !!}%
 					</span>
 			</div>
-			@include('front.partials.cartbox')	
+			@include('front.partials.cartbox')
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -131,7 +131,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Product
-                            <small>Add</small>
+                            <small>Edit</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -174,7 +174,7 @@
                                     <input name="rdoStatus" value="2" type="radio">Invisible
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-default">Product Add</button>
+                            <button type="submit" class="btn btn-default">Product Edit</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         <form>
                     </div>

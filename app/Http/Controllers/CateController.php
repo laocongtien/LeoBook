@@ -17,4 +17,12 @@ class CateController extends Controller
     public function postAdd(CateRequest $request) {
     	print_r($request->txtCateName);
     }
+   
+    public function getList() {
+    	return view('admin.cate.list');
+    }
+
+    public function postList(CateRequest $request) {
+    	print_r($request->txtCateName);
+    }
 }

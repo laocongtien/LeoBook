@@ -96,6 +96,13 @@ function limited(){
 function selectbox(){
 	if($('.is-sl').length == 0) return;
 	$(".is-sl").selectbox({
+		onChange: function (val, inst){
+			var url = window.location.href;
+			var limit = val;
+			var grid = $('.gridbook');
+			phantrangAjax(1,"list",grid,limit);
+			alert(limit);
+		},
 		effect: "fade"
 	});
 }
@@ -133,11 +140,12 @@ function viewmode(){
 		btn.addClass('atv');
 		if(btn.hasClass('fa-th')) {
 			$('.grid').removeClass('list');
-			$('.numbook').hide();
+			//limited();
+			//$('.numbook').show();
 		}
 		else {
 			$('.grid').addClass('list');
-			$('.numbook').show();
+			//$('.numbook').show();
 			$('.trig').ellipsis({
 				row: 3, 
 				onlyFullWords: true,
@@ -145,6 +153,8 @@ function viewmode(){
 		}
 	});
 }
+
+
 
 /* Hàm chuyển tab */
 function tabbox(){
@@ -714,10 +724,11 @@ function cart(){
 		var box = $(this).parent();
 		var rowid = box.attr('id');
 		//alert(id);
+		var url = $('.logo').attr('href');
 		$.ajax({
-			url: 'xoa-sach/'+rowid,
+			url: url + 'xoa-sach',
 			type: 'GET',
-			//data: {'id': rowid},
+			data: {'rowid': rowid},
 		}).done(function(data){
 			//alert("deleted");
 			unBlockAllItem(data.id);
@@ -727,6 +738,7 @@ function cart(){
 			updateTotalPrice(data.total);
 		}).fail(function (argument) {
 			alert("Can't not delete. ")
+			window.location.reload();
 		});
 	});
 }
@@ -737,38 +749,46 @@ function valueCart(){
 		var numbox = grfth.find(".n");
 		var num = parseInt(numbox.val()) + 1;
 		numbox.val(num);
-		var lica = grfth.parent().parent();
-		var qty = numbox.val();
-		var rowid = lica.attr('id');
-		$.ajax({
-			url: 'cap-nhat-sach/'+rowid+'/'+qty,
-			type: 'GET',
-			data: {id: 'id', qty: 'qty'},
-		}).done (function(data){
-			updateTotalPrice(data);
-		}).fail (function (){
-			alert("Can't update this time");
-		});
+		if ($(this).hasClass('up-cart')){
+			var lica = grfth.parent().parent();
+			var qty = numbox.val();
+			var rowid = lica.attr('id');
+			var url = $('.logo').attr('href');
+			$.ajax({
+				url: url + 'cap-nhat-sach',
+				type: 'GET',
+				data: {'rowid': rowid, 'qty': qty},
+			}).done (function(data){
+				updateTotalPrice(data);
+			}).fail (function (){
+				alert("Can't update this time");
+				//window.location.reload();
+			});
+		}
 	});
 	$('.is-down').unbind('click').click(function(){
 		var fth = $(this).parent();
 		var grfth = fth.parent();
 		var numbox = grfth.find(".n");
 		var num = parseInt(numbox.val()) - 1;
-		if (num != 0) { 
+		if (num != 0) {
 			numbox.val(num);
-			var lica = grfth.parent().parent();
-			var qty = numbox.val();
-			var rowid = lica.attr('id');
-			$.ajax({
-				url: 'cap-nhat-sach/'+rowid+'/'+qty,
-				type: 'GET',
-				data: {id: 'id', qty: 'qty'},
-			}).done (function(data){
-				updateTotalPrice(data);
-			}).fail (function (){
-				alert("Can't update this time");
-			});
+			if ($(this).hasClass('down-cart')){
+				var lica = grfth.parent().parent();
+				var qty = numbox.val();
+				var rowid = lica.attr('id');
+				var url = $('.logo').attr('href');
+				$.ajax({
+					url: url + 'cap-nhat-sach',
+					type: 'GET',
+					data: {'rowid': rowid, 'qty': qty},
+				}).done (function(data){
+					updateTotalPrice(data);
+				}).fail (function (){
+					alert("Can't update this time");
+					//window.location.reload();
+				});
+			}
 		}
 	});
 }
@@ -808,8 +828,9 @@ function addToCart(){
 		var ins = button.parent();
 		var qty = ins.find('.n').val();
 		var id = ins.find('.b-id').val();
+		var url = $('.logo').attr('href');
 		$.ajax({
-			url: 'mua-sach/'+id+'/'+qty,
+			url: url + 'mua-sach',
 			type: 'GET',
 			data: {"id": id, "qty": qty},
 		}).done(function(data){
@@ -827,6 +848,7 @@ function addToCart(){
 			blockAllItem(id);
 		}).fail(function (){
 			alert("Can't not buy this book now");
+			window.location.reload();
 		});
 	});
 	$('.is-over-check').click(function(){
@@ -850,7 +872,8 @@ function phantrang(){
 			num.addClass('atv');
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
-			phantrangAjax(parseInt(num.html()),data,gridbook);
+			var limit = $('.numbook').find('select').val();
+			phantrangAjax(parseInt(num.html()),data,gridbook, limit);
 			if (parseInt(num.html()) == 1) numprev.addClass('hide');
 			if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
 		});
@@ -879,19 +902,29 @@ function phantrang(){
 	});
 }
 
-function phantrangAjax(page,data,gridbook){
+function phantrangAjax(page,data,gridbook,limit){
 	$.ajax({
-		url: window.location.href+'?page='+page,
+		//url: window.location.href+'?page='+page,
 		type: 'GET',
-		data: {'data' : data, 'page': page},
+		data: {'data' : data, 'page': page, 'limit': limit},
 	})
 	.done(function(result) {
+		if(page == 1 && data == 'list') {
+			gridbook.empty();
+			gridbook.append(result);
+			phantrang();
+			addToCart();
+			limited();
+		}else{
 		gridbook.find('.grid').empty();
 		gridbook.find('.grid').append(result);
+		}
 		limited();
+		//window.location.href = '?page=' + page
 	})
 	.fail(function() {
-		console.log("error");
+		window.location.reload();
+		//console.log("error");
 	});
 }
 Number.prototype.formatMoney = function(c, d, t){
