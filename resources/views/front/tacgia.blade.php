@@ -56,7 +56,7 @@ Tác giả
 					<div class="athl mxClrAft">
 						<div class="athitem noav">
 							<div class="ava" style="background-image: url()"></div>
-							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
+							<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
 							<div class="athn">
 								<div>
 									Ploy
@@ -65,8 +65,8 @@ Tác giả
 						</div>
 						<?php for ($i = 1; $i < 9;$i++): ?>
 							<div class="athitem">
-								<div class="ava" style="background-image: url(style/images/temp/athava.jpg)"></div>
-								<img src="style/images/theme/logo-gray.png" alt="" class="nava">
+								<div class="ava" style="background-image: url({{ url('style/images/temp/athava.jpg')}})"></div>
+								<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
 								<div class="athn">
 									<div>
 										Ploy
@@ -106,7 +106,7 @@ Tác giả
 					<?php for ($i = 1; $i < 10;$i++): ?>
 						<div class="athitem noav">
 							<div class="ava" style="background-image: url()"></div>
-							<img src="style/images/theme/logo-gray.png" alt="" class="nava">
+							<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
 							<div class="athn">
 								<div>
 									Ploy
@@ -132,9 +132,9 @@ Tác giả
 			<!--Từng tác giả-->
 			<div class="is-tab" data-link="pp">
 				<div class="prfath mxClrAft">
-					<div class="ava" style="background-image: url(style/images/temp/athava.jpg)"></div>
+					<div class="ava" style="background-image: url({{url('style/images/temp/athava.jpg')}})"></div>
 					<div class="nava">
-						<img src="style/images/theme/logo-gray.png" alt="">
+						<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="">
 					</div>
 					<div class="prf">
 						<div class="na">
@@ -172,7 +172,7 @@ Tác giả
 								<div class="book_item">
 									<div class="book_item_hover">
 										<div class="book_cover">
-											<a href="chitiet.php"><img src="style/images/temp/book<?php echo $i; ?>.jpg" alt="mybook"></a>
+											<a href="chitiet.php"><img src="{{ url('style/images/temp/book<?php echo $i; ?>.jpg') }}" alt="mybook"></a>
 										</div>
 										<div class="smdt">
 											<a href="chitiet.php" class="book_title is-2r">
@@ -183,7 +183,7 @@ Tác giả
 									</div>
 									<div class="book_item_detail">
 										<div class="cver left">
-											<a href="chitiet.php"><img src="style/images/temp/book<?php echo $i; ?>.jpg" alt="mybook"></a>
+											<a href="chitiet.php"><img src="{{ url('style/images/temp/book<?php echo $i; ?>.jpg') }}" alt="mybook"></a>
 										</div>
 										<div href="chitiet.php" class="txtbook left">
 											<a href="chitiet.php" class="title">

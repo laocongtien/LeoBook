@@ -276,26 +276,7 @@ $route_cate   =	'home.cate';
 								Sách cùng thể loại
 							</div>
 						</div>
-						<div class="fil slfilter right">
-							<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
-								<option value="">Sách mới</option>
-								<option value="">Sắp xếp theo: A - Z</option>
-								<option value="">Sắp xếp theo: Z - A</option>
-								<option value="">Giá: cao đến thấp</option>
-								<option value="">Giá: thấp đến cao</option>
-								<option value="">Giá giảm: cao đến thấp</option>
-								<option value="">Giá giảm: thấp đến cao</option>
-								<option value="">Bán chạy nhất</option>
-							</select>
-						</div>
-						<div class="numbook slfilter right">
-							<select name="Soluong" class="is-sl" value="Sắp xếp">
-								<option value="5">Hiển thị: 5</option>
-								<option value="10">Hiển thị: 10</option>
-								<option value="20">Hiển thị: 20</option>
-								<option value="">Hiển thị: Tất cả</option>
-							</select>
-						</div>
+						
 						<div class="viewmode right">
 							<div class="fa fa-th atv"></div>
 							<div class="fa fa-list"></div>
@@ -310,19 +291,19 @@ $route_cate   =	'home.cate';
 								@endforeach
 							</div>
 							<div class="page_number">
-				        <div class="page_num">
-				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
-					        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
-					        		{{ $i }}
-					        	</div>
-				        	@endfor
-				        	<div class="num numnext fa fa-angle-double-right"></div>
-				        	<div class="clear"></div>
-				        </div>
-				      </div>
-			      </div>
-			      <div class="is-is-tab gridbook" data-link="02">
+						        <div class="page_num">
+						        	<div class="num numprev fa fa-angle-double-left hide"></div>
+						        	@for ($i = 1; $i <= $authors->lastPage(); $i = $i + 1)
+							        	<div class="num numpage {{$authors->currentPage() == $i ? 'atv' : '' }}" href="{!! $authors->url($i) !!}">
+							        		{{ $i }}
+							        	</div>
+						        	@endfor
+						        	<div class="num numnext fa fa-angle-double-right"></div>
+						        	<div class="clear"></div>
+						        </div>
+				      		</div>
+			      		</div>
+			      		<div class="is-is-tab gridbook" data-link="02">
 							<div class="lbook grid mxClrAft">
 								<?php   for ($i = 6; $i < 10;$i++): ?>
 									<div class="book_item">
@@ -414,23 +395,23 @@ $route_cate   =	'home.cate';
 				      </div>
 			      </div>
 			      <div class="is-is-tab gridbook" data-link="03">
-							<div class="lbook grid mxClrAft">
-								@foreach ($cates as $item)
-									@include('front.partials.book_item_info')
-								@endforeach
-							</div>
-							<div class="page_number">
-				        <div class="page_num">
-				        	<div class="num numprev fa fa-angle-double-left hide"></div>
-				        	@for ($i = 1; $i <= $cates->lastPage(); $i = $i + 1)
-					        	<div class="num numpage {{$cates->currentPage() == $i ? 'atv' : '' }}" href="{!! $cates->url($i) !!}">
-					        		{{ $i }}
-					        	</div>
-				        	@endfor
-				        	<div class="num numnext fa fa-angle-double-right"></div>
-				        	<div class="clear"></div>
-				        </div>
-				      </div>
+						<div class="lbook grid mxClrAft">
+							@foreach ($cates as $item)
+								@include('front.partials.book_item_info')
+							@endforeach
+						</div>
+						<div class="page_number">
+					        <div class="page_num">
+					        	<div class="num numprev fa fa-angle-double-left hide"></div>
+					        	@for ($i = 1; $i <= $cates->lastPage(); $i = $i + 1)
+						        	<div class="num numpage {{$cates->currentPage() == $i ? 'atv' : '' }}" href="{!! $cates->url($i) !!}">
+						        		{{ $i }}
+						        	</div>
+					        	@endfor
+					        	<div class="num numnext fa fa-angle-double-right"></div>
+					        	<div class="clear"></div>
+					        </div>
+			      		</div>
 			      </div>
 					</div>
 				</div>
