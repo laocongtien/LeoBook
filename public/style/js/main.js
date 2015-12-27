@@ -106,15 +106,29 @@ function limited(){
 /* js cho các selectbox */
 function selectbox(){
 	if($('.is-sl').length == 0) return;
+	$('.is-sl').prop('selectedIndex',0);
 	$(".is-sl").selectbox({
 		onChange: function (val, inst){
 			var url = window.location.href;
 			var limit = val;
 			var grid = $('.gridbook');
-			phantrangAjax(1,"list",grid,limit);
-			
-			
-			// alert(limit);
+			var sort = $('.fil').find('select').val();
+			phantrangAjax(window.location.href,"list",grid,limit,sort);
+			//alert(limit);
+		},
+		effect: "fade"
+	});
+	$('.is-sl-sort').prop('selectedIndex',0);
+	$('.is-sl-sort').selectbox({
+		onChange: function (val, inst){
+			var url = window.location.href;
+			// var limit = $('.is-sl').attr("data-set");
+			var limit = $('.numbook').find('select').val();
+			var grid = $('.gridbook');
+			var sort = val;
+			if ($('.grid').hasClass('list')) {var data = 'list'} else { var data = ''};
+			phantrangAjax(window.location.href,data,grid,limit,sort);
+			//alert(limit);
 		},
 		effect: "fade"
 	});
@@ -153,7 +167,7 @@ function viewmode(){
 		btn.addClass('atv');
 		if(btn.hasClass('fa-th')) {
 			$('.grid').removeClass('list');
-			limited();
+			//limited();
 			$('.numbook').hide();
 		}
 		else {
@@ -752,7 +766,8 @@ function cart(){
 			updateTotalPrice(data.total);
 		}).fail(function (argument) {
 			alert("Can't not delete. ")
-			window.location.reload();
+			//window.location.reload();
+			console.log('error');
 		});
 	});
 }
@@ -862,7 +877,7 @@ function addToCart(){
 			blockAllItem(id);
 		}).fail(function (){
 			alert("Can't not buy this book now");
-			window.location.reload();
+			//window.location.reload();
 		});
 	});
 	$('.is-over-check').click(function(){
@@ -881,65 +896,41 @@ function phantrang(){
 		var n = numpage.length;
 		numpage.unbind('click').click(function(){
 			var num = $(this);
-			// numprev.removeClass('hide');
-			// numnext.removeClass('hide');
-			// numpage.removeClass('atv');
-			// num.addClass('atv');
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
-			if ($('.grid').hasClass('list')) {data = 'list'};
 			var limit = $('.numbook').find('select').val();
-			phantrangAjax(parseInt(num.html()),data,gridbook, limit);
-			// if (parseInt(num.html()) == 1) numprev.addClass('hide');
-			// if(num.html() == numpage.eq(n - 1).html()) numnext.addClass('hide');
+			if ($('.grid').hasClass('list')) {data = 'list'};
+			var link = num.attr('href');
+			var sort = $('.fil').find('select').val();
+			phantrangAjax(link,data,gridbook, limit,sort);
 		});
 		numprev.unbind('click').click(function(){
-			// var num;
-			// for (var i = 0; i <= n; i++) {
-			// 	if(numpage.eq(i).hasClass('atv')) 
-			// 		{
-			// 			num = parseInt(numpage.eq(i).html());
-			// 			numpage.eq(i - 1).trigger('click');
-			// 			return;
-			// 		}
-			// }
+
 		});
 		numnext.unbind('click').click(function(){
-			// var num;
-			// for (var i = 0; i <= n; i++) {
-			// 	if(numpage.eq(i).hasClass('atv')) 
-			// 	{
-			// 		num = parseInt(numpage.eq(i).html());
-			// 		numpage.eq(i + 1).trigger('click');
-			// 		return;
-			// 	}
-			// }
+			
 		});
 	});
 }
 
-function phantrangAjax(page,data,gridbook,limit){
+function phantrangAjax(link,data,gridbook,limit,sort){
 	$.ajax({
-		//url: window.location.href+'?page='+page,
+		url: link,
 		type: 'GET',
-		data: {'data' : data, 'page': page, 'limit': limit},
+		data: {'data' : data, 'limit': limit, 'sort': sort},
 	})
 	.done(function(result) {
-		// if(page == 1 && data == 'list') {
 			gridbook.empty();
 			gridbook.append(result);
+			// gridbook.find('.pagination').empty();
+			// gridbook.find('.pagination').append(result);
 			phantrang();
 			addToCart();
-		// }else{
-		// gridbook.find('.pagination').empty();
-		// gridbook.find('.pagination').append(result);
-		// }
 		limited();
-		//window.location.href = '?page=' + page
 	})
 	.fail(function() {
-		window.location.reload();
-		//console.log("error");
+		//window.location.reload();
+		console.log("error");
 	});
 }
 Number.prototype.formatMoney = function(c, d, t){

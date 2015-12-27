@@ -1,0 +1,373 @@
+@import "lib.less";
+@mainColor: #00a651;
+@abColor: #f21848;
+@orangeColor: #ff6400;
+@shadowButton: ;
+@shadowPop: 0 2px 4px rgba(88, 39, 30, 0.8);
+@shadowHover: 0 2px 4px rgba(88, 39, 30, 0.3);
+
+.ltbanner{
+	height: 85px;
+	line-height: 85px;
+	display: block;
+	font-size: 36px;
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+	background-image: url(../images/theme/banner.png);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	position: relative;
+	color: #fff;
+}
+.filterbar{
+	display: block;
+	height: 40px;
+	border: 1px solid rgba(0,0,0,0.05);
+	background-color: #f5f5f5;
+	box-sizing: border-box;
+	padding: 0 10px;
+	.link{
+		display: block;
+		padding: 5px;
+		.cat{
+			.mxTrsnLn();
+			line-height: 28px;
+			font-size: 12px;
+			padding-right: 5px;
+			display: block;
+			float: left;
+			font-family: "HelveticaNeue-Light";
+			color: rgba(0,0,0,0.64);
+			height: 28px;
+			&:last-child{
+				color: rgba(0,0,0,0.84);
+				.fa{
+					display: none;
+				}
+			}
+			&:hover{
+				color: @mainColor;
+				line-height: 28px;
+			}
+		}
+	}
+	.viewmode{
+		display: block;
+		padding: 5px 0;
+		.fa{
+			.mxRadius(2px);
+			.mxTrsnLn();
+			.ovl_bg_bl();
+			display: block;
+			float: left;
+			height: 28px;
+			width: 28px;
+			margin-right: 5px;
+			line-height: 28px;
+			cursor: pointer;
+			text-align: center;
+			background-color: rgba(0,0,0,0.12);
+			color: rgba(0,0,0,0.54);
+			overflow: hidden;
+			&.fa-list{
+				margin-right: 0;
+			}
+			&.atv{
+				background-color: rgba(0,166,81,0.75);
+				color: #f5f5f5;
+			}
+		}
+	}
+	.slfilter{
+		display: block;
+		padding: 4px 0;
+		margin-left: 5px;
+		.sbHolder{
+			background-color: #fff;
+			border: 1px solid rgba(0,0,0,0.12);
+			height: 28px;
+			float: left;
+			position: relative;
+			.sbSelector{
+				height: 26px;
+				line-height: 26px;
+				color: rgba(0,0,0,0.84);
+			}
+			.sbOptions{
+				display: block;
+				.mxTrsnLn();
+				position: absolute;
+				background-color: #fff;
+				box-shadow: @shadowHover;
+				border: none;
+				left: 0;
+				overflow: auto;
+				max-height: ~'calc(100vh - 220px)' !important;
+				top: 0 !important;
+
+				li{
+					padding: 0;
+					a{
+						display: block;
+						padding: 0;
+						height: 28px;
+						line-height: 26px;
+						padding-left: 10px;
+						width: ~'calc(100% - 10px)';
+						color: rgba(0,0,0,0.84);
+						&:focus, &.sbFocus, &:hover{
+							color: @mainColor;
+						}
+					}
+				}
+			}
+			&:hover{
+				.sbOptions{
+					display: block;
+
+				}
+			}
+		}
+	}
+	.numbook{
+		display: none;
+		.sbHolder{
+			width: 100px;
+			.sbOptions{
+				width: 100px;
+			}
+		}
+	}
+}
+.gridbook{
+	.grid{
+		box-sizing: border-box;
+		.li{
+			display: none;
+		}
+		padding: 0 32px;		
+		.book_item{
+			.mxTrsnLn();
+			border: 1px solid #fff;
+			padding: 13px;
+			margin-right: 0;
+			margin-top: 15px;
+			width: auto;
+			height: auto;
+			text-align: center;
+			&:hover{
+				border-color: @mainColor;
+				.book_cover{
+					border-color: @mainColor; 
+				}
+			}
+			.book_cover{
+				.mxTrsnLn();
+				padding: 10px;
+				border: 1px solid #f1f1f1;
+				width: 142px;
+				height: 215px;
+				a{
+					left: 50%;
+					transform: translateX(-50%) translateY(-50%);
+    			-webkit-transform: translateX(-50%) translateY(-50%);
+    			img{
+	    			max-width: 142px;
+	    			max-height: 215px;
+	    		}
+				}
+			}
+			.smdt{
+				padding: 0 10px;
+				height: auto;
+				width: 142px;
+				.book_title{
+					.mxTrsnLn();
+					color: @mainColor;
+					&:hover{
+						color: @orangeColor;
+					}
+				}
+				.intt{
+					font-family: "HelveticaNeue-Light";
+					a{
+						.mxTrsnLn();
+						color: rgba(0,0,0,0.64);
+						&:hover{
+							color: @orangeColor;
+						}
+					}
+				}
+				.sal{
+					.gri{
+						.old{
+							display: inline-block;
+							font-size: 12px;
+							color: #b8b8b8;
+							text-decoration: line-through;
+							line-height: 20px;
+							margin-right: 3px;
+							font-family: "HelveticaNeue-Light";
+						}
+						.new{
+							display: inline-block;
+							font-size: 14px;
+							color: @mainColor;
+							line-height: 20px;
+						}
+					}
+				}
+			}
+			.cartbox{
+				padding-top: 5px;
+				height: 62px;
+				.num{
+					margin: 0 auto 7px;
+					height: 23px;
+					float: inherit;
+					.fa{
+						height: 11px;
+						line-height: 11px;
+					}
+					.n{
+						height: 23px;
+					}
+				}
+				.addcart{
+					display: inline-block;
+				}
+				.over{
+					width: 150px;
+					margin-top: 32px;
+				}
+			}
+		}
+		&.list{
+			padding-top: 15px;
+			.gri{
+				display: none;
+			}
+			.li{
+				display: block;
+			}
+			.book_item{
+				border-bottom: 1px solid #f1f1f1;
+				display: block;
+				width: 100%;
+				margin-top: 0px;
+				position: relative;
+				&:last-child{
+					border-bottom-color: #fff;
+				}
+				&:hover{
+					border-bottom-color: @mainColor;
+				}
+				.book_cover{
+					float: left;
+				}
+				.smdt{
+					float: left;
+					margin-left: 15px;
+					padding: 0;
+					width: 767px;
+					text-align: left;
+					.dt{
+						.book_title{
+							font-size: 20px;
+							line-height: 36px;
+							font-family: "HelveticaNeue-Medium";
+							padding-top: 0;
+						}
+						.intt{
+							font-size: 14px;
+							line-height: 20px;
+							a{
+								font-family: "HelveticaNeue-Medium";
+							}
+							&.old{
+								span{
+									text-decoration: line-through;
+									color: #b5b5b5;
+									font-family: "HelveticaNeue-Medium";
+								}
+							}
+							&.new{
+								span{
+									color: @mainColor;
+									font-family: "HelveticaNeue-Medium";
+								}
+							}
+						}
+						.trig{
+							padding: 10px 0;
+							font-size: 14px;
+					    line-height: 21px;
+					    text-align: justify;
+					    font-family: "HelveticaNeue-Light";
+						}
+					}
+					.cartbox{
+						padding-top: 0;
+						text-align: left;
+						.num{
+							float: left;
+							height: 28px;
+							margin-right: 10px;
+							.fa{
+								height: 14px;
+								line-height: 14px;
+								&.fa-angle-down{
+									height: 13px;
+								}
+							}
+							.n{
+								line-height: 28px;
+								height: 28px;
+							}
+						}
+						.addcart{
+							float: left;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.page_number{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	height: 20px;
+	padding: 10px 0;
+	.page_num{
+		display: inline-block;
+		height: 20px;
+		text-align: center;
+		.num{
+			.mxRadius(3px);
+			.mxTrsnLn();
+			.ovl_bg_bl();
+			font-size: 12px;
+			padding: 0 10px;
+			color: rgba(0,0,0,0.54);
+			line-height: 20px;
+			overflow: hidden;
+			float: left;
+			cursor: pointer;
+			opacity: 1;
+			visibility: visible;
+			&.atv{
+				background-color: @mainColor;
+				color: #fff;
+			}
+			&.hide{
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+			}
+		}
+	}
+}

@@ -277,11 +277,6 @@ $route_cate   =	'home.cate';
 							</div>
 						</div>
 						
-						<div class="viewmode right">
-							<div class="fa fa-th atv"></div>
-							<div class="fa fa-list"></div>
-							<div class="clear"></div>
-						</div>
 					</div>
 					<div class="tabbox">
 						<div class="is-is-tab gridbook" data-link="01">

@@ -12,7 +12,7 @@ $route_checkout   =	'home.checkout';
 $route_customer   =	'home.customer';
 $route_cate   =	'home.cate';
 ?>
-<div class="grid mxClrAft {{ $list or '' }} pagination">
+<div class="lbook grid mxClrAft pagination">
 	@foreach($data as $item)
 		@include('front.partials.book_item_info')
 	@endforeach

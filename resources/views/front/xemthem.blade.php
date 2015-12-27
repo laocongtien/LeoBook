@@ -47,23 +47,24 @@
 				</div>
 				@if ($data->count() > 0)
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl" value="sap_xep">
-						<option value="">Sách mới</option>
-						<option value="">Sắp xếp theo: A - Z</option>
-						<option value="">Sắp xếp theo: Z - A</option>
-						<option value="">Giá: cao đến thấp</option>
-						<option value="">Giá: thấp đến cao</option>
-						<option value="">Giá giảm: cao đến thấp</option>
-						<option value="">Giá giảm: thấp đến cao</option>
-						<option value="">Bán chạy nhất</option>
+					<select name="TenDanhSach" class="is-sl-sort" value="sap_xep" data-set="new">
+						<option value="new">Sách mới</option>
+						<option value="name_ASC">Sắp xếp theo: A - Z</option>
+						<option value="name_DESC">Sắp xếp theo: Z - A</option>
+						<option value="price_DESC">Giá: cao đến thấp</option>
+						<option value="price_ASC">Giá: thấp đến cao</option>
+						<option value="discount_DESC">Giá giảm: cao đến thấp</option>
+						<option value="discount_ASC">Giá giảm: thấp đến cao</option>
+						<option value="best">Bán chạy nhất</option>
 					</select>
 				</div>
 				<div class="numbook slfilter right">
-					<select name="Soluong" class="is-sl" value="num">
+					<select name="Soluong" class="is-sl" value="num" data-set="5">
 						<option value="5">Hiển thị: 5</option>
 						<option value="10">Hiển thị: 10</option>
 						<option value="20">Hiển thị: 20</option>
-						<option value="0">Hiển thị: Tất cả</option>
+						<option value="50">Hiển thị: 50</option>
+						<option value="100">Hiển thị: 100</option>
 					</select>
 				</div>
 				<div class="viewmode right">
