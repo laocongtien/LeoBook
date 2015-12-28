@@ -146,10 +146,10 @@ $route_cate   =	'home.cate';
 				</div>
 				<div class="listbook">
 					<div class="first_line">
-						<a href="xemthem.php" class="list_title left">
+						<a href="{{ route('home.cate',$cates_slide->first()->id) }}" class="list_title left">
 							Sách cùng thể loại
 						</a>
-						<a href="xemthem.php" class="more right">
+						<a href="{{ route('home.cate',$cates_slide->first()->id) }}" class="more right">
 							Xem tất cả
 							<span class="fa fa-angle-double-right"></span>
 						</a>
@@ -157,7 +157,7 @@ $route_cate   =	'home.cate';
 					</div>
 					<div class="slide_book wait unselectable">
 						<div class="book">
-							@foreach ($cates as $item)
+							@foreach ($cates_slide as $item)
 								@include('front.partials.book_item')
 							@endforeach
 						</div>

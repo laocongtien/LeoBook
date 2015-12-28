@@ -1,13 +1,20 @@
-	<div class="footer unselectable">
+	<div class="footer">
 		<div class="ft wrap">
-			<div class="fttxt left">Lorem ipsum dolor sit amet.</div>
+			<a href="#" class="logospace left">
+				<img src="style/images/theme/log.png" alt="">
+			</a>
 			<div class="social right">
-				<a href="#" class="gg bg left"></a>
-				<a href="#" class="tw bg left"></a>
-				<a href="#" class="fb bg left"></a>
+				<a href="#" class="sc">
+					<span class="fa fa-gg"></span>
+				</a>
+				<a href="#" class="sc">
+					<span class="fa fa-twitter"></span>
+				</a>
+				<a href="#" class="sc">
+					<span class="fa fa-facebook"></span>
+				</a>
 				<div class="clear"></div>
 			</div>
-			<div class="clear"></div>
 		</div>
 	</div><!--footer-->
 

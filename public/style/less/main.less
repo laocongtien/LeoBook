@@ -1265,15 +1265,42 @@ body{
 .footer{
 	display: block;
 	background-color: rgba(0,0,0,0.54);
-	.logospace{
-		display: block;
-		height: 20px;
-		padding: 10px 0;
-		img{
+	height: 40px;
+		.logospace{
 			display: block;
 			height: 20px;
+			padding: 10px 0;
+			img{
+				display: block;
+				height: 20px;
+			}
 		}
-	}
+		.social{
+			.sc{
+				display: block;
+				margin-left: 10px;
+				margin-top:10px;
+				height: 20px;
+				float: left;
+				.fa{
+					.mxTrsnCb();
+					color: #fff;
+					line-height: 20px;
+					height: 20px;
+					font-size: 20px;
+					&.fa-gg:hover{
+						color: #d64432;
+					}
+					&.fa-facebook:hover{
+						color: #3b5998;
+					}
+					&.fa-twitter:hover{
+						color: #28a9e0;
+					}
+				}
+			}
+		}
+
 }
 .clear_header{
 	display: block;
