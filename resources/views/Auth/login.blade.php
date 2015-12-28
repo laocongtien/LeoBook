@@ -40,7 +40,6 @@
 			</div>
 		</div>
 		<div class="ldt wrap">
-			<div class="fa fa-square-o"></div>
 			<input type="checkbox" name="remember">
 			Nhớ mật khẩu, tự động đăng nhập vào lần sau
 		</div>
