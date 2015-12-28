@@ -16,18 +16,18 @@
 		<div class="int">
 			Tuổi:
 			<span>
-				{{ gettype(date('Y'))}}
+				{{ (int)(date('Y'))-$data->years}}
 			</span>
 		</div>
 		<div class="trig is-3r">
-			Gọi Gào thôi là được rồi. Gọi là nhà văn có lẽ sẽ làm nhiều người tức giận. Hotgirl thì tôi không dám nhận và cũng chẳng thích nhận để làm gì!
+			{{ $data->info }}
 		</div>
 	</div>
 	</div>
 </div>
 <div class="listbook wrap">
 	<div class="first_line">
-		<a href="xemthem.php" class="list_title left">Sách của Gào</a>
+		<a href="xemthem.php" class="list_title left">Sách của {{ $data->name }}</a>
 		<a href="xemthem.php" class="more right">
 			Xem tất cả
 			<span class="fa fa-angle-double-right"></span>

@@ -336,6 +336,7 @@ class HomeController extends Controller
                     $author = Author::find($list);
                     return view('front.partials.list_item_pp',[
                         'data'  =>  $author,
+                        
                     ]);
                 case 'word':
                     $author = Author::where('name','LIKE',$list.'%');
