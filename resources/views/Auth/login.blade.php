@@ -18,14 +18,11 @@
 				</div>
 			</div>
 			@if ($errors->count())
-			<div>
-				<strong>Errors!</strong>
-				<ul>
+				<ul class="er">
 					@foreach($errors->all() as $error)
 					<li>{{ $error }}</li>
 					@endforeach
 				</ul>
-			</div>
 			@endif
 			<div class="rb birb">
 				<div class="lb">
@@ -41,7 +38,6 @@
 			</div>
 		</div>
 		<div class="ldt wrap">
-			<div class="fa fa-square-o"></div>
 			<input type="checkbox" name="remember">
 			Nhớ mật khẩu, tự động đăng nhập vào lần sau
 		</div>
