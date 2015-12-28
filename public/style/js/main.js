@@ -19,6 +19,10 @@ function starup(){
 		if(box.parent().hasClass('lica')) return;
 		box.find('.n').val('1');
 	});	
+	$('.combo_page .trig').ellipsis({
+		row: 7, 
+		onlyFullWords: true,
+	});	
 	openMenu();
 	searchfunc();
 	slidebook();
