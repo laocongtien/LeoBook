@@ -47,7 +47,7 @@
 				</div>
 				@if ($data->count() > 0)
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl-sort" value="sap_xep" >
+					<select name="TenDanhSach" class="is-sl" value="sap_xep" >
 						<option value="new">Sách mới</option>
 						<option value="name_ASC">Sắp xếp theo: A - Z</option>
 						<option value="name_DESC">Sắp xếp theo: Z - A</option>

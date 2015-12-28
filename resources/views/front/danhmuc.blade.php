@@ -26,7 +26,7 @@ Danh mục sách
 					</div>
 				</div>
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl-sort" value="Sắp xếp">
+					<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
 						<option value="default">Chọn cách lọc</option>
 						<option value="new">Sách mới</option>
 						<option value="name_ASC">Sắp xếp theo: A - Z</option>

@@ -330,19 +330,22 @@ class HomeController extends Controller
         if(Request::ajax()){
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             switch ($data) {
                 case 'pp':
-                    $author = Author::find($sort)->;
+                    $author = Author::find($list);
                     return view('front.partials.list_item_pp',[
-                        'data'  =>  $author->paginate(9),
+                        'data'  =>  $author,
                     ]);
                 case 'word':
-                    $author = Author::where('name','LIKE',$sort.'%');
+                    $author = Author::where('name','LIKE',$list.'%');
                     return view('front.partials.list_item_word',[
-                        'data'  =>  $author->paginate(9),
+                        'data'  =>  $author->paginate(3),
+                        'word'  =>  $list,
                     ]);
                 case 'all':
-                    //$author = Author::find($sort);
+                    $authors = DB::table('Authors');
+                    $author = HomeController::sort($authors,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $author->paginate(9),
                     ]);
