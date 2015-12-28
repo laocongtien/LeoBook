@@ -19,8 +19,7 @@
 			</div>
 			@if ($errors->count())
 			<div>
-				<strong>Errors!</strong>
-				<ul>
+				<ul class="er">
 					@foreach($errors->all() as $error)
 					<li>{{ $error }}</li>
 					@endforeach
