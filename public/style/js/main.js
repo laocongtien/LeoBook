@@ -113,30 +113,35 @@ function selectbox(){
 	$('.is-sl').prop('selectedIndex',0);
 	$(".is-sl").selectbox({
 		onChange: function (val, inst){
-			var url = window.location.href;
-			var limit = val;
-			var grid = $('.gridbook');
-			var sort = $('.fil').find('select').val();
-			phantrangAjax(window.location.href,"list",grid,limit,sort);
-			//alert(limit);
+			ptajax();
 		},
 		effect: "fade"
 	});
 	$('.is-sl-sort').prop('selectedIndex',0);
 	$('.is-sl-sort').selectbox({
 		onChange: function (val, inst){
-			var url = window.location.href;
-			// var limit = $('.is-sl').attr("data-set");
-			var limit = $('.numbook').find('select').val();
-			var grid = $('.gridbook');
-			var sort = val;
-			if ($('.grid').hasClass('list')) {var data = 'list'} else { var data = ''};
-			phantrangAjax(window.location.href,data,grid,limit,sort);
-			//alert(limit);
+			ptajax();
 		},
 		effect: "fade"
 	});
 }
+function ptajax () {
+	var url = window.location.href;
+	var limit = $('.numbook').find('select').val();
+	var data = $('.is-menu.atv').attr('data-link');
+	var grid = $('.gridbook');
+	var sort = $('.fil').find('select').val();
+	if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+	$('.gridbook').each(function(){
+		var tb = $(this);
+		tb.empty();
+		if (tb.attr('data-link') == data){
+			grid = tb;
+		}
+	});
+	phantrangAjax(url,data,grid,limit,sort,list);
+}
+
 /* Slide sách */
 function slidebook(){
 	if($('.slide_book').length == 0) return;
@@ -185,8 +190,6 @@ function viewmode(){
 	});
 }
 
-
-
 /* Hàm chuyển tab */
 function tabbox(){
 	if($('.is-box').length == 0) return;
@@ -208,7 +211,7 @@ function tabbox(){
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
-					if(!tb.find('div.grid').length) {
+					if(!tb.find('div.pagination').length || tb.hasClass('load')) {
 						console.log('add them');
 						var limit = $('.numbook').find('select').val();
 						var sort = $('.fil').find('select').val();
@@ -772,7 +775,6 @@ function cart(){
 			type: 'GET',
 			data: {'rowid': rowid},
 		}).done(function(data){
-			//alert("deleted");
 			unBlockAllItem(data.id);
 			box.remove();
 			checkHeightCart();
@@ -903,7 +905,6 @@ function phantrang(){
 	if($('.numpage').length == 0) return;
 	$('.page_number').each(function(){
 		var bar=$(this);
-		
 		var numpage = bar.find('.numpage');
 		var numprev = bar.find('.numprev');
 		var numnext = bar.find('.numnext');
@@ -913,16 +914,30 @@ function phantrang(){
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
 			var limit = $('.numbook').find('select').val();
-			if ($('.grid').hasClass('list')) {data = 'list'};
+			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
 			var link = num.attr('href');
 			var sort = $('.fil').find('select').val();
-			phantrangAjax(link, data, gridbook, limit, sort);
+			phantrangAjax(link, data, gridbook, limit, sort, list);
 		});
 		numprev.unbind('click').click(function(){
-
+			var num = $(this);
+			var gridbook = bar.parent();
+			var data = gridbook.attr('data-link');
+			var limit = $('.numbook').find('select').val();
+			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+			var link = num.attr('href');
+			var sort = $('.fil').find('select').val();
+			phantrangAjax(link, data, gridbook, limit, sort, list);
 		});
 		numnext.unbind('click').click(function(){
-			
+			var num = $(this);
+			var gridbook = bar.parent();
+			var data = gridbook.attr('data-link');
+			var limit = $('.numbook').find('select').val();
+			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+			var link = num.attr('href');
+			var sort = $('.fil').find('select').val();
+			phantrangAjax(link, data, gridbook, limit, sort, list);
 		});
 	});
 }

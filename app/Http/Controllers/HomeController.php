@@ -14,7 +14,6 @@ use App\Author;
 use Cart;
 use Hash;
 use Input;
-use App\Http\functions;
 
 class HomeController extends Controller
 {

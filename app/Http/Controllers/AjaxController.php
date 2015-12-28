@@ -68,7 +68,7 @@ class AjaxController extends Controller
             $book_id = Cart::get($id);
             Cart::remove($id);
             $data = [
-            	'id' => $book_id,
+            	'id' => $book_id->id,
             	'total' => Cart::total()
             ];
             return $data;

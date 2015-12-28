@@ -53,38 +53,40 @@ Tác giả
 							</select>
 						</div>
 					</div>
-					<div class="athl mxClrAft pagination">
-						@foreach ($data as $item)
-						<div class="athitem {{($item->avatar == '') ? 'noav' : ''}}">
-							<div class="ava" style="background-image: url({{($item->avatar == '') ? '' : url($item->avatar)}})"></div>
-							<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
-							<div class="athn">
-								<div>
-									{{ $item->name }}
+					<div class="gridauthor">
+						<div class="athl mxClrAft pagination">
+							@foreach ($data as $item)
+							<div class="athitem {{($item->avatar == '') ? 'noav' : ''}}">
+								<div class="ava" style="background-image: url({{($item->avatar == '') ? '' : url($item->avatar)}})"></div>
+								<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
+								<div class="athn">
+									<div>
+										{{ $item->name }}
 
+									</div>
 								</div>
 							</div>
+							@endforeach
 						</div>
-						@endforeach
-					</div>
-					@if ($data->lastPage() > 1)
-					<div class="page_number">
-					    <div class="page_num">
-					    	<div class="num numprev fa fa-angle-double-left {{$data->currentPage() == 1 ? 'hide' : '' }}"></div>
-					    	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
-					    	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
-					    		{{ $i }}
-					    	</div>
-					    	@endfor
-					    	<div class="num numnext fa fa-angle-double-right {{$data->currentPage() == $data->lastPage() ? 'hide' : '' }}"></div>
-					    	<div class="clear"></div>
-					    </div>
-					</div>
-					@endif
+						@if ($data->lastPage() > 1)
+						<div class="page_number">
+						    <div class="page_num">
+						    	<div class="num numprev fa fa-angle-double-left {{$data->currentPage() == 1 ? 'hide' : '' }}"></div>
+						    	@for ($i = 1; $i <= $data->lastPage(); $i = $i + 1)
+						    	<div class="num numpage {{$data->currentPage() == $i ? 'atv' : '' }}" href="{!! $data->url($i) !!}">
+						    		{{ $i }}
+						    	</div>
+						    	@endfor
+						    	<div class="num numnext fa fa-angle-double-right {{$data->currentPage() == $data->lastPage() ? 'hide' : '' }}"></div>
+						    	<div class="clear"></div>
+						    </div>
+						</div>
+						@endif
+				</div>
 				</div>
 			</div>
 			<!--Tác giả theo từ khóa #-->
-			<div class="is-tab" data-link="word">
+			<div class="is-tab load" data-link="word">
 				<div class="filterbox">
 					<div class="filterbar mxClrAft">
 						<div class="namebox">
@@ -95,36 +97,38 @@ Tác giả
 						</div>
 					</div>
 				</div>
-				<div class="athl mxClrAft">
-					<?php for ($i = 1; $i < 10;$i++): ?>
-						<div class="athitem noav">
-							<div class="ava" style="background-image: url()"></div>
-							<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
-							<div class="athn">
-								<div>
-									Ploy
+				<div class="gridauthor" >
+					<div class="athl mxClrAft pagination">
+						<?php for ($i = 1; $i < 10;$i++): ?>
+							<div class="athitem noav">
+								<div class="ava" style="background-image: url()"></div>
+								<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
+								<div class="athn">
+									<div>
+										Ploy
+									</div>
 								</div>
 							</div>
-						</div>
-					<?php endfor; ?>
-				</div>
-				<div class="page_number">
-		        <div class="page_num">
-		        	<div class="num numprev fa fa-angle-double-left hide"></div>
-		        	<div class="num numpage atv">1</div>
-		        	<div class="num numpage">2</div>
-		        	<div class="num numpage">3</div>
-		        	<div class="num numpage">4</div>
-		        	<div class="num numpage">5</div>
-		        	<div class="num numpage">6</div>
-		        	<div class="num numnext fa fa-angle-double-right"></div>
-		        	<div class="clear"></div>
-		        </div>
-		      </div>
+						<?php endfor; ?>
+					</div>
+					<div class="page_number">
+				        <div class="page_num">
+				        	<div class="num numprev fa fa-angle-double-left hide"></div>
+				        	<div class="num numpage atv">1</div>
+				        	<div class="num numpage">2</div>
+				        	<div class="num numpage">3</div>
+				        	<div class="num numpage">4</div>
+				        	<div class="num numpage">5</div>
+				        	<div class="num numpage">6</div>
+				        	<div class="num numnext fa fa-angle-double-right"></div>
+				        	<div class="clear"></div>
+				        </div>
+			      </div>
+		  		</div>
 			</div>
 			<!--Từng tác giả-->
-			<div class="is-tab" data-link="pp">
-				<div class="prfath mxClrAft">
+			<div class="is-tab load" data-link="pp">
+				<div class="prfath mxClrAft pagination">
 					<div class="ava" style="background-image: url({{url('style/images/temp/athava.jpg')}})"></div>
 					<div class="nava">
 						<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="">
