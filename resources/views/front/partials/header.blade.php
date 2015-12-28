@@ -530,9 +530,8 @@ $route_register     =	'home.register';
 					</div>
 				</div>
 				<div class="prf left">
-					<div class="fa fa-user unlog"></div>
-					<div class="pri loggin"  style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
 					@if (Auth::check())
+					<div class="pri"  style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
 					<div class="log on ">
 						<a href="{!! route($route_customer).'#profile' !!}" ref="" class="lg">
 							Tài khoản
@@ -554,6 +553,7 @@ $route_register     =	'home.register';
 						</a>
 					</div>
 					@else
+					<div class="fa fa-user unlog"></div>
 					<div class="log ">
 						<a href="{!! route($route_login) !!}" class="lg">
 							Đăng Nhập

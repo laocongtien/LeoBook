@@ -212,11 +212,12 @@ function tabbox(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
 					if(!tb.find('div.pagination').length || tb.hasClass('load')) {
-						console.log('add them');
+						//console.log('add them');
 						var limit = $('.numbook').find('select').val();
 						var sort = $('.fil').find('select').val();
 						if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
 						//alert(list);
+						if(tb.hasClass('load')) sort = mn.attr('data-set');
 						phantrangAjax(window.location.href,link,tb,limit, sort, list);
 					}
 						tb.show();

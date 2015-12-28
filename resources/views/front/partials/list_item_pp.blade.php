@@ -1,55 +1,4 @@
-@extends('front.layouts.base')
-
-@section('head.title')
-Tác giả
-@stop
-
-@section('body.content')
-	<div class="contain mxClrAft wrap is-box athp">
-		<div class="authorlist left">
-			<div class="title_author is-menu" data-link="all">
-				Tất cả
-			</div>
-
-			<div class="athslider">
-				<div class="slider">
-					@foreach ($author_word as $value)
-					<div class="nav">
-			      <div class="author_word is-menu" data-set="{{$value->alpha}}"data-link="word">
-			      	{{$value->alpha}}
-			      </div>
-			      <div class="author_list">
-				    <?php $author = DB::table('authors')->where(DB::raw('substr(name,1,1)'),$value->alpha)->get();?>
-				    @foreach ($author as $item)
-			        	<div class="author_name is-menu" data-set="{{ $item->id }}"data-link="pp">
-			        		{{$item->name}}
-			        	</div>
-		        	@endforeach
-			      </div>
-			    </div>
-					@endforeach
-				</div>
-			</div>
-		    <div class="scroll_word">
-				@foreach ($author_word as $value)
-				<div class="word is-menu"  data-set="{{ $value->alpha }}" data-link="word">
-					{{ $value->alpha }}
-				</div>
-				@endforeach
-		    </div>
-		</div>
-		<div class="authorbox right">
-			<!--Tất cả tác giả-->
-			<div class="is-tab" data-link="all">
-				
-			</div>
-			<!--Tác giả theo từ khóa #-->
-			<div class="is-tab load" data-link="word">
-				
-			</div>
-			<!--Từng tác giả-->
-			<div class="is-tab load" data-link="pp">
-				<div class="prfath mxClrAft pagination">
+<div class="prfath mxClrAft pagination">
 					<div class="ava" style="background-image: url({{url('style/images/temp/athava.jpg')}})"></div>
 					<div class="nava">
 						<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="">
@@ -165,7 +114,3 @@ Tác giả
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-@stop

@@ -326,14 +326,37 @@ class HomeController extends Controller
     }
 
     public function author() {
-        $author_list = Author::orderBy('name','ASC')->paginate(9);
+        
         if(Request::ajax()){
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            switch ($data) {
+                case 'pp':
+                    $author = Author::find($sort)->;
+                    return view('front.partials.list_item_pp',[
+                        'data'  =>  $author->paginate(9),
+                    ]);
+                case 'word':
+                    $author = Author::where('name','LIKE',$sort.'%');
+                    return view('front.partials.list_item_word',[
+                        'data'  =>  $author->paginate(9),
+                    ]);
+                case 'all':
+                    //$author = Author::find($sort);
+                    return view('front.partials.list_item_all',[
+                        'data'  =>  $author->paginate(9),
+                    ]);
+                default:
+                    # code...
+                    break;
+            }
             return view('front.partials.list_item',[
-                'data'          =>  $author_list
+                'data'          =>  $author->paginate(9),
             ]);
         }
+        $author_list = Author::orderBy('name','ASC')->paginate(9);
         $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
-        
+
         return view('front.tacgia',[
             'author_word' => $author_word,
             'data'          =>  $author_list
