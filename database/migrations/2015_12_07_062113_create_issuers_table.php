@@ -16,7 +16,7 @@ class CreateIssuersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('info');
-            $table->string('logo');
+            $table->string('avatar');
             $table->timestamps();
         });
     }

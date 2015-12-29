@@ -1,13 +1,13 @@
 @extends('front.layouts.base')
 
 @section('head.title')
-Tác giả
+{{ $name_page or ''}}
 @stop
 
 @section('body.content')
 	<div class="contain mxClrAft wrap is-box athp">
 		<div class="authorlist left">
-			<div class="title_author is-menu" data-link="all">
+			<div class="title_author is-menu list" data-link="all" data-set='all'>
 				Tất cả
 			</div>
 
@@ -15,13 +15,13 @@ Tác giả
 				<div class="slider">
 					@foreach ($author_word as $value)
 					<div class="nav">
-			      <div class="author_word is-menu" data-set="{{$value->alpha}}"data-link="word">
+			      <div class="author_word is-menu list" data-set="{{$value->alpha}}"data-link="word">
 			      	{{$value->alpha}}
 			      </div>
 			      <div class="author_list">
-				    <?php $author = DB::table('authors')->where(DB::raw('substr(name,1,1)'),$value->alpha)->get();?>
+				    <?php $author = DB::table('authors')->where('name',$value->alpha.'%')->get();?>
 				    @foreach ($author as $item)
-			        	<div class="author_name is-menu" data-set="{{ $item->id }}"data-link="pp">
+			        	<div class="author_name is-menu list" data-set="{{ $item->id }}"data-link="pp">
 			        		{{$item->name}}
 			        	</div>
 		        	@endforeach

@@ -536,16 +536,16 @@ $route_register     =	'home.register';
 						<a href="{!! route($route_customer).'#profile' !!}" ref="" class="lg">
 							Tài khoản
 						</a>
-						<a href="{!! route($route_customer) !!}" ref="fav" class="lg">
+						<a href="{!! route($route_customer).'#fav'  !!}" ref="fav" class="lg">
 							Danh sách yêu thích
 						</a>
-						<a href="{!! route($route_customer) !!}" ref="rated" class="lg">
+						<a href="{!! route($route_customer).'#rated'  !!}" ref="rated" class="lg">
 							Danh sách đánh giá
 						</a>
-						<a href="{!! route($route_customer) !!}" ref="order" class="lg">
+						<a href="{!! route($route_customer).'#order'  !!}" ref="order" class="lg">
 							Đơn hàng
 						</a>
-						<a href="{!! route($route_customer) !!}" ref="noti" class="lg">
+						<a href="{!! route($route_customer).'#noti'  !!}" ref="noti" class="lg">
 							Thông báo
 						</a>
 						<a href="{{ route('home.logout') }}" class="lg">
