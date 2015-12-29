@@ -397,7 +397,6 @@ function authorDetail(){
 	if($('.athp.contain') .length == 0) return;
 	$('.athl .athitem').click(function(){
 		var na = $(this).attr('data-set');
-		var n = "1";
 		$('.scroll_word .word').each(function(){
 			var word = $(this);
 			if (word.html() == n) {
