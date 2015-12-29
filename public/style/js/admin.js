@@ -36,15 +36,15 @@ function check(){
 		if (sq.hasClass('fa-square-o')) {
 			sq.removeClass('fa-square-o').addClass('fa-check-square');
 			r.addClass('ck');
+			if($('.is-ck.fa-check-square').length > 1) $('th.sb').addClass('all');
 			if($('.is-ck.fa-check-square').length == n) {
 				$('.is-ck-all').addClass('fa-check-square').removeClass('fa-square-o');
-				$('.table').addClass('all');
 			}
 		}
 		else {
 			$('.is-ck-all').removeClass('fa-check-square').addClass('fa-square-o');
-			$('table').removeClass('all');
 			sq.removeClass('fa-check-square').addClass('fa-square-o');
+			if($('.is-ck.fa-check-square').length == 1) $('th.sb').removeClass('all');
 			r.removeClass('ck');
 		}
 	});

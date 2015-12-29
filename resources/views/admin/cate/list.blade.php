@@ -36,7 +36,10 @@
 <table class="table table-bordered table-hover">
 <thead>
     <tr align="center">
-        <th class="f"><i class="fa fa-square-o is-ck-all"></i></th>
+        <th class="f">
+            <i class="fa fa-square-o is-ck-all"></i>
+            <i class="fa fa-angle-double-down"><!--fa-angle-double-right cho hide--></i>
+        </th>
         <th class="is-sort atv">
             <div class="tt" align="center">
                 Danh mục
