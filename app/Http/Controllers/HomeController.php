@@ -361,6 +361,7 @@ class HomeController extends Controller
             'author_word' => $author_word,
             'data'          =>  $author_list,
             'name_page' => 'Tác giả',
+            'table_name'=>  'Authors',
         ]);
         
     }
@@ -399,6 +400,7 @@ class HomeController extends Controller
             'author_word' => $source_word,
             'data'          =>  $source_list,
             'name_page' => 'Nhà xuất bản',
+            'table_name'=>  'Publishers',
         ]);
     }
 
@@ -436,7 +438,7 @@ class HomeController extends Controller
             'author_word' => $source_word,
             'data'          =>  $source_list,
             'name_page' => 'Nhà phát hành',
-            'table_name'=>  'Issuer',
+            'table_name'=>  'Issuers',
         ]);
     }
 

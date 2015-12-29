@@ -19,7 +19,7 @@
 			      	{{$value->alpha}}
 			      </div>
 			      <div class="author_list">
-				    <?php $author = DB::table('authors')->where('name',$value->alpha.'%')->get();?>
+				    <?php $author = DB::table($table_name)->where('name','LIKE',$value->alpha.'%')->get();?>
 				    @foreach ($author as $item)
 			        	<div class="author_name is-menu list" data-set="{{ $item->id }}"data-link="pp">
 			        		{{$item->name}}

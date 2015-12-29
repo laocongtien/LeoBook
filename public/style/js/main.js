@@ -394,11 +394,17 @@ function authorPage(){
 }
 
 function authorDetail(){
+	if($('.athp.contain') .length == 0) return;
 	$('.athl .athitem').click(function(){
 		var na = $(this).attr('data-set');
-		$('.scroll_word.word').each(function(){
+		var n = "1";
+		$('.scroll_word .word').each(function(){
 			var word = $(this);
-			if (word.attr('data-set') == na) word.trigger('click');
+			if (word.html() == n) {
+				word.trigger('click');
+				alert(1);
+			}
+			
 		});
 		 $('.author_name').each(function(){
 			var name = $(this);
