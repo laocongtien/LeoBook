@@ -189,7 +189,7 @@ class IssuerSeeder extends Seeder
             DB::table('issuers')->insert([
                 'name' => $faker->company(),
                 'info' => $faker->text(60),
-                'logo'      => 'logo'.$index,
+                'avatar'      => 'ava'.$index,
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -211,7 +211,7 @@ class PublisherSeeder extends Seeder
             DB::table('publishers')->insert([
                 'name' => $faker->company(),
                 'info' => $faker->text(60),
-                'logo'      => 'nxb'.$index,
+                'avatar'      => 'nxb'.$index,
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -298,10 +298,10 @@ class BookSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,20) as $index){
+        foreach (range(1,50) as $index){
             DB::table('books')->insert([
                 'name' => $faker->name,
-                'author_id' => $faker->numberBetween(1,10),
+                'author_id' => $faker->numberBetween(1,50),
                 'price' => 1000*$faker->numberBetween(20,300),
                 'discount'  => $faker->numberBetween(20,30),
                 'invent'    => $faker->numberBetween(0,10),

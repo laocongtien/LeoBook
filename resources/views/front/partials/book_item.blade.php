@@ -1,3 +1,17 @@
+<?php
+$route_bestseller = 'home.bestseller';
+$route_newbook    =	'home.newbook';
+$route_comming    =	'home.comming';
+$route_discount   =	'home.discount';
+$route_combo      =	'home.combo';
+$route_author     =	'home.author';
+$route_publisher  =	'home.publisher';
+$route_issuer     =	'home.issuer';
+$route_search     =	'home.search';
+$route_checkout   =	'home.checkout';
+$route_customer   =	'home.customer';
+$route_cate   =	'home.cate';
+?>
 <div class="book_item">
 	<div class="book_item_hover">
 		<div class="book_cover">
@@ -12,7 +26,7 @@
 	</div>
 	<div class="book_item_detail">
 		<div class="cver left">
-			<a href="{{ route('home.detail' , $item->id) }} is-2r"><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
+			<a href="{{ route('home.detail' , $item->id) }} "><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
 		</div>
 		<div href="{{ route('home.detail' , $item->id) }}" class="txtbook left">
 			<a href="{{ route('home.detail' , $item->id) }}" class="title">

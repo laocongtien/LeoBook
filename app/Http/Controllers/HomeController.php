@@ -11,6 +11,7 @@ use App\Cate;
 use App\Book;
 use App\OrderDetail;
 use App\Author;
+use App\Publisher, App\Issuer;
 use Cart;
 use Hash;
 use Input;
@@ -334,46 +335,109 @@ class HomeController extends Controller
             switch ($data) {
                 case 'pp':
                     $author = Author::find($list);
+                    $author_book = Book::where('author_id',$list)->get();
                     return view('front.partials.list_item_pp',[
                         'data'  =>  $author,
-                        
+                        'author_book' => $author_book,
                     ]);
                 case 'word':
                     $author = Author::where('name','LIKE',$list.'%');
                     return view('front.partials.list_item_word',[
-                        'data'  =>  $author->paginate(3),
+                        'data'  =>  $author->paginate(9),
                         'word'  =>  $list,
                     ]);
-                case 'all':
+                default :
                     $authors = DB::table('Authors');
                     $author = HomeController::sort($authors,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $author->paginate(9),
                     ]);
-                default:
-                    # code...
-                    break;
             }
-            return view('front.partials.list_item',[
-                'data'          =>  $author->paginate(9),
-            ]);
         }
         $author_list = Author::orderBy('name','ASC')->paginate(9);
         $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
 
         return view('front.tacgia',[
             'author_word' => $author_word,
-            'data'          =>  $author_list
+            'data'          =>  $author_list,
+            'name_page' => 'Tác giả',
         ]);
         
     }
 
     public function publisher() {
-        return view('front.nxb');
+        if(Request::ajax()){
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            switch ($data) {
+                case 'pp':
+                    $source = Publisher::find($list);
+                    $source_book = Book::where('publisher_id',$list)->get();
+                    return view('front.partials.list_item_pp',[
+                        'data'  =>  $source,
+                        'author_book' => $source_book,
+                    ]);
+                case 'word':
+                    $source = Publisher::where('name','LIKE',$list.'%');
+                    return view('front.partials.list_item_word',[
+                        'data'  =>  $source->paginate(9),
+                        'word'  =>  $list,
+                    ]);
+                default :
+                    $sources = DB::table('publishers');
+                    $source = HomeController::sort($sources,$sort);
+                    return view('front.partials.list_item_all',[
+                        'data'  =>  $source->paginate(9),
+                    ]);
+            }
+        }
+        $source_list = Publisher::orderBy('name','ASC')->paginate(9);
+        $source_word = Publisher::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
+
+        return view('front.tacgia',[
+            'author_word' => $source_word,
+            'data'          =>  $source_list,
+            'name_page' => 'Nhà xuất bản',
+        ]);
     }
 
     public function issuer() {
-        return view('front.issuers');
+        if(Request::ajax()){
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            switch ($data) {
+                case 'pp':
+                    $source = Issuer::find($list);
+                    $source_book = Book::where('author_id',$list)->get();
+                    return view('front.partials.list_item_pp',[
+                        'data'  =>  $source,
+                        'author_book' => $source_book,
+                    ]);
+                case 'word':
+                    $source = Issuer::where('name','LIKE',$list.'%');
+                    return view('front.partials.list_item_word',[
+                        'data'  =>  $source->paginate(9),
+                        'word'  =>  $list,
+                    ]);
+                default :
+                    $sources = DB::table('Issuers');
+                    $source = HomeController::sort($sources,$sort);
+                    return view('front.partials.list_item_all',[
+                        'data'  =>  $source->paginate(9),
+                    ]);
+            }
+        }
+        $source_list = Issuer::orderBy('name','ASC')->paginate(9);
+        $source_word = Issuer::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
+
+        return view('front.tacgia',[
+            'author_word' => $source_word,
+            'data'          =>  $source_list,
+            'name_page' => 'Nhà phát hành',
+            'table_name'=>  'Issuer',
+        ]);
     }
 
     public function search() {

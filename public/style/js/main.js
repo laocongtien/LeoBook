@@ -9,6 +9,7 @@ $(function(){
 	login(); //script cho các trang đăng ký, đăng nhập, quên mật khẩu, sửa mật khẩu
 	checkHeightCart();
 	cart();
+	change();
 });
 
 /* star up*/
@@ -33,6 +34,7 @@ function starup(){
 	viewmode();
 	tabbox();
 	box();
+	authorDetail();
 }
 /*--- CÁC HÀM Ở HEADER ---*/
 
@@ -193,11 +195,12 @@ function tabbox(){
 		var tab = box.find('.is-tab');
 		var num = tab.length;
 		tab.hide();
+		if(window.location.hash) showTabByHash()
 		box.find('.is-tab:first').show();
 		box.find('.is-menu:first').addClass('atv');
 		menu.click(function(){
-			//console.log('chuyen tab');
 			var mn = $(this);
+			if(mn.attr('data-set')) window.location.hash = mn.attr('data-set'); else window.location.hash=' ';
 			menu.removeClass('atv');
 			mn.addClass('atv');
 			var link = mn.attr('data-link');
@@ -222,6 +225,7 @@ function tabbox(){
 						//console.log('selected');
 				}
 			});
+
 		});
 	});
 }
@@ -371,7 +375,7 @@ function authorChange(args){
 				return;
 			}
 		}
-  }, 500);
+  }, 1000);
 }
 var changetime = 0;
 
@@ -385,9 +389,27 @@ function authorPage(){
   	$('.athslider').iosSliderVertical('goToSlide', n);
   	setTimeout(function(){
   		changetime = 0;
+  	},1000);
+  });
+}
+
+function authorDetail(){
+	$('.athl .athitem').click(function(){
+		var na = $(this).attr('data-set');
+		$('.scroll_word.word').each(function(){
+			var word = $(this);
+			if (word.attr('data-set') == na) word.trigger('click');
+		});
+		 $('.author_name').each(function(){
+			var name = $(this);
+			if (name.attr('data-set') == na) name.trigger('click');
+		});
+  	setTimeout(function(){
+  		changetime = 0;
   	},500);
   });
 }
+
 
 /*--- Sách chi tiết ---*/
 
@@ -961,10 +983,23 @@ function phantrangAjax(link,data,gridbook,limit,sort,list){
 		addToCart();
 		limited();
 		selectbox();
+		authorDetail();
 	})
 	.fail(function() {
 		//window.location.reload();
 		console.log("error");
+	});
+}
+
+// hàm show tab và chọn menu theo hashtag
+function showTabByHash(){
+	var hash = window.location.hash;
+	$('.list.is-menu').each(function(){
+		var menu = $(this);
+		//console.log(hash.substring(1));
+		if (menu.attr('data-set') == hash.substring(1))
+			menu.trigger('click');
+
 	});
 }
 Number.prototype.formatMoney = function(c, d, t){
@@ -976,4 +1011,12 @@ Number.prototype.formatMoney = function(c, d, t){
     i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
     j = (j = i.length) > 3 ? j % 3 : 0;
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
+}
+function change() {
+  	$(window).on('hashchange', function (){
+    	showTabByHash();
+	}).trigger('hashchange');
+
+
+
+}
