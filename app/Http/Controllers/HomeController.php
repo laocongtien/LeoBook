@@ -287,36 +287,22 @@ class HomeController extends Controller
     public function cate($id) {
         
         if (Request::ajax())
-        {
+        {            
             $limit = Request::get('limit');
             $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
-            $list = Request::get('list');
-            switch ($data) {
-                case 1:
-                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
-                    break;
-                case 2:
-                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
-                    break;
-                case 3:
-                    $model = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
-                    break;
-                default:
-                    $model = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
-                    break;
-            }
+            $model = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
             $model = HomeController::sort($model,$sort)->paginate($limit);
-            return view('front.partials.list_book_item_info_page_lbook',[
+            return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
-                'list' => $list
+                'list' => $data
             ]);
         }
 
         $bestsellers = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->paginate(5);
         $cate_name = cate::where('id',$id)->first()->name;
-        return view('front.danhmuc',[
+        return view('front.xemthem',[
             'data' =>  $bestsellers,
              'name' => $cate_name ,
         ]);

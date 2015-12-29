@@ -12,21 +12,21 @@ Danh mục sách
 		<div class="filterbox wrap is-box">
 			<div class="filterbar mxClrAft wrap">
 				<div class="boxmenu mxClrAft">
-					<div class="mn is-menu" data-link="01">
+					<a class="mn is-menu menu-cate" data-link="01" href="#tabBest">
 						Bán chạy nhất
-					</div>
-					<div class="mn is-menu" data-link="02">
+					</a>
+					<a class="mn is-menu menu-cate" data-link="02" href="#tabNew">
 						Sách mới
-					</div>
-					<div class="mn is-menu" data-link="03">
+					</a>
+					<a class="mn is-menu menu-cate" data-link="03" href="#tabConming">
 						Sắp phát hành
-					</div>
-					<div class="mn is-menu" data-link="04">
+					</a>
+					<a class="mn is-menu menu-cate" data-link="04" href="#tabDiscout">
 						Sách giảm giá
-					</div>
+					</a>
 				</div>
 				<div class="fil slfilter right">
-					<select name="TenDanhSach" class="is-sl" value="Sắp xếp">
+					<select name="TenDanhSach" class="is-sl filter" value="Sắp xếp">
 						<option value="default">Chọn cách lọc</option>
 						<option value="new">Sách mới</option>
 						<option value="name_ASC">Sắp xếp theo: A - Z</option>
@@ -39,7 +39,7 @@ Danh mục sách
 					</select>
 				</div>
 				<div class="numbook slfilter right">
-					<select name="Soluong" class="is-sl" value="Sắp xếp">
+					<select name="Soluong" class="is-sl filter" value="Sắp xếp">
 						<option value="5">Hiển thị: 5</option>
 						<option value="10">Hiển thị: 10</option>
 						<option value="20">Hiển thị: 20</option>
@@ -55,17 +55,17 @@ Danh mục sách
 			</div>
 			<div class="tabbox">
 				<div class="is-tab gridbook" data-link="01">
-					@include('front.partials.list_book_item_info_page_lbook')
-	      </div>
-	      <div class="is-tab gridbook" data-link="02">
-				{{-- chừa để add bằng ajax --}}
-	      </div>
-	      <div class="is-tab gridbook" data-link="03">
-				{{-- chừa để add bằng ajax --}}
-	      </div>
-	      <div class="is-tab gridbook" data-link="04">
-				{{-- chừa để add bằng ajax --}}
-	      </div>
+					{{-- đổ trang list_book_item_info_page_lbook --}}
+	      		</div>
+			    <div class="is-tab gridbook" data-link="02">
+					{{-- đổ trang list_book_item_info_page_lbook --}}
+			    </div>
+			    <div class="is-tab gridbook" data-link="03">
+					{{-- đổ trang list_book_item_info_page_lbook --}}
+			    </div>
+			     <div class="is-tab gridbook" data-link="04">
+					{{-- đổ trang list_book_item_info_page_lbook --}}
+			    </div>
 			</div>
 		</div>
 	</div>

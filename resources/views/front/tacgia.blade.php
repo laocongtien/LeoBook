@@ -7,7 +7,7 @@
 @section('body.content')
 	<div class="contain mxClrAft wrap is-box athp">
 		<div class="authorlist left">
-			<div class="title_author is-menu list" data-link="all" data-set='all'>
+			<div class="title_author is-menu list" data-link="all" data-set='all' href="#tabAll">
 				Tất cả
 			</div>
 
@@ -15,13 +15,13 @@
 				<div class="slider">
 					@foreach ($author_word as $value)
 					<div class="nav">
-			      <div class="author_word is-menu list" data-set="{{$value->alpha}}"data-link="word">
+			      <div class="author_word is-menu list" data-set="{{$value->alpha}}"data-link="word" href="#tabWord">
 			      	{{$value->alpha}}
 			      </div>
 			      <div class="author_list">
 				    <?php $author = DB::table($table_name)->where('name','LIKE',$value->alpha.'%')->get();?>
 				    @foreach ($author as $item)
-			        	<div class="author_name is-menu list" data-set="{{ $item->id }}"data-link="pp">
+			        	<div class="author_name is-menu list" data-set="{{ $item->id }}"data-link="pp" href="#tabDetail">
 			        		{{$item->name}}
 			        	</div>
 		        	@endforeach

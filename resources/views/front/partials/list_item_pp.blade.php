@@ -1,6 +1,8 @@
 <div class="prfath mxClrAft pagination {{($data->avatar == '') ? 'noav' : ''}}">
 		<div class="ava" style="background-image: url({{url($data->avatar)}})"></div>
-		<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
+		<div class="nava">
+			<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="">
+		</div>
 		<div class="prf ">
 			<div class="na">
 				{{ $data->name }}

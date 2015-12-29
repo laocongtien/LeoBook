@@ -198,31 +198,17 @@ function tabbox(){
 		if(window.location.hash) showTabByHash()
 		box.find('.is-tab:first').show();
 		box.find('.is-menu:first').addClass('atv');
-		menu.click(function(){
+		menu.unbind('click').click(function(){
 			var mn = $(this);
-			if(mn.attr('data-set')) window.location.hash = mn.attr('data-set'); else window.location.hash=' ';
+			var link = mn.attr('data-link');
 			menu.removeClass('atv');
 			mn.addClass('atv');
-			var link = mn.attr('data-link');
 			tab.hide();
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
-					if(!tb.find('div.pagination').length || tb.hasClass('load')) {
-						//console.log('add them');
-						var limit = $('.numbook').find('select').val();
-						var sort = $('.fil').find('select').val();
-						if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
-						//alert(list);
-						if(tb.hasClass('load')) {
-							list = mn.attr('data-set');
-							$('.filterbox.all').hide();
-						}
-						phantrangAjax(window.location.href,link,tb,limit, sort, list);						
-					}else $('.filterbox.all').show();
-						tb.show();
-						limited();
-						//console.log('selected');
+					tb.show();
+					limited();
 				}
 			});
 
@@ -375,7 +361,7 @@ function authorChange(args){
 				return;
 			}
 		}
-  }, 1000);
+  }, 500);
 }
 var changetime = 0;
 
@@ -397,13 +383,10 @@ function authorDetail(){
 	if($('.athp.contain') .length == 0) return;
 	$('.athl .athitem').click(function(){
 		var na = $(this).attr('data-set');
+		var data_word = $(this).attr('data-word');
 		$('.scroll_word .word').each(function(){
 			var word = $(this);
-			if (word.html() == n) {
-				word.trigger('click');
-				alert(1);
-			}
-			
+			if (word.attr('data-set') == data_word) word.trigger('click');
 		});
 		 $('.author_name').each(function(){
 			var name = $(this);
@@ -934,16 +917,16 @@ function phantrang(){
 		var numnext = bar.find('.numnext');
 		var n = numpage.length;
 		numpage.unbind('click').click(function(){
-			var num = $(this);
-			var gridbook = bar.parent();
-			var data = gridbook.attr('data-link');
-			if (!data) data = $('.is-menu.atv').attr('data-link');
-			var limit = $('.numbook').find('select').val();
-			var list = $('.is-menu.atv').attr('data-set');
-			if ($('.grid').hasClass('list')) {list = 'list'};
-			var link = num.attr('href');
-			var sort = $('.fil').find('select').val();
-			phantrangAjax(link, data, gridbook, limit, sort, list);
+			// var num = $(this);
+			// var gridbook = bar.parent();
+			// var data = gridbook.attr('data-link');
+			// if (!data) data = $('.is-menu.atv').attr('data-link');
+			// var limit = $('.numbook').find('select').val();
+			// var list = $('.is-menu.atv').attr('data-set');
+			// if ($('.grid').hasClass('list')) {list = 'list'};
+			// var link = num.attr('href');
+			// var sort = $('.fil').find('select').val();
+			// phantrangAjax(link, data, gridbook, limit, sort, list);
 		});
 		numprev.unbind('click').click(function(){
 			var num = $(this);
@@ -996,17 +979,7 @@ function phantrangAjax(link,data,gridbook,limit,sort,list){
 	});
 }
 
-// hàm show tab và chọn menu theo hashtag
-function showTabByHash(){
-	var hash = window.location.hash;
-	$('.list.is-menu').each(function(){
-		var menu = $(this);
-		//console.log(hash.substring(1));
-		if (menu.attr('data-set') == hash.substring(1))
-			menu.trigger('click');
 
-	});
-}
 Number.prototype.formatMoney = function(c, d, t){
 	var n = this, 
     c = isNaN(c = Math.abs(c)) ? 2 : c, 
@@ -1021,7 +994,15 @@ function change() {
   	$(window).on('hashchange', function (){
     	showTabByHash();
 	}).trigger('hashchange');
+}
+// hàm show tab và chọn menu theo hashtag
+function showTabByHash(){
+	var hash = window.location.hash;
+	$('.list.is-menu').each(function(){
+		var menu = $(this);
+		//console.log(hash.substring(1));
+		if (menu.attr('data-set') == hash.substring(1))
+			menu.trigger('click');
 
-
-
+	});
 }
