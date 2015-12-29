@@ -4,6 +4,8 @@ $(function(){
 	check();
 	phantrang();
 	filter();
+	tabbox();
+	index();
 });
 function selectbox(){
 	if($('.is-sl').length == 0) return;
@@ -111,4 +113,34 @@ function filter(){
 		$('.fil').removeClass('atv');
 		f.addClass('atv')
 	})
+}
+//tabbox
+function tabbox(){
+	if($('.is-box').length == 0) return;
+	$('.is-box').each(function(){
+		var box = $(this);
+		var menu = box.find('.is-menu');
+		var tab = box.find('.is-tab');
+		var num = tab.length;
+		tab.hide();
+		box.find('.is-tab:first').show();
+		box.find('.is-menu:first').addClass('atv');
+		menu.click(function(){
+			var mn = $(this);
+			menu.removeClass('atv');
+			mn.addClass('atv');
+			var link = mn.attr('data-link');
+			tab.hide();
+			tab.each(function(){
+				var tb = $(this);
+				if (tb.attr('data-link') == link){
+					tb.show();
+					limited();
+				}
+			});
+		});
+	});
+}
+function index(){
+	$('.js-sc').jScrollPane();
 }

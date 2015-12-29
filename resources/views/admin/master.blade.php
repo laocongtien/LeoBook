@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/font.css">
     <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/reset.css">
     <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/jquery.selectbox.css">
+    <link rel="stylesheet" type="text/css" href="{!! asset('public/style/css/jquery.jscrollpane.css') !!}">
     <link rel="stylesheet" type="text/css" href="{!!asset('')!!}public/style/css/admin.css">
 </head>
 
@@ -97,18 +98,6 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.cate.getAdd') }}">Thêm danh mục</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#">Thể loại<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{ route('admin.cate.getList') }}">Quản lý thể loại</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.cate.getAdd') }}">Thêm thể loại</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -214,6 +203,7 @@
     <script src="{{ url('public/admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url('public/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
   <script type='text/javascript' src='{!!asset('')!!}public/style/js/jquery.selectbox-0.2.js'></script>
+  <script src="{{ url('public/style/js/jquery.jscrollpane.js') }}"></script>
     <script src="{{ url('public/style/js/admin.js') }}"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
