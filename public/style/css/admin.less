@@ -389,23 +389,21 @@ a:hover, a:focus {
 	width: ~'calc(100% - 30px)';
 	margin-left: 15px;
 	margin-top: 15px;
-	&.all{
-		th.sb{
+	th.sb.all{
+		text-align: center;
+		.tt{
+			display: none;
+		}
+		.sbHolder{
+			display: block;
+			margin: 0 auto;
 			text-align: center;
-			.tt{
-				display: none;
-			}
-			.sbHolder{
-				display: block;
-				margin: 0 auto;
-				text-align: center;
-			}
-			.ttb{
-				display: inline-block;
-				text-align: center;
-				&:hover .ip{
-					color: @mainColor;
-				}
+		}
+		.ttb{
+			display: inline-block;
+			text-align: center;
+			&:hover .ip{
+				color: @mainColor;
 			}
 		}
 	}
