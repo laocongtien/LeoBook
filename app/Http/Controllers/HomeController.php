@@ -382,7 +382,7 @@ class HomeController extends Controller
         $source_list = Publisher::orderBy('name','ASC')->paginate(9);
         $source_word = Publisher::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
 
-        return view('front.nxb',[
+        return view('front.tacgia',[
             'author_word' => $source_word,
             'data'          =>  $source_list,
             'name_page' => 'Nhà xuất bản',

@@ -196,8 +196,8 @@ class IssuerSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,30) as $index){
             DB::table('issuers')->insert([
-                'name' => $faker->companySuffix(),
-                'fullname' => $faker->companySuffix(),
+                'name' => $faker->company(),
+                'fullname' => $faker->company(),
                 'location'  => $faker->address(),
                 'phone' => $faker->phoneNumber(),
                 'fax' => $faker->phoneNumber(),
@@ -223,8 +223,8 @@ class PublisherSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,30) as $index){
             DB::table('publishers')->insert([
-                'name' => $faker->companySuffix(),
-                'fullname' => $faker->companySuffix(),
+                'name' => $faker->company(),
+                'fullname' => $faker->company(),
                 'location'  => $faker->address(),
                 'phone' => $faker->phoneNumber(),
                 'fax' => $faker->phoneNumber(),
