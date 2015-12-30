@@ -15,7 +15,12 @@ class CreatePublishersTable extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('info');
+            $table->string('fullname');
+            $table->string('location');
+            $table->string('phone');
+            $table->string('fax');
+            $table->string('email');
+            $table->string('website');
             $table->string('logo');
             $table->timestamps();
         });

@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->string('name');
             $table->string('realname');
             $table->integer('years');
+            $table->string('avatar');
             $table->text('info');
             $table->timestamps();
         });

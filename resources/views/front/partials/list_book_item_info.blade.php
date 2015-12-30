@@ -17,7 +17,7 @@ $route_cate   =	'home.cate';
 	<div class="book_item_hover">
 		<div class="book_cover">
 			<a href="{{ route('home.detail' , $item->id) }}">
-				<img src="{!!asset('')!!}style/images/temp/{{$item->image}}.jpg" alt="mybook">
+				<img src="{!!asset($item->image)!!}" alt="mybook">
 			</a>
 		</div>
 		<div class="smdt">

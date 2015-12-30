@@ -19,11 +19,8 @@ class CreateLocationsTable extends Migration
             $table->string('house_number');
             $table->string('shreet');
             $table->integer('province_id')->unsigned();
-            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->integer('district_id')->unsigned();
-            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->integer('ward_id')->unsigned();
-            $table->foreign('ward_id')->references('id')->on('wards')->onDelete('cascade');
             $table->boolean('default');
             $table->timestamps();
         });

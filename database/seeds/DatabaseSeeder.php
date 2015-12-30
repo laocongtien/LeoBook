@@ -13,22 +13,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        // $this->call(UserSeeder::class);
-        // $this->call(TypeSeeder::class);
-        // $this->call(CateSeeder::class);
-        // $this->call(AuthorSeeder::class);
-        // $this->call(IssuerSeeder::class);
-        // $this->call(PublisherSeeder::class);
-        // $this->call(OtherSeeder::class);
-        // $this->call(LocationSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CateSeeder::class);
+        $this->call(AuthorSeeder::class);
+        $this->call(IssuerSeeder::class);
+        $this->call(PublisherSeeder::class);
+        $this->call(OtherSeeder::class);
+        $this->call(LocationSeeder::class);
         $this->call(BookSeeder::class);
-        // $this->call(CommentSeeder::class);
-        // $this->call(OrderSeeder::class);
-        // $this->call(OrderDetailSeeder::class);
-        // $this->call(WishlistSeeder::class);
-        // $this->call(CoinSeeder::class);
-        // $this->call(NotificationSeeder::class);
-        // $this->call(CartSeeder::class);
+        $this->call(CommentSeeder::class);
+        $this->call(OrderSeeder::class);
+        $this->call(OrderDetailSeeder::class);
+        $this->call(WishlistSeeder::class);
+        $this->call(CoinSeeder::class);
+        $this->call(NotificationSeeder::class);
+        $this->call(CartSeeder::class);
 
         Model::reguard();
     }
@@ -51,68 +50,12 @@ class UserSeeder extends Seeder
                 'fullname'      =>  $faker->name,
                 'phone'  => $faker->phoneNumber,
                 'email'      => $faker->freeEmail,
-                'avatar'     => 'hinh'.$index,
+                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
                 'coin'     =>   $faker->numberBetween(0,3000),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
         }
-    }
-}
-
-class TypeSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $faker = Faker\Factory::create();
-        $insert = [[
-        'name' => "Kỹ Năng Mềm", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Văn Học Tình Cảm Lãng Mạn", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Kinh Doanh - Đầu Tư", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Sách Kinh Điển", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Văn Hóa - Xã Hội", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Danh Nhân", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
-        ],[
-        'name' => "Chính Trị", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
-        ],[
-        'name' => "Trinh Thám - Kinh Dị", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
-        ],[
-        'name' => "Thiếu Nhi", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
-        ],[
-        'name' => "Truyện Ngắn", 
-        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
-        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
-        ]];
-        DB::table('types')->insert($insert);
-
     }
 }
 
@@ -128,24 +71,89 @@ class CateSeeder extends Seeder
         $faker = Faker\Factory::create();
         $insert = [[
         'name' => "Sách Tiếng Anh", 
+        'parent_id' => "",
         'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
         'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
         ],[
-        'name' => "Văn Học - Tiểu Thuyết", 
+        'name' => "Văn Học - Tiểu Thuyết",
+        'parent_id' => "", 
         'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
         'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
         ],[
         'name' => "Kinh tế", 
+        'parent_id' => "",
         'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
         'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
         ],[
-        'name' => "Kỹ Năng Sống", 
+        'name' => "Truyện", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Kỹ Năng", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Kỹ Năng Sống",
+        'parent_id' => "5", 
         'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
         'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
         ],[
         'name' => "Sách Giáo Khoa", 
+        'parent_id' => "",
         'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
         'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Kỹ Năng Mềm", 
+        'parent_id' => "5",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Văn Học Tình Cảm Lãng Mạn", 
+        'parent_id' => "2",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Kinh Doanh - Đầu Tư", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Sách Kinh Điển", 
+        'parent_id' => "2",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Văn Hóa - Xã Hội", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Danh Nhân", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
+        ],[
+        'name' => "Chính Trị", 
+        'parent_id' => "",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+        ],[
+        'name' => "Trinh Thám - Kinh Dị", 
+        'parent_id' => "2",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
+        ],[
+        'name' => "Thiếu Nhi", 
+        'parent_id' => "4",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
+        ],[
+        'name' => "Truyện Ngắn", 
+        'parent_id' => "4",
+        'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+        'updated_at' => $faker->dateTimeBetween('-1 days', 'now') 
         ]];
         DB::table('cates')->insert($insert);
 
@@ -162,12 +170,13 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,10) as $temp){
+        foreach (range(1,30) as $temp){
             DB::table('authors')->insert([
                 'name'  => $faker->name, 
                 'realname'    =>    $faker->name,
                 'years'    =>   $faker->numberBetween(1900,2000),
                 'info'  => $faker->text(200),
+                'avatar' => "public/upload/author/athava".$faker->numberBetween(1,4).".jpg",
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
                 ]);
@@ -185,11 +194,16 @@ class IssuerSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,20) as $index){
+        foreach (range(1,30) as $index){
             DB::table('issuers')->insert([
-                'name' => $faker->company(),
-                'info' => $faker->text(60),
-                'logo'      => 'logo'.$index,
+                'name' => $faker->companySuffix(),
+                'fullname' => $faker->companySuffix(),
+                'location'  => $faker->address(),
+                'phone' => $faker->phoneNumber(),
+                'fax' => $faker->phoneNumber(),
+                'logo'      => 'public/upload/issuer/cty'.$faker->numberBetween(1,8).".png",
+                'email' => $faker->email(),
+                'website' => $faker->domainName(),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -207,11 +221,16 @@ class PublisherSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,20) as $index){
+        foreach (range(1,30) as $index){
             DB::table('publishers')->insert([
-                'name' => $faker->company(),
-                'info' => $faker->text(60),
-                'logo'      => 'nxb'.$index,
+                'name' => $faker->companySuffix(),
+                'fullname' => $faker->companySuffix(),
+                'location'  => $faker->address(),
+                'phone' => $faker->phoneNumber(),
+                'fax' => $faker->phoneNumber(),
+                'logo'      => 'public/upload/publisher/nxb'.$faker->numberBetween(1,9).".png",
+                'email' => $faker->email(),
+                'website' => $faker->domainName(),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -298,26 +317,26 @@ class BookSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,20) as $index){
+        foreach (range(1,100) as $index){
             DB::table('books')->insert([
                 'name' => $faker->name,
-                'author_id' => $faker->numberBetween(1,10),
+                'author_id' => $faker->numberBetween(1,30),
                 'price' => 1000*$faker->numberBetween(20,300),
                 'discount'  => $faker->numberBetween(20,30),
                 'invent'    => $faker->numberBetween(0,10),
-                'publishing_date' =>    $faker->dateTimeBetween('-1 months', '1 weeks'),
-                'issuer_id' => $faker->numberBetween(1,20),
-                'publisher_id' =>   $faker->numberBetween(1,20),
-                'type_id'   =>  $faker->numberBetween(1,10),
-                'cate_id'   =>  $faker->numberBetween(1,5),
+                'publishing_date' =>    $faker->dateTimeBetween('-1 months', '1 months'),
+                'issuer_id' => $faker->numberBetween(1,30),
+                'publisher_id' =>   $faker->numberBetween(1,30),
+                'cate_id'   =>  $faker->numberBetween(1,8),
                 'language_id'   => $faker->numberBetween(1,2),
                 'size'  => $faker->numberBetween(10,20).' x '.$faker->numberBetween(10,20),
                 'cover_id' => $faker->numberBetween(3,4),
-                'image' =>  'sach'.$index,
+                'image' =>  'public/upload/book/book'.$faker->numberBetween(1,12).".jpg",
                 'page'  =>  $faker->numberBetween(50,450),
-                'info' =>   $faker->text(150),
+                'info' =>   $faker->text(10000),
                 'rate' => $faker->randomFloat(2,0,5),
                 'rateCount' => $faker->numberBetween(0,1000),
+                'qty_saled' => $faker->numberBetween(0,301000),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -338,7 +357,7 @@ class CommentSeeder extends Seeder
         foreach (range(1,20) as $index){
             DB::table('comments')->insert([
                 'user_id' => $faker->numberBetween(1,20),
-                'book_id'=>$faker->numberBetween(1,20),
+                'book_id'=>$faker->numberBetween(1,100),
                 'title'=>$faker->randomElement(['Tuyệt','Hay','Dở']),
                 'content'=>$faker->text(30),
                 'rate'=>$faker->numberBetween(0,5),

@@ -26,5 +26,6 @@
 	<script type='text/javascript' src='{!!asset("public/style/js/animo.min.js")!!}'></script>
 	<script type='text/javascript' src='{!!asset("public/style/js/imagesloaded.pkgd.min.js")!!}'></script>
 	<script type='text/javascript' src='{!!asset("public/style/js/jquery.textarea_autosize.js")!!}'></script>
+	<script type='text/javascript' src='{!!asset("public/style/js/jquery.hashchange.js")!!}'></script>
 	<script type='text/javascript' src='{!!asset("public/style/js/main.js")!!}'></script>
 </body>

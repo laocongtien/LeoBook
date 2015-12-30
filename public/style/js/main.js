@@ -33,6 +33,7 @@ function starup(){
 	viewmode();
 	tabbox();
 	box();
+	authorDetail();
 }
 /*--- CÁC HÀM Ở HEADER ---*/
 
@@ -117,13 +118,6 @@ function selectbox(){
 		},
 		effect: "fade"
 	});
-	$('.is-sl-sort').prop('selectedIndex',0);
-	$('.is-sl-sort').selectbox({
-		onChange: function (val, inst){
-			ptajax();
-		},
-		effect: "fade"
-	});
 }
 function ptajax () {
 	var url = window.location.href;
@@ -139,6 +133,7 @@ function ptajax () {
 			grid = tb;
 		}
 	});
+
 	phantrangAjax(url,data,grid,limit,sort,list);
 }
 
@@ -201,30 +196,36 @@ function tabbox(){
 		tab.hide();
 		box.find('.is-tab:first').show();
 		box.find('.is-menu:first').addClass('atv');
-		menu.click(function(){
-			//console.log('chuyen tab');
+		menu.unbind('click').click(function(){
 			var mn = $(this);
+			var link = mn.attr('data-link');
 			menu.removeClass('atv');
 			mn.addClass('atv');
-			var link = mn.attr('data-link');
 			tab.hide();
+			if ($('.pp.is-menu').length){
+				$('.filterbox.all').hide();
+			}
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
-					if(!tb.find('div.pagination').length || tb.hasClass('load')) {
-						console.log('add them');
-						var limit = $('.numbook').find('select').val();
-						var sort = $('.fil').find('select').val();
-						if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
-						//alert(list);
-						phantrangAjax(window.location.href,link,tb,limit, sort, list);
+					if (mn.attr('data-set') != tb.find('div.pagination').attr('data-set')){
+						if(!tb.find('div.pagination').length || tb.hasClass('load')) {
+							var limit = $('.numbook').find('select').val();
+							var sort = $('.fil').find('select').val();
+							if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+							if(tb.hasClass('load')) {
+								list = mn.attr('data-set');
+								$('.filterbox.all').hide();
+							}
+							phantrangAjax(window.location.href,link,tb,limit, sort, list);
+							
+						}else $('.filterbox.all').show();
 					}
-						tb.show();
-						//alert(data);
-						limited();
-					
+					tb.show();
+					limited();
 				}
 			});
+
 		});
 	});
 }
@@ -355,26 +356,31 @@ function changeAuthor(){
 function scrollAuthorList(){
 	$('.athslider').iosSliderVertical({
 		desktopClickDrag: true,
-	  snapToChildren: true,
+	  snapToChildren: false,
 	  infiniteSlider: false,
 	  snapSlideCenter: false,
 	  autoSlide: false,
 	  keyboardControls: true,
+	  mousewheelScroll :false,
 	  onSlideChange: authorChange,
 	});
 }
 function authorChange(args){
+	console.log('complete');
 	if(changetime == 1) return;
 	setTimeout(function(){
 		var change = (args.currentSlideNumber) - 1;
 		var set = $('.author_word').eq(change).attr('data-set');
-		for(i = 0; i < $('.nav').length;i++){
-			if($('.word').eq(i).attr('data-set') == set) {
-				$('.word').eq(i).trigger('click');
+		$('.word').each(function(){
+			var word = $(this);
+			word.removeClass('atv');
+			if(word.attr('data-set') == set) {
+				word.trigger('click');
+				word.addClass('atv');
 				return;
 			}
-		}
-  }, 500);
+		});
+  }, 0);
 }
 var changetime = 0;
 
@@ -388,9 +394,27 @@ function authorPage(){
   	$('.athslider').iosSliderVertical('goToSlide', n);
   	setTimeout(function(){
   		changetime = 0;
-  	},500);
+  	},0);
   });
 }
+
+function authorDetail(){
+	if($('.athp.contain') .length == 0) return;
+	$('.athl .athitem').click(function(){
+		var na = $(this).attr('data-set');
+		var data_word = $(this).attr('data-word');
+		$('.scroll_word .word').each(function(){
+			var word = $(this);
+			if (word.attr('data-set') == data_word) word.trigger('click');
+		});
+		 $('.author_name').each(function(){
+			var name = $(this);
+			if (name.attr('data-set') == na) name.trigger('click');
+		});
+
+  });
+}
+
 
 /*--- Sách chi tiết ---*/
 
@@ -913,8 +937,10 @@ function phantrang(){
 			var num = $(this);
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
+			if (!data) data = $('.is-menu.atv').attr('data-link');
 			var limit = $('.numbook').find('select').val();
-			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+			var list = $('.is-menu.atv').attr('data-set');
+			if ($('.grid').hasClass('list')) {list = 'list'};
 			var link = num.attr('href');
 			var sort = $('.fil').find('select').val();
 			phantrangAjax(link, data, gridbook, limit, sort, list);
@@ -923,8 +949,10 @@ function phantrang(){
 			var num = $(this);
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
+			if (!data) data = $('.is-menu.atv').attr('data-link');
 			var limit = $('.numbook').find('select').val();
-			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+			var list = $('.is-menu.atv').attr('data-set');
+			if ($('.grid').hasClass('list')) {var list = 'list'};
 			var link = num.attr('href');
 			var sort = $('.fil').find('select').val();
 			phantrangAjax(link, data, gridbook, limit, sort, list);
@@ -933,8 +961,10 @@ function phantrang(){
 			var num = $(this);
 			var gridbook = bar.parent();
 			var data = gridbook.attr('data-link');
+			if (!data) data = $('.is-menu.atv').attr('data-link');	
 			var limit = $('.numbook').find('select').val();
-			if ($('.grid').hasClass('list')) {var list = 'list'} else {var list =''};
+			var list = $('.is-menu.atv').attr('data-set');
+			if ($('.grid').hasClass('list')) {var list = 'list'};
 			var link = num.attr('href');
 			var sort = $('.fil').find('select').val();
 			phantrangAjax(link, data, gridbook, limit, sort, list);
@@ -943,25 +973,28 @@ function phantrang(){
 }
 
 function phantrangAjax(link,data,gridbook,limit,sort,list){
+	$
 	$.ajax({
 		url: link,
 		type: 'GET',
 		data: {'data' : data, 'limit': limit, 'sort': sort, 'list': list},
 	})
 	.done(function(result) {
-			gridbook.empty();
-			gridbook.append(result);
-			// gridbook.find('.pagination').empty();
-			// gridbook.find('.pagination').append(result);
-			phantrang();
-			addToCart();
+		gridbook.empty();
+		gridbook.append(result);
+		phantrang();
+		addToCart();
 		limited();
+		selectbox();
+		authorDetail();
 	})
 	.fail(function() {
 		//window.location.reload();
 		console.log("error");
 	});
 }
+
+
 Number.prototype.formatMoney = function(c, d, t){
 	var n = this, 
     c = isNaN(c = Math.abs(c)) ? 2 : c, 
@@ -971,4 +1004,36 @@ Number.prototype.formatMoney = function(c, d, t){
     i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
     j = (j = i.length) > 3 ? j % 3 : 0;
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
+}
+function change() {
+  	$(window).on('hashchange', function (){
+    	showTabByHash();
+	}).trigger('hashchange');
+}
+
+// hàm show tab và chọn menu theo hashtag
+var i=j = 0;
+function showTabByHash(){
+	var hash = window.location.hash.substring(1);
+	var hashSplited = hash.split("_");
+	if ($('.all.is-menu').length){
+		var na = hashSplited[2];
+		var data_word = hashSplited[1];
+		$('.scroll_word .word').each(function(){
+			var word = $(this);
+			if (word.attr('data-set') == data_word) {word.trigger('click');
+						//alert (1);
+						}
+		});
+		setTimeout(function(){
+			$('.author_name').each(function(){
+			var name = $(this);
+			if (name.attr('data-set') == na) {name.trigger('click');
+						//alert (2);
+						}
+			});
+		},100);
+		
+	}
+
+}
