@@ -101,14 +101,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
+            $list = Request::get('list');
             $data = Request::get('data');
             $sort = Request::get('sort');
             $bestsellers = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
             $bestsellers = HomeController::sort($bestsellers,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
-                'list' => $data
+                'list' => $list
             ]);
         }
 
@@ -123,14 +123,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
+            $list = Request::get('list');
             $data = Request::get('data');
             $sort = Request::get('sort');
             $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
             $newests = HomeController::sort($newests,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $newests,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
@@ -144,14 +144,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
+            $list = Request::get('list');
             $data = Request::get('data');
             $sort = Request::get('sort');
             $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
             $commings = HomeController::sort($commings,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $commings,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
@@ -165,14 +165,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
+            $list = Request::get('list');
             $data = Request::get('data');
             $sort = Request::get('sort');
             $discounts = book::where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
             $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $discounts = book::where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC')->paginate(5);
@@ -188,15 +188,15 @@ class HomeController extends Controller
         {
             //get from ajax
             $limit = Request::get('limit');
-            $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             $bestsellers = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
             $bestsellers = HomeController::sort($bestsellers,$sort)->paginate($limit);
             
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $bestsellers = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->paginate(5);
@@ -213,14 +213,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
             $newests = HomeController::sort($newests,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $newests,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
@@ -238,15 +238,15 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
             $commings = HomeController::sort($commings,$sort)->paginate($limit);
 
             return view('front.partials.list_book_item_info_page',[
                 'data' => $commings,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->paginate(5);
@@ -264,14 +264,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {
             $limit = Request::get('limit');
-            $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             $discounts = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
             $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
-                'list' => $data
+                'list' => $list
             ]);
         }
         $discounts = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC')->paginate(5);
@@ -289,14 +289,14 @@ class HomeController extends Controller
         if (Request::ajax())
         {            
             $limit = Request::get('limit');
-            $page = Request::get('page');
             $data = Request::get('data');
             $sort = Request::get('sort');
+            $list = Request::get('list');
             $model = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
             $model = HomeController::sort($model,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
-                'list' => $data
+                'list' => $list
             ]);
         }
 

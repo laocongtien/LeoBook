@@ -1,7 +1,7 @@
 <div class="filterbox">
 	<div class="filterbar mxClrAft">
 		<div class="namebox">
-			Danh sách tác giả 
+			Danh sách {{ $name_page or ''}} 
 			<span>
 				#{{$word or ''}}
 			</span>
