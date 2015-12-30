@@ -362,7 +362,7 @@ function scrollAuthorList(){
 	  autoSlide: false,
 	  keyboardControls: true,
 	  mousewheelScroll :false,
-	  onSlideChange: authorChange,
+	  onSlideComplete: authorChange,
 	});
 }
 function authorChange(args){
@@ -400,6 +400,18 @@ function authorPage(){
 
 function authorDetail(){
 	if($('.athp.contain') .length == 0) return;
+	if($('.author_detail').length) {
+		var na = $('.author_detail').attr('data-set');
+		var data_word = $('.author_detail').attr('data-word');
+		$('.scroll_word .word').each(function(){
+			var word = $(this);
+			if (word.attr('data-set') == data_word) word.trigger('click');
+		});
+		 $('.author_name').each(function(){
+			var name = $(this);
+			if (name.attr('data-set') == na) name.trigger('click');
+		});
+	}
 	$('.athl .athitem').click(function(){
 		var na = $(this).attr('data-set');
 		var data_word = $(this).attr('data-word');

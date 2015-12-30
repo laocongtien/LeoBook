@@ -330,6 +330,7 @@ class HomeController extends Controller
                     $author = Author::where('name','LIKE',$list.'%');
                     return view('front.partials.list_item_word',[
                         'data'  =>  $author->paginate(9),
+                        'name_page' => 'Tác giả',
                         'word'  =>  $list,
                     ]);
                 default :
@@ -340,6 +341,7 @@ class HomeController extends Controller
                     ]);
             }
         }
+        
         $author_list = Author::orderBy('name','ASC')->paginate(9);
         $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
 
@@ -348,8 +350,52 @@ class HomeController extends Controller
             'data'          =>  $author_list,
             'name_page' => 'Tác giả',
             'table_name'=>  'Authors',
+            'id'    =>  $id,
         ]);
         
+    }
+
+    public function author_detail($id) {
+        if(Request::ajax()){
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            switch ($data) {
+                case 'pp':
+                    $author = Author::find($list);
+                    $author_book = Book::where('author_id',$list)->get();
+                    return view('front.partials.list_item_pp_author',[
+                        'data'  =>  $author,
+                        'author_book' => $author_book,
+                    ]);
+                case 'word':
+                    $author = Author::where('name','LIKE',$list.'%');
+                    return view('front.partials.list_item_word',[
+                        'data'  =>  $author->paginate(9),
+                        'name_page' => 'Tác giả',
+                        'word'  =>  $list,
+                    ]);
+                default :
+                    $authors = DB::table('Authors');
+                    $author = HomeController::sort($authors,$sort);
+                    return view('front.partials.list_item_all',[
+                        'data'  =>  $author->paginate(9),
+                    ]);
+            }
+        }
+        
+        $author_list = Author::orderBy('name','ASC')->paginate(9);
+        $author_word = Author::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
+        $word = Author::find($id)->name;
+
+        return view('front.tacgia',[
+            'author_word' => $author_word,
+            'data'          =>  $author_list,
+            'name_page' => 'Tác giả',
+            'table_name'=>  'Authors',
+            'id'    =>  $id,
+            'word'  =>  $word,
+        ]);
     }
 
     public function publisher() {
@@ -361,7 +407,7 @@ class HomeController extends Controller
                 case 'pp':
                     $source = Publisher::find($list);
                     $source_book = Book::where('publisher_id',$list)->get();
-                    return view('front.partials.list_item_pp_nxb',[
+                    return view('front.partials.list_item_pp_issuer',[
                         'data'  =>  $source,
                         'author_book' => $source_book,
                     ]);
@@ -369,6 +415,7 @@ class HomeController extends Controller
                     $source = Publisher::where('name','LIKE',$list.'%');
                     return view('front.partials.list_item_word',[
                         'data'  =>  $source->paginate(9),
+                        'name_page' => 'Nhà xuất bản',
                         'word'  =>  $list,
                     ]);
                 default :
@@ -407,6 +454,7 @@ class HomeController extends Controller
                     $source = Issuer::where('name','LIKE',$list.'%');
                     return view('front.partials.list_item_word',[
                         'data'  =>  $source->paginate(9),
+                        'name_page' => 'Công ty phát hành',
                         'word'  =>  $list,
                     ]);
                 default :
@@ -423,7 +471,7 @@ class HomeController extends Controller
         return view('front.tacgia',[
             'author_word' => $source_word,
             'data'          =>  $source_list,
-            'name_page' => 'Nhà phát hành',
+            'name_page' => 'Công ty phát hành',
             'table_name'=>  'Issuers',
         ]);
     }

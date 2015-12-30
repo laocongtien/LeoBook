@@ -10,7 +10,9 @@
 			<div class="title_author is-menu all" data-link="all" data-set='all' >
 				Tất cả
 			</div>
-
+			@if(isset($id))
+				<div class="author_detail" style="display:none" data-set="{{$id}}" data-word="{{str_split($word)[0] }}"></div>
+			@endif
 			<div class="athslider">
 				<div class="slider">
 					@foreach ($author_word as $value)
