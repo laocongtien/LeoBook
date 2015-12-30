@@ -18,13 +18,11 @@
 				</div>
 			</div>
 			@if ($errors->count())
-			<div>
 				<ul class="er">
 					@foreach($errors->all() as $error)
 					<li>{{ $error }}</li>
 					@endforeach
 				</ul>
-			</div>
 			@endif
 			<div class="rb birb">
 				<div class="lb">
