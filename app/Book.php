@@ -21,9 +21,6 @@ class Book extends Model
 	public function publisher() {
 		return $this->belongsTo('App\Publisher');
 	}
-	public function type() {
-		return $this->belongsTo('App\Type');
-	}
 	public function cate() {
 		return $this->belongsTo('App\Cate');
 	}

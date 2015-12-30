@@ -62,8 +62,8 @@ class HomeController extends Controller
 
     public function detail($id) {
         $details = book::find($id);
-        $cates_slide = book::where('type_id',$details->type_id)->take(15)->get();
-        $cates = book::where('type_id',$details->type_id)->paginate(4);
+        $cates_slide = book::where('cate_id',$details->cate_id)->take(15)->get();
+        $cates = book::where('cate_id',$details->cate_id)->paginate(4);
         $authors = book::where('author_id',$details->author_id)->paginate(4);
         if (Request::ajax())
         {

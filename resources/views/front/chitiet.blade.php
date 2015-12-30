@@ -22,7 +22,7 @@ $route_cate   =	'home.cate';
 	<div class="contain wrap mxClrAft chitietsach">
 		<div class="little_detail">
 			<div class="ava">
-				<img src="{!!asset('')!!}style/images/temp/{{ $item->image}}.jpg" alt="">
+				<img src="{!!asset($item->image)!!}" alt="">
 			</div>
 			<div class="dtb">
 				<div class="name">
@@ -92,7 +92,7 @@ $route_cate   =	'home.cate';
 					<div class="dtr">
 						Thể loại
 						<span>
-							{{ $item->type->name }}
+							{{ $item->cate->name }}
 						</span>
 					</div>
 					<div class="dtr">

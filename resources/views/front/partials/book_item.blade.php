@@ -15,7 +15,7 @@ $route_cate   =	'home.cate';
 <div class="book_item">
 	<div class="book_item_hover">
 		<div class="book_cover">
-			<a href="{{ route('home.detail' , $item->id) }}"><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
+			<a href="{{ route('home.detail' , $item->id) }}"><img src="{!!asset($item->image)!!}" alt="mybook"></a>
 		</div>
 		<div class="smdt">
 			<a href="{{ route('home.detail' , $item->id) }}" class="book_title">
@@ -26,7 +26,7 @@ $route_cate   =	'home.cate';
 	</div>
 	<div class="book_item_detail">
 		<div class="cver left">
-			<a href="{{ route('home.detail' , $item->id) }} "><img src="{!!asset('')!!}style/images/temp/{!! $item->image!!}.jpg" alt="mybook"></a>
+			<a href="{{ route('home.detail' , $item->id) }} "><img src="{!!asset($item->image)!!}" alt="mybook"></a>
 		</div>
 		<div href="{{ route('home.detail' , $item->id) }}" class="txtbook left">
 			<a href="{{ route('home.detail' , $item->id) }}" class="title">

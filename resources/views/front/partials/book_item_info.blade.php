@@ -2,7 +2,7 @@
 	<div class="book_item_hover">
 		<div class="book_cover">
 			<a href="{{ route('home.detail' , $item->id) }}">
-				<img src="{!!asset('')!!}style/images/temp/{{$item->image}}.jpg" alt="mybook">
+				<img src="{!!asset($item->image)!!}" alt="mybook">
 			</a>
 		</div>
 		<div class="smdt">
@@ -11,7 +11,7 @@
 					{{ $item->name }}
 				</a>
 				<div class="book_author intt ">
-					<a href="tacgia.php" class="" >
+					<a href="{{ route('home.author' , $item->author_id) }}" class="" >
 						{{ $item->author->name }}
 					</a>
 				</div>

@@ -15,11 +15,12 @@ class CreateIssuersTable extends Migration
         Schema::create('issuers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('fullname');
             $table->string('location');
             $table->string('phone');
+            $table->string('fax');
             $table->string('email');
             $table->string('website');
-            $table->string('info');
             $table->string('logo');
             $table->timestamps();
         });
