@@ -8,7 +8,7 @@ class Author extends Model
 {
     protected $table = 'authors';
 
-	protected $fillable = ['name', 'realname', 'years','info'];
+	protected $fillable = ['name', 'realname', 'years', 'avatar','info'];
 
 	public $timestamps = false;
 

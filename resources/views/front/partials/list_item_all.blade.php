@@ -1,7 +1,7 @@
 
-	<div class="athl mxClrAft pagination">
+	<div class="athl mxClrAft pagination" data-set="{{ str_split($data->first()->name,1)[0] }}">
 		@foreach ($data as $item)
-		<div class="athitem {{($item->avatar == '') ? 'noav' : ''}}" data-word="{{ str_split($item->name,1)[0] }}" data-set="{{ $item->id }}">
+		<div class="athitem {{($item->avatar == '') ? 'noav' : ''}}" data-set="{{ $item->id }}">
 			<div class="ava" style="background-image: url({{($item->avatar == '') ? '' : url($item->avatar)}})"></div>
 			<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="" class="nava">
 			<div class="athn">

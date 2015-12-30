@@ -8,7 +8,7 @@ class Publisher extends Model
 {
     protected $table = 'publishers';
 
-	protected $fillable = ['name', 'info', 'logo'];
+	protected $fillable = ['name','location', 'phone', 'email', 'website', 'info', 'logo'];
 
 	public $timestamps = false;
 }

@@ -9,7 +9,6 @@ $(function(){
 	login(); //script cho các trang đăng ký, đăng nhập, quên mật khẩu, sửa mật khẩu
 	checkHeightCart();
 	cart();
-	change();
 });
 
 /* star up*/
@@ -205,18 +204,10 @@ function tabbox(){
 			tab.hide();
 			if ($('.pp.is-menu').length){
 				$('.filterbox.all').hide();
-				if (mn.hasClass('pp')){
-					window.location.hash = link+'_'+mn.attr('data-word')+'_'+mn.attr('data-set');
-				}
-				//console.log ("tab clicked " + i++);
-				if (mn.hasClass('all')){
-
-				}
 			}
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
-
 					if (mn.attr('data-set') != tb.find('div.pagination').attr('data-set')){
 						if(!tb.find('div.pagination').length || tb.hasClass('load')) {
 							var limit = $('.numbook').find('select').val();
@@ -365,13 +356,13 @@ function changeAuthor(){
 function scrollAuthorList(){
 	$('.athslider').iosSliderVertical({
 		desktopClickDrag: true,
-	  snapToChildren: true,
+	  snapToChildren: false,
 	  infiniteSlider: false,
 	  snapSlideCenter: false,
 	  autoSlide: false,
 	  keyboardControls: true,
 	  mousewheelScroll :false,
-	  onSlideComplete: authorChange,
+	  onSlideChange: authorChange,
 	});
 }
 function authorChange(args){
@@ -380,18 +371,11 @@ function authorChange(args){
 	setTimeout(function(){
 		var change = (args.currentSlideNumber) - 1;
 		var set = $('.author_word').eq(change).attr('data-set');
-		// for(i = 0; i < $('.nav').length;i++){
-		// 	if($('.word').eq(i).attr('data-set') == set) {
-		// 		//$('.word').eq(i).trigger('click');
-		// 		$('.word').eq(i).addClass('atv');
-		// 		alert(1);
-		// 		return;
-		// 	}
-		// }
 		$('.word').each(function(){
 			var word = $(this);
 			word.removeClass('atv');
 			if(word.attr('data-set') == set) {
+				word.trigger('click');
 				word.addClass('atv');
 				return;
 			}

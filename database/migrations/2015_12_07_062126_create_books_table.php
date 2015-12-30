@@ -36,9 +36,10 @@ class CreateBooksTable extends Migration
             $table->foreign('cover_id')->references('id')->on('others')->onDelete('cascade');
             $table->string('image');
             $table->tinyInteger('page');
-            $table->string('info');
+            $table->string('info',1000);
             $table->float('rate');
             $table->mediumInteger('ratecount');
+            $table->integer('qty_saled')->unsigned()->default(0);
             $table->timestamps();
         });
     }

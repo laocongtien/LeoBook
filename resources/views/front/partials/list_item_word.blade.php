@@ -1,4 +1,4 @@
-<div class="filterbox">
+<div class="filterbox"  >
 	<div class="filterbar mxClrAft">
 		<div class="namebox">
 			Danh sách {{ $name_page or ''}} 

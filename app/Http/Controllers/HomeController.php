@@ -322,7 +322,7 @@ class HomeController extends Controller
                 case 'pp':
                     $author = Author::find($list);
                     $author_book = Book::where('author_id',$list)->get();
-                    return view('front.partials.list_item_pp',[
+                    return view('front.partials.list_item_pp_author',[
                         'data'  =>  $author,
                         'author_book' => $author_book,
                     ]);
@@ -361,7 +361,7 @@ class HomeController extends Controller
                 case 'pp':
                     $source = Publisher::find($list);
                     $source_book = Book::where('publisher_id',$list)->get();
-                    return view('front.partials.list_item_pp',[
+                    return view('front.partials.list_item_pp_nxb',[
                         'data'  =>  $source,
                         'author_book' => $source_book,
                     ]);
@@ -382,7 +382,7 @@ class HomeController extends Controller
         $source_list = Publisher::orderBy('name','ASC')->paginate(9);
         $source_word = Publisher::select(DB::raw('substr(name,1,1) as alpha'))->groupBy(DB::raw('substr(name,1,1)'))->get();
 
-        return view('front.tacgia',[
+        return view('front.nxb',[
             'author_word' => $source_word,
             'data'          =>  $source_list,
             'name_page' => 'Nhà xuất bản',
@@ -399,7 +399,7 @@ class HomeController extends Controller
                 case 'pp':
                     $source = Issuer::find($list);
                     $source_book = Book::where('author_id',$list)->get();
-                    return view('front.partials.list_item_pp',[
+                    return view('front.partials.list_item_pp_issuer',[
                         'data'  =>  $source,
                         'author_book' => $source_book,
                     ]);
