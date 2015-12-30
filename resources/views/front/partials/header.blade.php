@@ -391,14 +391,7 @@ $route_register     =	'home.register';
 							</a>
 							<div class="arr_c1 bg right"></div>
 							<div class="clear"></div>
-						</div>
-						<div class="title_c1">
-							<a href="{!! route($route_combo) !!}" class="name_menu left">
-								Combo mới
-							</a>
-							<div class="arr_c1 bg right"></div>
-							<div class="clear"></div>
-						</div>
+						</div>						
 						<div class="title_c1">
 							<a href="{!! route($route_author) !!}" class="name_menu left">
 								Tác giả
