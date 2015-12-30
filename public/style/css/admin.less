@@ -384,6 +384,10 @@ a:hover, a:focus {
 			}
 		}
 	}
+	.sf{
+		width: 300px;
+		display: block;
+	}
 }
 .table{
 	width: ~'calc(100% - 30px)';
@@ -410,6 +414,12 @@ a:hover, a:focus {
 	.is-ck, .is-ck-all{
 		.mxTrsnLn();
 		color: @mainColor;
+		margin-right: 5px;
+	}
+	.is-show, is-show-all{
+		.mxTrsnLn();
+		color: @mainColor;
+		margin-right: 5px;
 	}
 	.fa{
 		line-height: 24px;
@@ -453,6 +463,11 @@ a:hover, a:focus {
 		cursor: pointer;
 		&.f{
 			text-align: center;
+			&:hover{
+				.fa{
+					color: @mainColor;
+				}
+			}
 		}
 		&.sb{
 			.sbHolder{
@@ -562,6 +577,11 @@ a:hover, a:focus {
 			font-size: 14px;
 			line-height: 24px;
 		}
+	}
+	.lv2 .is-show{
+		visibility: visible;
+		opacity: 0;
+		pointer-events: none;
 	}
 }
 .page_number{

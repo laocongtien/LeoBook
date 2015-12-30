@@ -6,6 +6,7 @@ $(function(){
 	filter();
 	tabbox();
 	index();
+	show();
 });
 function selectbox(){
 	if($('.is-sl').length == 0) return;
@@ -52,17 +53,34 @@ function check(){
 		var all = $(this);
 		if(all.hasClass('fa-square-o')) {
 			all.removeClass('fa-square-o').addClass('fa-check-square');
-			$('.table').addClass('all');
+			$('th.sb').addClass('all');
 			$('.is-ck').removeClass('fa-square-o').addClass('fa-check-square');
 			$('tbody tr').addClass('ck');
 		}
 		else {
 			all.removeClass('fa-check-square').addClass('fa-square-o');
-			$('.table').removeClass('all');
+			$('th.sb').removeClass('all');
 			$('.is-ck').removeClass('fa-check-square').addClass('fa-square-o');
 			$('tbody tr').removeClass('ck');
 		}
 	});
+}
+//show danh mục
+function show(){
+	$('.is-show').click(function(){
+		var link = $(this).attr('data-link');
+		for(i = 0; i < $('.is-tbl-clone').length; i++){
+			if($('.is-tbl-clone').eq(i).attr('data-link') == link) {
+				swap($('.is-tbl-clone').eq(i), $('.is-tbl-clone').eq(i + 1));
+				return;
+			}
+		}
+	});
+}
+function swap(a,b){
+	var c = a.html();
+	a.html(b.html());
+	b.html(c);
 }
 //phân trang
 function phantrang(){

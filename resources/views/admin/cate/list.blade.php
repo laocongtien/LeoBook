@@ -34,85 +34,173 @@
     </div>
 </div>
 <table class="table table-bordered table-hover">
-<thead>
-    <tr align="center">
-        <th class="f">
-            <i class="fa fa-square-o is-ck-all"></i>
-            <i class="fa fa-angle-double-down"><!--fa-angle-double-right cho hide--></i>
-        </th>
-        <th class="is-sort atv">
-            <div class="tt" align="center">
-                Danh mục
-            </div>
-            <div class="icb">
+    <thead>
+        <tr align="center">
+            <th class="f">
+                <i class="fa fa-square-o is-ck-all"></i>
+                <i class="fa fa-angle-double-down is-show-all"><!--fa-angle-double-right cho hide--></i>
+            </th>
+            <th class="is-sort atv">
+                <div class="tt" align="center">
+                    Danh mục
+                </div>
+                <div class="icb">
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="ics">
+                    <i class="fa fa-caret-square-o-up"></i>
+                    <i class="fa fa-caret-square-o-down"></i>
+                </div>
+            </th>
+            <th class="is-sort">
+                <div class="tt"  align="center">
+                    Cập nhật 
+                </div>
+                <div class="icb">
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="ics">
+                    <i class="fa fa-caret-square-o-up"></i>
+                    <i class="fa fa-caret-square-o-down"></i>
+                </div>
+            </th>
+            <th>
+                <div class="tt" align="center">
+                    Vị trí
+                </div>
+            </th>
+            <th class="sb">
+                <div class="tt" align="center">
+                    Thao tác
+                </div>
+                <div class="ttb" align="center">
+                    <div class="ip">Xóa toàn bộ</div>
+                </div>
+            </th>
+        </tr>
+    </thead>
+</table>
+<table class="table table-bordered table-hover is-tbl-clone" data-link="1">
+    <tbody>
+        <tr class="even gradeC lv1" align="center">
+            <td>
+                <i class="fa fa-square-o is-ck"></i>
+                <i class="fa fa-angle-double-down is-show" data-link="1"></i>
+            </td>
+            <td class="lv1 lv">Văn học - tiểu thuyết</td>
+            <td>07:07 25/12.2015</td>
+            <td>
                 <i class="fa fa-caret-up"></i>
                 <i class="fa fa-caret-down"></i>
-            </div>
-            <div class="ics">
-                <i class="fa fa-caret-square-o-up"></i>
-                <i class="fa fa-caret-square-o-down"></i>
-            </div>
-        </th>
-        <th class="is-sort">
-            <div class="tt"  align="center">
-                Cập nhật 
-            </div>
-            <div class="icb">
+            </td>
+            <td>
+                <div class="ttb">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash"></i>
+                </div>
+            </td>
+        </tr>
+        <div class="uslv" data-set="1">
+            <tr class="even gradeC lv2" align="center">
+                <td>
+                    <i class="fa fa-square-o is-ck"></i>
+                    <i class="fa fa-angle-double-down is-show"></i>
+                </td>
+                <td class="lv">Trinh thám - kinh dị</td>
+                <td>07:07 25/12.2015</td>
+                <td>
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </td>
+                <td>
+                    <div class="ttb">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </td>
+            </tr>
+            <tr class="even gradeC lv2" align="center">
+                <td>
+                    <i class="fa fa-square-o is-ck"></i>
+                    <i class="fa fa-angle-double-down is-show"></i>
+                </td>
+                <td class="lv">Truyện cổ tích</td>
+                <td>07:07 25/12.2015</td>
+                <td>
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </td>
+                <td>
+                    <div class="ttb">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </td>
+            </tr>
+        </div>
+    </tbody>
+</table>
+<table class="table table-bordered table-hover is-tbl-clone" data-link="2">
+    <tbody>
+        <tr class="even gradeC lv1" align="center" data-link="1">
+            <td>
+                <i class="fa fa-square-o is-ck"></i>
+                <i class="fa fa-angle-double-down is-show"></i>
+            </td>
+            <td class="lv1 lv">Thường thức</td>
+            <td>07:07 25/12.2015</td>
+            <td>
                 <i class="fa fa-caret-up"></i>
                 <i class="fa fa-caret-down"></i>
-            </div>
-            <div class="ics">
-                <i class="fa fa-caret-square-o-up"></i>
-                <i class="fa fa-caret-square-o-down"></i>
-            </div>
-        </th>
-        <th class="sb">
-            <div class="tt" align="center">
-                Thao tác
-            </div>
-            <div class="ttb" align="center">
-                <div class="ip">Xóa toàn bộ</div>
-            </div>
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <tr class="even gradeC lv1" align="center" data-link="1">
-        <td><i class="fa fa-square-o is-ck"></i></td>
-        <td class="lv1 lv">Văn học - tiểu thuyết</td>
-        <td>07:07 25/12.2015</td>
-        <td>
-            <div class="ttb">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-    <div class="uslv" data-set="1">
-    <tr class="even gradeC lv2" align="center">
-        <td><i class="fa fa-square-o is-ck"></i></td>
-        <td class="lv">Trinh thám - kinh dị</td>
-        <td>07:07 25/12.2015</td>
-        <td>
-            <div class="ttb">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-    <tr class="even gradeC lv2" align="center">
-        <td><i class="fa fa-square-o is-ck"></i></td>
-        <td class="lv">Truyện cổ tích</td>
-        <td>07:07 25/12.2015</td>
-        <td>
-            <div class="ttb">
-                <i class="fa fa-edit"></i>
-                <i class="fa fa-trash"></i>
-            </div>
-        </td>
-    </tr>
-    </div>
-</tbody>
+            </td>
+            <td>
+                <div class="ttb">
+                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-trash"></i>
+                </div>
+            </td>
+        </tr>
+        <div class="uslv" data-set="1">
+            <tr class="even gradeC lv2" align="center">
+                <td>
+                    <i class="fa fa-square-o is-ck"></i>
+                    <i class="fa fa-angle-double-down is-show"></i>
+                </td>
+                <td class="lv">Dạy nấu ăn</td>
+                <td>07:07 25/12.2015</td>
+                <td>
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </td>
+                <td>
+                    <div class="ttb">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </td>
+            </tr>
+            <tr class="even gradeC lv2" align="center">
+                <td>
+                    <i class="fa fa-square-o is-ck"></i>
+                    <i class="fa fa-angle-double-down is-show"></i>
+                </td>
+                <td class="lv">kỹ năng sống</td>
+                <td>07:07 25/12.2015</td>
+                <td>
+                    <i class="fa fa-caret-up"></i>
+                    <i class="fa fa-caret-down"></i>
+                </td>
+                <td>
+                    <div class="ttb">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash"></i>
+                    </div>
+                </td>
+            </tr>
+        </div>
+    </tbody>
 </table>
 <div class="page_number">
     <div class="page_num mxClrAft">
