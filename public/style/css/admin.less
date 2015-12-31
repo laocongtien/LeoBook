@@ -22,6 +22,109 @@ a:hover, a:focus {
 		display: inline-block;
 	}
 }
+.popup{
+	.mxTrsnLn();
+	display: block;
+	position: fixed;
+	opacity: 0;
+	visibility: hidden;
+	.bg_pop{
+		display: block;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.12);
+		z-index: 9000;
+	}
+	.pop{
+		.mxTrsnLn();
+		display: block;
+		background-color: #fff;
+		width: 40%;
+		position: fixed;
+		top: 30%;
+		left: 50%;
+		margin-left: -20%;
+	  box-shadow: 0 0 0 1px rgba(0, 166, 81, 0.5);
+	  padding-top: 1px;
+		z-index: 9999;
+	  .header_pop{
+	    background-color: #00a651;
+	    display: block;
+	    height: 50px;
+	    margin: 0 auto;
+	    width: ~'calc(100% - 2px)';
+	    text-align: center;
+	    line-height: 50px;
+	    font-size: 24px;
+	    text-transform: uppercase;
+	    color: #fff;
+	    font-family: "HelveticaNeue-Bold";
+	    position: relative;
+	    .fa{
+	    	.ovl_bg_bl();
+	    	position: absolute;
+	    	display: block;
+	    	width: 40px;
+	    	height: 40px;
+	    	top: 5px;
+	    	right: 5px;
+	    	cursor: pointer;
+	    	line-height: 40px;
+	    	text-align: center;
+	    	color: #fff;
+	    }
+		}
+		.body_pop{
+			display: block;
+			padding: 30px;
+			font-family: "HelveticaNeue-Medium";
+			font-size: 13px;
+			color: rgba(0,0,0,0.86);
+			text-align: center;
+		}
+		.ctrl{
+			display: block;
+			text-align: center;
+			padding: 10px 0;
+			background-color: #f1f1f1;
+			.update{
+				.ovl_bg_bl();
+				display: inline-block;
+				background-color: @mainColor;
+				color: #fff;
+				text-transform: uppercase;
+				font-family: "HelveticaNeue-Medium";
+				font-size: 14px;
+				text-align: center;
+				border: 1px solid rgba(0,0,0,0.12);
+				box-shadow: none;
+				padding: 0 15px;
+				cursor: pointer;
+				line-height: 25px;
+				text-align: center;
+				margin-left: 15px;
+			}
+			.cancel{
+				.ovl_bg_bl();
+				display: inline-block;
+				background-color: #e5e5e5;
+				text-transform: uppercase;
+				font-family: "HelveticaNeue-Medium";
+				font-size: 14px;
+				text-align: center;
+				line-height: 25px;
+				border: 1px solid rgba(0,0,0,0.12);
+				padding: 0 15px;
+				cursor: pointer;
+			}
+		}
+	}
+	&.show{
+		opacity: 1;
+		visibility: visible;
+	}
+}
 #side-menu{
 	li a{
 		font-size: 14px;
@@ -54,6 +157,7 @@ a:hover, a:focus {
   overflow: hidden;
   width: ~'calc(100% - 30px)';
   margin-left: 15px;
+  margin-bottom: 20px;
   position: relative;
   .fil{
   	.ovl_bg_bl(0.05);
@@ -345,7 +449,8 @@ a:hover, a:focus {
 .ctrlb{
 	width: ~'calc(100% - 30px)';
 	display: block;
-	margin: 30px 0 0 15px;
+	margin-left: 15px;
+	margin-bottom: 20px;
 	.sh{
 		display: block;
 		position: relative;
@@ -392,7 +497,7 @@ a:hover, a:focus {
 .table{
 	width: ~'calc(100% - 30px)';
 	margin-left: 15px;
-	margin-top: 15px;
+	margin-bottom: 0;
 	.sb.all{
 		text-align: center;
 		.tt{
@@ -416,10 +521,15 @@ a:hover, a:focus {
 		color: @mainColor;
 		margin-right: 5px;
 	}
-	.is-show, is-show-all{
+	.is-show, .is-show-all{
 		.mxTrsnLn();
 		color: @mainColor;
 		margin-right: 5px;
+		&.hid{
+			visibility: visible;
+			opacity: 0;
+			pointer-events: none;
+		}
 	}
 	.fa{
 		line-height: 24px;
@@ -578,10 +688,61 @@ a:hover, a:focus {
 			line-height: 24px;
 		}
 	}
-	.lv2 .is-show{
-		visibility: visible;
-		opacity: 0;
+	.lv2 {
+		.is-show{
+			visibility: visible;
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+	&.cate_table{
+		.cl1{
+			width: 100px;
+		}
+		.cl2{
+			width: 400px;
+		}
+		.cl3{
+			width: 250px;
+		}
+		.cl4{
+			width: 75px;
+		}
+		.fa{
+			margin-left: 10px;
+			position: relative;
+			&.is-ck, &.is-ck-all, &.fa-edit{
+				margin-left: 0;
+			}
+			.p{
+				.mxRadius(2px);
+				.mxTrsnLn();
+				position: absolute;
+				display: block;
+				height: 0px;
+				background-color: #212121;
+				color: #fff;
+				white-space: nowrap;
+				top: 20px;
+				left: 50%;
+				-ms-transform: translateX(-50%); /* IE 9 */
+		    -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+		    transform: translateX(-50%);
+		    font-size: 12px;
+		    padding: 0 12px;
+		    line-height: 24px;
+		    overflow: hidden;
+			}
+			&:hover{
+				.p{
+					height: 24px;
+				}
+			}
+		}
+	}
+	.disable{
 		pointer-events: none;
+		opacity: 0.5;
 	}
 }
 .page_number{
@@ -592,6 +753,7 @@ a:hover, a:focus {
 	background-color: #f1f1f1;
 	padding: 10px 0;
 	margin-left: 15px;
+	margin-top: 20px;
 	box-sizing: content-box;
 	.page_num{
 		display: inline-block;

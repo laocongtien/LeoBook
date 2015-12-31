@@ -32,6 +32,28 @@
 </head>
 
 <body>
+    <div class="popup">
+        <div class="bg_pop"></div>
+        <div class="pop">
+            <div class="header_pop">
+                Thông báo
+                <div class="fa fa-close"></div>
+            </div>
+            <div class="body_pop">
+                Bạn muốn xóa danh mục $Tên?
+                <!--Bạn muốn thêm danh mục $Tên?
+                Cập nhật danh mục $Tên?-->
+            </div>
+            <div class="ctrl mxClrAft">
+                <button class="cancel" action="kệ pa nó">
+                    Hủy
+                </button>
+                <button class="update" action="Thêm xóa sửa j đó">
+                    Đồng ý
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div id="wrapper">
 

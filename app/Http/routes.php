@@ -81,6 +81,9 @@ Route::group(['prefix'=>'admin'],function(){
 
 		Route::get('list', ['as' => 'admin.cate.getList', 'uses' => 'CateController@getList']);
 		Route::post('list', ['as' => 'admin.cate.postList', 'uses' => 'CateController@postList']);
+
+		Route::get('edit', ['as' => 'admin.cate.getEdit', 'uses' => 'CateController@getEdit']);
+		Route::post('edit', ['as' => 'admin.cate.postEdit', 'uses' => 'CateController@postEdit']);
 	});
 
 	Route::group(['prefix' => 'issuer'], function() {

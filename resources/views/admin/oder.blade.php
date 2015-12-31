@@ -5,6 +5,7 @@
     <h1 class="page-header">Đơn hàng
     </h1>
 </div>
+<div class="clear"></div>
 <div class="filter mxClrAft is-filter">
     <div class="fl">
         <div class="fil atv">

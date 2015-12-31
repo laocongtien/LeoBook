@@ -25,4 +25,12 @@ class CateController extends Controller
     public function postList(CateRequest $request) {
     	print_r($request->txtCateName);
     }
+
+    public function getEdit() {
+        return view('admin.cate.edit');
+    }
+
+    public function postEdit(CateRequest $request) {
+        print_r($request->txtCateName);
+    }
 }

@@ -6,12 +6,13 @@ $(function(){
 	filter();
 	tabbox();
 	index();
-	show();
+	showCateLv2();
+	delRow();
 });
 function selectbox(){
 	if($('.is-sl').length == 0) return;
-	$(".is-sl").selectbox({
-		effect: "fade"
+	$('.is-sl').selectbox({
+		effect: 'fade'
 	});
 }
 //Sắp xếp trong mỗi bảng
@@ -65,8 +66,14 @@ function check(){
 		}
 	});
 }
+function cate(){
+	checkLv2();
+	showCateLv2();
+	delRow();
+	swapRow();
+}
 //show danh mục
-function show(){
+function swapRow(){
 	$('.is-show').click(function(){
 		var link = $(this).attr('data-link');
 		for(i = 0; i < $('.is-tbl-clone').length; i++){
@@ -77,10 +84,95 @@ function show(){
 		}
 	});
 }
+//Thay đổi vị trí danh mục
+function showCateLv2(){
+	$('.cate_table').each(function(){
+		var tbl = $(this);
+		var btn = tbl.find('.is-show');
+		btn.unbind('click').click(function(){
+			var sh = $(this);
+			if (sh.hasClass('fa-angle-double-down')){
+				sh.addClass('fa-angle-double-right').removeClass('fa-angle-double-down');
+				tbl.find('.lv2').hide();
+				if($('.is-show.fa-angle-double-right').length == $('tr.lv1').length) {
+					$('.is-show-all').addClass('fa-angle-double-right').removeClass('fa-angle-double-down');
+				}
+			}
+			else {
+				sh.removeClass('fa-angle-double-right').addClass('fa-angle-double-down');
+				tbl.find('.lv2').show();
+				if($('.is-show.fa-angle-double-right').length != $('tr.lv1').length) {
+					$('.is-show-all').addClass('fa-angle-double-down').removeClass('fa-angle-double-right');
+				}
+			}
+		});
+	});
+	$('.is-show-all').unbind('click').click(function(){
+		var all = $(this);
+		if(all.hasClass('fa-angle-double-down')) {
+			$('.is-show-all').addClass('fa-angle-double-right').removeClass('fa-angle-double-down');
+			$('.is-show').addClass('fa-angle-double-right').removeClass('fa-angle-double-down');
+			$('.lv2').hide();
+		}
+		else{
+			$('.is-show-all').removeClass('fa-angle-double-right').addClass('fa-angle-double-down');
+			$('.is-show').removeClass('fa-angle-double-right').addClass('fa-angle-double-down');
+			$('.lv2').show();	
+		}
+	});
+}
 function swap(a,b){
 	var c = a.html();
 	a.html(b.html());
 	b.html(c);
+}
+//Xóa dòng table
+function delRow(){
+	var n;
+		$('.fa-trash').click(function(){
+			n = $(this).attr('data-link');
+			$('.popup').addClass('show');
+		});
+		$('.update').click(function(){
+			$('.table').each(function(){
+				var tbl = $(this);
+				var tr = tbl.find('tr');
+				$(tr).each(function(){
+					var r = $(this);
+					if(r.attr('data-link') == n){
+						if((r.hasClass('lv1')) && (tbl.find('.lv2').length != 0)){
+							alert("Còn danh mục con, không thể xóa danh mục cấp 1");
+							$('.popup').removeClass('show');
+							return;
+						}
+						else{
+							r.remove();
+							alert("Xóa thành công");
+							$('.popup').removeClass('show');
+							checkLv2();
+							return;
+						}
+					}
+					else return;
+				})
+			});
+		});
+		$('.cancel').click(function(){
+			$('.popup').remove();
+		});
+		$('.bg_pop').click(function(){
+			$('.cancel').trigger('click');
+		});
+		$('.fa-close').click(function(){
+			$('.cancel').trigger('click');
+		})
+}
+//Ẩn show lv2 nếu lv1 không có lv2
+function checkLv2(){
+	$('.is-tbl-clone').each(function(){
+		var tbl = $(this);
+		if(tbl.find('.lv2').length == 0) tbl.find('.is-show').addClass('hid');
+	})
 }
 //phân trang
 function phantrang(){
@@ -161,4 +253,9 @@ function tabbox(){
 }
 function index(){
 	$('.js-sc').jScrollPane();
+}
+
+///popup
+
+function popup(){
 }
