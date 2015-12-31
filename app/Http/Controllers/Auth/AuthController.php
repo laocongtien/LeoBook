@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -31,6 +32,7 @@ class AuthController extends Controller
     protected $redirectPath = "/";
     protected $loginPath = "/dang-nhap";
     protected $redirectTo = "/dang-ky";
+
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
@@ -44,12 +46,29 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $messages = [
+            'required' => 'The :attribute field is required.',
+        ];
+        $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+        ];
+        //return Validator::make($data, $rules, $messages);
+    }
+
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->loginUsername() => 'required|email|max:255',
+            'password' => 'required',
+        ],[
+            'email.required'  => 'Email không được để trống',
+            'email.email'   => 'Không đúng định dạng email',
+            'password.required'  => "Vui lòng nhập mật khẩu",
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.

@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,20) as $index){
+        foreach (range(1,3) as $index){
             DB::table('users')->insert([
                 'username'   => $faker->userName,
                 'password'    => Hash::make('123456'),

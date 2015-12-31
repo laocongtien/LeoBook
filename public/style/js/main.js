@@ -302,6 +302,7 @@ function index(){
 		slidebar();
 		combo();
 		listauthor();
+		$('.smath .slide:first').addClass('atv');
 		changeAuthor();
 }
 

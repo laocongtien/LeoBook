@@ -31,7 +31,6 @@ Route::get('giam-gia/{id}', ['as' =>'discount.cate','uses' => 'HomeController@di
 
 Route::get('combo', ['as' =>'home.combo','uses' => 'HomeController@combo']);
 Route::get('tac-gia', ['as' =>'home.author','uses' => 'HomeController@author']);
-Route::get('tac-gia/{id}', ['as' =>'author.detail','uses' => 'HomeController@author_detail']);
 Route::get('tac-gia/{id}/detail', ['as' =>'author.detail.book','uses' => 'HomeController@author_detail_book']);
 
 Route::get('nha-xuat-ban', ['as' =>'home.publisher','uses' => 'HomeController@publisher']);
@@ -46,10 +45,11 @@ Route::get('danh-muc/{id}', ['as' =>'home.cate','uses' => 'HomeController@cate']
 Route::get('thanh-toan', ['middleware' => 'auth', 'as' =>'home.checkout','uses' => 'HomeController@checkout']);
 Route::get('tai-khoan', ['middleware' => 'auth', 'as' =>'home.customer','uses' => 'HomeController@customer']);
 
-//Ajax
+//Ajax giỏ hàng
 Route::get('mua-sach', ['as' =>'home.buy','uses' => 'AjaxController@buy']);
 Route::get('xoa-sach', ['as' =>'home.delete','uses' => 'AjaxController@delete']);
 Route::get('cap-nhat-sach', ['as' =>'home.update','uses' => 'AjaxController@update']);
+
 //Authentication
 Route::get('dang-nhap', ['as' =>'home.login','uses' => 'Auth\AuthController@getLogin']);
 Route::post('dang-nhap', ['as' =>'home.login','uses' => 'Auth\AuthController@postLogin']);

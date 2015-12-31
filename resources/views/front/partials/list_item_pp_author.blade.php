@@ -28,7 +28,7 @@
 <div class="listbook wrap">
 	<div class="first_line">
 		<a href="{{route('author.detail.book',$data->id)}}" class="list_title left">Sách của {{ $data->name }}</a>
-		<a href="xemthem.php" class="more right">
+		<a href="{{route('author.detail.book',$data->id)}}" class="more right">
 			Xem tất cả
 			<span class="fa fa-angle-double-right"></span>
 		</a>

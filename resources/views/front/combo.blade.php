@@ -1,8 +1,28 @@
-<?php include 'header.php' ?>
+@extends('front.layouts.base')
+
+@section('head.title')
+Trang Combo
+@stop
+
+@section('body.content')
+<?php
+$route_bestseller = 'home.bestseller';
+$route_newbook    =	'home.newbook';
+$route_comming    =	'home.comming';
+$route_discount   =	'home.discount';
+$route_combo      =	'home.combo';
+$route_author     =	'home.author';
+$route_publisher  =	'home.publisher';
+$route_issuer     =	'home.issuer';
+$route_search     =	'home.search';
+$route_checkout   =	'home.checkout';
+$route_customer   =	'home.customer';
+$route_cate   =	'home.cate';
+?>
 	<div class="contain wrap mxClrAft combo_page">
 		<div class="combo_detail left">
 			<div class="ava">
-				<img src="style/images/temp/cb1.jpg" alt="">
+				<img src="{{asset('')}}style/images/temp/cb1.jpg" alt="">
 			</div>
 			<div class="dtb">
 				<div class="name">
@@ -41,7 +61,7 @@
 				<div class="book_item_hover">
 					<div class="book_cover">
 						<a href="chitiet.php">
-							<img src="style/images/temp/book5.jpg" alt="mybook">
+							<img src="{{asset('')}}style/images/temp/book5.jpg" alt="mybook">
 						</a>
 					</div>
 					<div class="smdt">
@@ -114,7 +134,7 @@
 				<div class="book_item_hover">
 					<div class="book_cover">
 						<a href="chitiet.php">
-							<img src="style/images/temp/book5.jpg" alt="mybook">
+							<img src="{{asset('')}}style/images/temp/book5.jpg" alt="mybook">
 						</a>
 					</div>
 					<div class="smdt">
@@ -187,7 +207,7 @@
 			<div class="more_item">
 				<div class="cvitem">
 					<div class="a">
-						<img src="style/images/temp/more.jpg" alt="">
+						<img src="{{asset('')}}style/images/temp/more.jpg" alt="">
 					</div>
 				</div>
 				<div class="dtlitem">
@@ -202,4 +222,4 @@
 			</div>
 		</div>
 	</div>
-<?php include 'footer.php' ?>
+@stop

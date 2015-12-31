@@ -144,7 +144,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb1.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="#" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -174,7 +174,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb2.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="{{ route('home.detail' , $item->id) }}" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -204,7 +204,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb3.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="{{ route('home.detail' , $item->id) }}" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -266,7 +266,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb1.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="#" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -296,7 +296,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb2.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="{{ route('home.detail' , $item->id) }}" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -356,7 +356,7 @@ $route_cate   =	'home.cate';
 								<div class="cbb" style="background-image: url({!!asset('')!!}style/images/temp/cb4.jpg)">
 									<div class="hvcombo">
 										<div class="set">
-											<a href="{{ route('home.detail' , $item->id) }}" class="more">
+											<a href="{{ route('home.combo') }}" class="more">
 												XEM CHI TIẾT
 												<span class="fa fa-angle-double-right"></span>
 											</a>
@@ -399,70 +399,16 @@ $route_cate   =	'home.cate';
 					</div>
 					<div class="ath">
 						<div class="slider">
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Ploy
-									</a>
+							@foreach($author as $item)
+								<div class="slide">
+									<a href="{!! route($route_author).'#'.$item->id !!}" class="athimg" style="background-image: url({!!asset($item->avatar)!!})"></a>
+									<div class="athtxt">
+										<a href="{!! route($route_author).'#'.$item->id !!}" class="name">
+											{{$item->name}}
+										</a>
+									</div>
 								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Minh Nhật
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Ploy
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Minh Nhật
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Ploy
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Minh Nhật
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Ploy
-									</a>
-								</div>
-							</div>
-							<div class="slide">
-								<a href="{!! route($route_author) !!}" class="athimg" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></a>
-								<div class="athtxt">
-									<a href="{!! route($route_author) !!}" class="name">
-										Minh Nhật
-									</a>
-								</div>
-							</div>
+							@endforeach
 						</div>
 						<div class="ctrlslide">
 							<div class="fa fa-angle-left"></div>
@@ -474,14 +420,9 @@ $route_cate   =	'home.cate';
 						<div class="fa fa-angle-right"></div>
 						<div class="iosslider">
 							<div class="slider">
-								<div class="slide atv" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava.jpg)"></div>
-								<div class="slide" style="background-image: url({!!asset('')!!}style/images/temp/athava2.jpg)"></div>
+								@foreach($author as $item)
+								<div class="slide" style="background-image: url({!!asset($item->avatar)!!})"></div>
+								@endforeach
 							</div>
 							<div class="prev"></div>
 							<div class="next"></div>

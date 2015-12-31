@@ -18,42 +18,23 @@ use Input;
 
 class HomeController extends Controller
 {
-    public function sort($model, $text) {
-            switch ($text) {
-                case 'new':
-                    return $model->orderBy('publishing_date','ASC');
-                case 'name_ASC':
-                    return $model->orderBy('name','ASC');
-                case 'name_DESC':
-                    return $model->orderBy('name','DESC');
-                case 'price_DESC':
-                    return $model->orderBy('price','DESC');
-                case 'price_ASC':
-                    return $model->orderBy('price','ASC');
-                case 'discount_DESC':
-                    return $model->orderBy('discount','DESC');
-                case 'discount_ASC':
-                    return $model->orderBy('discount','ASC');
-                case 'best':
-                    return $model->orderBy('qty_saled','ASC'); 
-                default:
-                    return $model;
-            }
-        }
 
     public function index() {
-        $books = book::where('publishing_date','<',date('y-m-d'))->take(10);
+        
+        //$books = book::where('publishing_date','<',date('y-m-d'))->take(10);
         //$bestseller = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->take(10)->get();
         $bestseller = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->orderBy('name','DESC')->take(10)->get();
         $comings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();
         $counts = book::orderBy('discount','DESC')->where('publishing_date','<',date('y-m-d'))->take(10)->get();
         $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();        
+        $author = Author::take(10)->get();
         return view('front.index',[
-            'books'      => $books,
+            // 'books'      => $books,
             'newests'    => $newests,
             'comings'    => $comings,
             'counts'     => $counts,
-            'bestseller' => $bestseller
+            'bestseller' => $bestseller,
+            'author'     =>  $author,
         ]);
     }
     public function test($id, $qty) {
@@ -88,16 +69,16 @@ class HomeController extends Controller
             }
         }else
         return view('front.chitiet',[
-            'item'       => $details,
+            'item'        => $details,
             'cates_slide' =>  $cates_slide,
-            'cates'      =>  $cates,
-            'authors'    =>  $authors
+            'cates'       =>  $cates,
+            'authors'     =>  $authors
         ]);
     }
 
     public function bestseller() {
         //$bestsellers = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->get();
-        
+
         if (Request::ajax())
         {
             $limit = Request::get('limit');
@@ -105,7 +86,7 @@ class HomeController extends Controller
             $data = Request::get('data');
             $sort = Request::get('sort');
             $bestsellers = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
-            $bestsellers = HomeController::sort($bestsellers,$sort)->paginate($limit);
+            $bestsellers = Func::sort($bestsellers,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
                 'list' => $list
@@ -127,7 +108,7 @@ class HomeController extends Controller
             $data = Request::get('data');
             $sort = Request::get('sort');
             $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
-            $newests = HomeController::sort($newests,$sort)->paginate($limit);
+            $newests = Func::sort($newests,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $newests,
                 'list' => $list
@@ -148,7 +129,7 @@ class HomeController extends Controller
             $data = Request::get('data');
             $sort = Request::get('sort');
             $commings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
-            $commings = HomeController::sort($commings,$sort)->paginate($limit);
+            $commings = Func::sort($commings,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $commings,
                 'list' => $list
@@ -169,7 +150,7 @@ class HomeController extends Controller
             $data = Request::get('data');
             $sort = Request::get('sort');
             $discounts = book::where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
-            $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
+            $discounts = Func::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
                 'list' => $list
@@ -192,7 +173,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $bestsellers = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC');
-            $bestsellers = HomeController::sort($bestsellers,$sort)->paginate($limit);
+            $bestsellers = Func::sort($bestsellers,$sort)->paginate($limit);
             
             return view('front.partials.list_book_item_info_page',[
                 'data' => $bestsellers,
@@ -217,7 +198,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $newests = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
-            $newests = HomeController::sort($newests,$sort)->paginate($limit);
+            $newests = Func::sort($newests,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $newests,
                 'list' => $list
@@ -242,7 +223,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $commings = book::where('cate_id',$id)->where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC');
-            $commings = HomeController::sort($commings,$sort)->paginate($limit);
+            $commings = Func::sort($commings,$sort)->paginate($limit);
 
             return view('front.partials.list_book_item_info_page',[
                 'data' => $commings,
@@ -268,7 +249,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $discounts = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('discount','DESC');
-            $discounts = HomeController::sort($discounts,$sort)->paginate($limit);
+            $discounts = Func::sort($discounts,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $discounts,
                 'list' => $list
@@ -293,7 +274,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $model = book::where('cate_id',$id)->where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC');
-            $model = HomeController::sort($model,$sort)->paginate($limit);
+            $model = Func::sort($model,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
                 'list' => $list
@@ -306,10 +287,6 @@ class HomeController extends Controller
             'data' =>  $bestsellers,
              'name' => $cate_name ,
         ]);
-    }
-
-    public function combo() {
-        return view('front.index');
     }
 
     public function author() {
@@ -335,7 +312,7 @@ class HomeController extends Controller
                     ]);
                 default :
                     $authors = DB::table('Authors');
-                    $author = HomeController::sort($authors,$sort);
+                    $author = Func::sort($authors,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $author->paginate(9),
                     ]);
@@ -376,7 +353,7 @@ class HomeController extends Controller
                     ]);
                 default :
                     $authors = DB::table('Authors');
-                    $author = HomeController::sort($authors,$sort);
+                    $author = Func::sort($authors,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $author->paginate(9),
                     ]);
@@ -405,7 +382,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $model = book::where('author_id',$id)->where('publishing_date','<',date('y-m-d'));
-            $model = HomeController::sort($model,$sort)->paginate($limit);
+            $model = Func::sort($model,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
                 'list' => $list
@@ -442,7 +419,7 @@ class HomeController extends Controller
                     ]);
                 default :
                     $sources = DB::table('publishers');
-                    $source = HomeController::sort($sources,$sort);
+                    $source = Func::sort($sources,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $source->paginate(9),
                     ]);
@@ -467,7 +444,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $model = book::where('publisher_id',$id)->where('publishing_date','<',date('y-m-d'));
-            $model = HomeController::sort($model,$sort)->paginate($limit);
+            $model = Func::sort($model,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
                 'list' => $list
@@ -504,7 +481,7 @@ class HomeController extends Controller
                     ]);
                 default :
                     $sources = DB::table('Issuers');
-                    $source = HomeController::sort($sources,$sort);
+                    $source = Func::sort($sources,$sort);
                     return view('front.partials.list_item_all',[
                         'data'  =>  $source->paginate(9),
                     ]);
@@ -529,7 +506,7 @@ class HomeController extends Controller
             $sort = Request::get('sort');
             $list = Request::get('list');
             $model = book::where('issuer_id',$id)->where('publishing_date','<',date('y-m-d'));
-            $model = HomeController::sort($model,$sort)->paginate($limit);
+            $model = Func::sort($model,$sort)->paginate($limit);
             return view('front.partials.list_book_item_info_page',[
                 'data' => $model,
                 'list' => $list
@@ -542,6 +519,10 @@ class HomeController extends Controller
             'data' =>  $issuer_book,
              'name' => 'Sách của '.$cate_name ,
         ]);
+    }
+
+    public function combo() {
+        return view('front.combo');
     }
 
     public function search() {
