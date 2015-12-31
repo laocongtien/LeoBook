@@ -9,6 +9,7 @@ $(function(){
 	login(); //script cho các trang đăng ký, đăng nhập, quên mật khẩu, sửa mật khẩu
 	checkHeightCart();
 	cart();
+	change();
 });
 
 /* star up*/
@@ -204,6 +205,9 @@ function tabbox(){
 			tab.hide();
 			if ($('.pp.is-menu').length){
 				$('.filterbox.all').hide();
+				if (mn.hasClass('pp')){
+					window.location.hash = mn.attr('data-set');
+				}
 			}
 			tab.each(function(){
 				var tb = $(this);
@@ -218,10 +222,10 @@ function tabbox(){
 								$('.filterbox.all').hide();
 							}
 							phantrangAjax(window.location.href,link,tb,limit, sort, list);
-							
 						}else $('.filterbox.all').show();
 					}
 					tb.show();
+					//console.log('tab');
 					limited();
 				}
 			});
@@ -362,11 +366,11 @@ function scrollAuthorList(){
 	  autoSlide: false,
 	  keyboardControls: true,
 	  mousewheelScroll :false,
-	  onSlideComplete: authorChange,
+	  onSlideChange: authorChange,
 	});
 }
 function authorChange(args){
-	console.log('complete');
+	//console.log('complete');
 	if(changetime == 1) return;
 	setTimeout(function(){
 		var change = (args.currentSlideNumber) - 1;
@@ -380,7 +384,7 @@ function authorChange(args){
 				return;
 			}
 		});
-  }, 0);
+  }, 1000);
 }
 var changetime = 0;
 
@@ -394,13 +398,13 @@ function authorPage(){
   	$('.athslider').iosSliderVertical('goToSlide', n);
   	setTimeout(function(){
   		changetime = 0;
-  	},0);
+  	},500);
   });
 }
 
 function authorDetail(){
 	if($('.athp.contain') .length == 0) return;
-	if($('.author_detail').length) {
+	if($('.author_detail').length && $('.author_detail').html()=='') {
 		var na = $('.author_detail').attr('data-set');
 		var data_word = $('.author_detail').attr('data-word');
 		$('.scroll_word .word').each(function(){
@@ -411,6 +415,9 @@ function authorDetail(){
 			var name = $(this);
 			if (name.attr('data-set') == na) name.trigger('click');
 		});
+		setTimeout(function(){
+  		$('.author_detail').html('loaded');
+  		},2000);
 	}
 	$('.athl .athitem').click(function(){
 		var na = $(this).attr('data-set');
@@ -1027,24 +1034,28 @@ function change() {
 var i=j = 0;
 function showTabByHash(){
 	var hash = window.location.hash.substring(1);
-	var hashSplited = hash.split("_");
+	//var hashSplited = hash.split("_");
 	if ($('.all.is-menu').length){
-		var na = hashSplited[2];
-		var data_word = hashSplited[1];
+		var na = hash;
+		var data_word ='';
+		$('.author_name').each(function(){
+			var name = $(this);
+			if (name.attr('data-set') == na) data_word=$(this).attr('data-word');
+		});
 		$('.scroll_word .word').each(function(){
 			var word = $(this);
 			if (word.attr('data-set') == data_word) {word.trigger('click');
 						//alert (1);
-						}
+			}
 		});
-		setTimeout(function(){
+		
 			$('.author_name').each(function(){
 			var name = $(this);
 			if (name.attr('data-set') == na) {name.trigger('click');
-						//alert (2);
-						}
+			//alert (2);
+			}
 			});
-		},100);
+		
 		
 	}
 

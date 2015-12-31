@@ -21,7 +21,7 @@ $route_cate   =	'home.cate';
 			<a href="{{ route('home.detail' , $item->id) }}" class="book_title">
 				{!! $item->name !!}
 			</a>
-			<a href="#" class="book_author">{!! $item->author->name!!}</a>
+			<a href="{{route('home.author').'#'.$item->author_id}}" class="book_author">{!! $item->author->name!!}</a>
 		</div>
 	</div>
 	<div class="book_item_detail">
@@ -34,11 +34,11 @@ $route_cate   =	'home.cate';
 			</a>
 			<div class="intt">
 				Tác giả:
-				<a href="{!! route($route_author) !!}">{!! $item->author->name!!}</a>
+				<a href="{{route('home.author').'#'.$item->author_id}}">{!! $item->author->name!!}</a>
 			</div>
 			<div class="intt">
 				NXB: 
-					<a href="{!! route($route_publisher) !!}">{!! $item->publisher->name!!}</a>
+					<a href="{{route('home.publisher').'#'.$item->publisher_id}}">{!! $item->publisher->name!!}</a>
 			</div>
 			<div class="old intt">
 				Giá bìa: 

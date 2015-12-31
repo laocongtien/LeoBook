@@ -28,7 +28,7 @@ $route_cate   =	'home.cate';
 				<div class="name">
 					{{ $item->name }}
 				</div>
-				<a href="tacgia.php" class="ath">
+				<a href="{{route('home.author').'#'.$item->author_id}}" class="ath">
 					{{ $item->author->name }}
 				</a>
 				<div class="sls">

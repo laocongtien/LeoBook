@@ -32,10 +32,13 @@ Route::get('giam-gia/{id}', ['as' =>'discount.cate','uses' => 'HomeController@di
 Route::get('combo', ['as' =>'home.combo','uses' => 'HomeController@combo']);
 Route::get('tac-gia', ['as' =>'home.author','uses' => 'HomeController@author']);
 Route::get('tac-gia/{id}', ['as' =>'author.detail','uses' => 'HomeController@author_detail']);
+Route::get('tac-gia/{id}/detail', ['as' =>'author.detail.book','uses' => 'HomeController@author_detail_book']);
 
 Route::get('nha-xuat-ban', ['as' =>'home.publisher','uses' => 'HomeController@publisher']);
+Route::get('nha-xuat-ban/{id}/detail', ['as' =>'publisher.detail.book','uses' => 'HomeController@publisher_detail_book']);
 
 Route::get('cong-ty-phat-hanh', ['as' =>'home.issuer','uses' => 'HomeController@issuer']);
+Route::get('cong-ty-phat-hanh/{id}/detail', ['as' =>'issuer.detail.book','uses' => 'HomeController@issuer_detail_book']);
 
 Route::get('tim-kiem', ['as' =>'home.search','uses' => 'HomeController@search']);
 

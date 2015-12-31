@@ -11,7 +11,7 @@
 					{{ $item->name }}
 				</a>
 				<div class="book_author intt ">
-					<a href="{{ route('home.author' , $item->author_id) }}" class="" >
+					<a href="{{route('home.author').'#'.$item->author_id}}" class="" >
 						{{ $item->author->name }}
 					</a>
 				</div>

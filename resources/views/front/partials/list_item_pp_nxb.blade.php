@@ -1,5 +1,5 @@
-<div class="prfath mxClrAft pagination {{($data->avatar == '') ? 'noav' : ''}}" data-set="{{ $data->id}}">
-		<div class="ava" style="background-image: url({{url($data->avatar)}})"></div>
+<div class="prfath mxClrAft pagination {{($data->logo == '') ? 'noav' : ''}}" data-set="{{ $data->id}}">
+		<div class="ava" style="background-image: url({{url($data->logo)}})"></div>
 		<div class="nava">
 			<img src="{{ url('style/images/theme/logo-gray.png') }}" alt="">
 		</div>
@@ -8,27 +8,42 @@
 				{{ $data->name }}
 			</div>
 			<div class="int">
-				Tên thật:
+				Trụ sở chính:
 				<span>
-					{{ $data->real_name }}
+					{{ $data->location }}
 				</span>
 			</div>
 			<div class="int">
-				Tuổi:
+				Số điện thoại: 
 				<span>
-					{{ (int)(date('Y'))-$data->years}}
+					{{ $data->phone }}
 				</span>
 			</div>
-			<div class="trig is-3r">
-				{{ $data->info }}
+			<div class="int">
+				Fax:
+				<span>
+					{{ $data->fax }}
+				</span>
+			</div>
+			<div class="int">
+				Email:
+				<span>
+					 {{ $data->email }}
+				</span>
+			</div>
+			<div class="int">
+				Website:
+				<span>
+					{{ $data->website }}
+				</span>
 			</div>
 		</div>
 	
 </div>
 <div class="listbook wrap">
 	<div class="first_line">
-		<a href="xemthem.php" class="list_title left">Sách của {{ $data->name }}</a>
-		<a href="xemthem.php" class="more right">
+		<a href="{{route('publisher.detail.book',$data->id)}}" class="list_title left">Sách của {{ $data->name }}</a>
+		<a href="{{route('publisher.detail.book',$data->id)}}" class="more right">
 			Xem tất cả
 			<span class="fa fa-angle-double-right"></span>
 		</a>

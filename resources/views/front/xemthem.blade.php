@@ -34,7 +34,7 @@
 							<span class="fa fa-angle-double-right"></span>
 						</a>
 						@endif
-						<a 
+						<a
 						@if($data->count() > 0)
 							herf="{{ url('danh-muc/'.$data->first()->cate_id) }}"
 						@endif

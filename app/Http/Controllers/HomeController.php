@@ -42,11 +42,11 @@ class HomeController extends Controller
         }
 
     public function index() {
-        $books = book::all()->take(10);
+        $books = book::where('publishing_date','<',date('y-m-d'))->take(10);
         //$bestseller = orderdetail::select('book_id', DB::raw('SUM(qty) as qty'))->groupBy('book_id')->orderBy('qty','DESC')->take(10)->get();
-        $bestseller = book::orderBy('qty_saled','DESC')->orderBy('name','DESC')->take(10)->get();
+        $bestseller = book::where('publishing_date','<',date('y-m-d'))->orderBy('qty_saled','DESC')->orderBy('name','DESC')->take(10)->get();
         $comings = book::where('publishing_date','>',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();
-        $counts = book::orderBy('discount','DESC')->take(10)->get();
+        $counts = book::orderBy('discount','DESC')->where('publishing_date','<',date('y-m-d'))->take(10)->get();
         $newests = book::where('publishing_date','<',date('y-m-d'))->orderBy('publishing_date','DESC')->take(10)->get();        
         return view('front.index',[
             'books'      => $books,
@@ -350,7 +350,6 @@ class HomeController extends Controller
             'data'          =>  $author_list,
             'name_page' => 'Tác giả',
             'table_name'=>  'Authors',
-            'id'    =>  $id,
         ]);
         
     }
@@ -363,7 +362,7 @@ class HomeController extends Controller
             switch ($data) {
                 case 'pp':
                     $author = Author::find($list);
-                    $author_book = Book::where('author_id',$list)->get();
+                    $author_book = Book::where('author_id',$list)->where('publishing_date','<',date('y-m-d'))->get();
                     return view('front.partials.list_item_pp_author',[
                         'data'  =>  $author,
                         'author_book' => $author_book,
@@ -398,6 +397,29 @@ class HomeController extends Controller
         ]);
     }
 
+    public function author_detail_book($id){
+        if (Request::ajax())
+        {
+            $limit = Request::get('limit');
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            $model = book::where('author_id',$id)->where('publishing_date','<',date('y-m-d'));
+            $model = HomeController::sort($model,$sort)->paginate($limit);
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $model,
+                'list' => $list
+            ]);
+        }
+
+        $author_book = book::where('author_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
+        $cate_name = author::where('id',$id)->first()->name;
+        return view('front.xemthem',[
+            'data' =>  $author_book,
+             'name' => 'Sách của '.$cate_name ,
+        ]);
+    }
+
     public function publisher() {
         if(Request::ajax()){
             $data = Request::get('data');
@@ -406,7 +428,7 @@ class HomeController extends Controller
             switch ($data) {
                 case 'pp':
                     $source = Publisher::find($list);
-                    $source_book = Book::where('publisher_id',$list)->get();
+                    $source_book = Book::where('publisher_id',$list)->where('publishing_date','<',date('y-m-d'))->get();
                     return view('front.partials.list_item_pp_issuer',[
                         'data'  =>  $source,
                         'author_book' => $source_book,
@@ -437,6 +459,29 @@ class HomeController extends Controller
         ]);
     }
 
+    public function publisher_detail_book($id){
+        if (Request::ajax())
+        {
+            $limit = Request::get('limit');
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            $model = book::where('publisher_id',$id)->where('publishing_date','<',date('y-m-d'));
+            $model = HomeController::sort($model,$sort)->paginate($limit);
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $model,
+                'list' => $list
+            ]);
+        }
+
+        $publisher_book = book::where('publisher_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
+        $cate_name = publisher::where('id',$id)->first()->name;
+        return view('front.xemthem',[
+            'data' =>  $publisher_book,
+             'name' => 'Sách của '.$cate_name ,
+        ]);
+    }
+
     public function issuer() {
         if(Request::ajax()){
             $data = Request::get('data');
@@ -445,7 +490,7 @@ class HomeController extends Controller
             switch ($data) {
                 case 'pp':
                     $source = Issuer::find($list);
-                    $source_book = Book::where('author_id',$list)->get();
+                    $source_book = Book::where('author_id',$list)->where('publishing_date','<',date('y-m-d'))->get();
                     return view('front.partials.list_item_pp_issuer',[
                         'data'  =>  $source,
                         'author_book' => $source_book,
@@ -473,6 +518,29 @@ class HomeController extends Controller
             'data'          =>  $source_list,
             'name_page' => 'Công ty phát hành',
             'table_name'=>  'Issuers',
+        ]);
+    }
+
+    public function issuer_detail_book($id){
+        if (Request::ajax())
+        {
+            $limit = Request::get('limit');
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            $model = book::where('issuer_id',$id)->where('publishing_date','<',date('y-m-d'));
+            $model = HomeController::sort($model,$sort)->paginate($limit);
+            return view('front.partials.list_book_item_info_page',[
+                'data' => $model,
+                'list' => $list
+            ]);
+        }
+
+        $issuer_book = book::where('issuer_id',$id)->where('publishing_date','<',date('y-m-d'))->paginate(5);
+        $cate_name = issuer::where('id',$id)->first()->name;
+        return view('front.xemthem',[
+            'data' =>  $issuer_book,
+             'name' => 'Sách của '.$cate_name ,
         ]);
     }
 
