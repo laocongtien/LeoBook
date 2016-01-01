@@ -329,7 +329,7 @@ function listauthor(){
 	  autoSlide: false,
 	  keyboardControls: true,
 	  navNextSelector: $('.smath .iosslider').find('.next'),
-    navPrevSelector: $('.smath .iosslider').find('.prev')
+    navPrevSelector: $('.smath .iosslider').find('.prev'),
 	});
 	changeAuthor();
 	$(".smath .fa-angle-left").click(function(){
@@ -341,10 +341,9 @@ function listauthor(){
 }
 function slideChange(args){
 	var change = (args.currentSlideNumber) - 1;
-	setTimeout(function(){
-		$('.smath .slide').removeClass('atv');
-		$('.smath .slide').eq(change).addClass('atv');
-  }, 500);
+	$('.smath .slide').removeClass('atv');
+	$('.smath .slide').eq(args.currentSlideNumber - 1).addClass('atv');
+	$('.smath .iosslider').iosSlider('goToSlide', args.currentSlideNumber);
 }
 function changeAuthor(){
 	$('.smath .slide').click(function(){

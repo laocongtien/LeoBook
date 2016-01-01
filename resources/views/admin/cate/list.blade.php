@@ -1,21 +1,27 @@
 @extends('admin.master')
 @section('content')
-<form action="list_submit" method="get" accept-charset="utf-8">
+<form action="" method="post" accept-charset="utf-8" class="cate">
+{{csrf_field()}}
     <div class="col-lg-12">
         <h1 class="page-header">
             Danh mục
         </h1>
     </div>
     <div class="clear"></div>
+    <div class="sc wrap">
+        <ul>
+            Xóa thành công
+        </ul>
+    </div>
     <div class="ctrlb mxClrAft">
         <div class="sh left">
             <div class="lb">
                 Hiển thị:
             </div>
-            <select name="Soluong" class="is-sl" value="num">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
+            <select name="" class="is-sl" value="">
+                <option value="">5</option>
+                <option value="">10</option>
+                <option value="">20</option>
                 <option value="">Tất cả</option>
             </select>
             <div class="lb">
@@ -97,10 +103,10 @@
                 <td class="lv1 lv cl2">Văn học - tiểu thuyết</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up disable">
+                    <a class="fa fa-caret-up is-up disable" data-link="1">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="1">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -129,10 +135,10 @@
                 <td class="lv cl2">Trinh thám - kinh dị</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="1-1">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="1-1">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -161,10 +167,10 @@
                 <td class="lv cl2">Truyện cổ tích</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="1-2">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="1-2">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -197,10 +203,10 @@
                 <td class="lv1 cl2 lv">Thường thức</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="2">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="2">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -229,10 +235,10 @@
                 <td class="lv cl2">Dạy nấu ăn</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="2-1">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="2-1">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -261,10 +267,10 @@
                 <td class="lv cl2">kỹ năng sống</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="2-2">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="2-2">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -283,6 +289,38 @@
                     </div>
                 </td>
             </tr>
+            <tr class="even gradeC lv2" align="center" data-link="2-3">
+                <td class="cl1">
+                    <i class="fa fa-square-o is-ck"></i>
+                    <a class="fa fa-angle-double-down is-show">
+                        <span class="p">Ẩn danh mục con</span><!--Hiện danh mục con nếu là fa-angle-double-right-->
+                    </a>
+                </td>
+                <td class="lv cl2">Y tế</td>
+                <td class="cl3">07:07 25/12.2015</td>
+                <td class="cl4">
+                    <a class="fa fa-caret-up is-up" data-link="2-3">
+                        <span class="p">Di chuyển lên trên</span>
+                    </a>
+                    <a class="fa fa-caret-down is-down" data-link="2-3">
+                        <span class="p">Di chuyển xuống dưới</span>
+                    </a>
+                </td>
+                <td>
+                    <div class="ttb">
+                        <a href="{{ route('admin.cate.getEdit') }}" class="fa fa-edit" data-link="2-3">
+                            <span class="p">
+                                Sửa danh mục
+                            </span>
+                        </a>
+                        <a class="fa fa-trash" data-link="2-3">
+                            <span class="p">
+                                Xóa danh mục
+                            </span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
     <table class="table table-bordered table-hover cate_table is-tbl-clone">
@@ -291,16 +329,16 @@
                 <td class="cl1">
                     <i class="fa fa-square-o is-ck"></i>
                     <a class="fa fa-angle-double-down is-show">
-                            <span class="p">Ẩn danh mục con</span><!--Hiện danh mục con nếu là fa-angle-double-right-->
-                        </a>
+                        <span class="p">Ẩn danh mục con</span><!--Hiện danh mục con nếu là fa-angle-double-right-->
+                    </a>
                 </td>
                 <td class="lv1 cl2 lv">a ha</td>
                 <td class="cl3">07:07 25/12.2015</td>
                 <td class="cl4">
-                    <a class="fa fa-caret-up">
+                    <a class="fa fa-caret-up is-up" data-link="3">
                         <span class="p">Di chuyển lên trên</span>
                     </a>
-                    <a class="fa fa-caret-down">
+                    <a class="fa fa-caret-down is-down" data-link="3">
                         <span class="p">Di chuyển xuống dưới</span>
                     </a>
                 </td>
@@ -340,8 +378,8 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div class="apply mxClrAft">
-        <button>
+    <div class="ctrlp mxClrAft wrap">
+        <button class="apply">
             Cập nhật thay đổi
         </button>
     </div>

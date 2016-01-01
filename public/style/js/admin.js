@@ -1,14 +1,17 @@
 $(function(){
 	selectbox();
+	tabbox();
+	listpage();
+	index();
+	cate();
+});
+function listpage(){
+	if($('table').length == 0) return;
 	tblSort();
 	check();
 	phantrang();
 	filter();
-	tabbox();
-	index();
-	showCateLv2();
-	delRow();
-});
+}
 function selectbox(){
 	if($('.is-sl').length == 0) return;
 	$('.is-sl').selectbox({
@@ -67,24 +70,132 @@ function check(){
 	});
 }
 function cate(){
+	if($('.cate').length == 0) return;
+	disableUpDown();
 	checkLv2();
 	showCateLv2();
 	delRow();
 	swapRow();
 }
-//show danh mục
+// disable up down
+function disableUpDown(){
+	$('.is-up').removeClass('disable');
+	$('.is-down').removeClass('disable');
+	$('.is-tbl-clone:first tr.lv1 .is-up').addClass('disable');
+	$('.is-tbl-clone:last tr.lv1 .is-down').addClass('disable');
+	$('.is-tbl-clone').each(function(){
+		var tbl = $(this);
+		tbl.find('tr.lv2:first .is-up').addClass('disable');
+		tbl.find('tr.lv2:last .is-down').addClass('disable');
+	});
+}
+//Thay đổi vị trí danh mục
 function swapRow(){
-	$('.is-show').click(function(){
+	$('.is-up').unbind('click').click(function(){
 		var link = $(this).attr('data-link');
-		for(i = 0; i < $('.is-tbl-clone').length; i++){
-			if($('.is-tbl-clone').eq(i).attr('data-link') == link) {
-				swap($('.is-tbl-clone').eq(i), $('.is-tbl-clone').eq(i + 1));
+		for(i = 0; i < $('.is-tbl-clone tr').length; i++){
+			if($('.is-tbl-clone tr').eq(i).attr('data-link') == link) {
+				if ($('.is-tbl-clone tr').eq(i).hasClass('lv1')) {
+					for (j = 0; j < $('tr.lv1').length; j++) {
+						if($('.is-tbl-clone tr.lv1').eq(j).attr('data-link') == link) {
+							swap($('.is-tbl-clone').eq(j),$('.is-tbl-clone').eq(j-1));
+							swapAttr($('.is-tbl-clone').eq(j),$('.is-tbl-clone').eq(j-1));
+							cate();
+							listpage();
+							$('.is-tbl-clone').eq(j).find('tr').addClass('ck');
+							$('.is-tbl-clone').eq(j-1).find('tr').addClass('ck');
+							setTimeout(function(){
+								$('.is-tbl-clone').eq(j).find('tr').removeClass('ck');
+								$('.is-tbl-clone').eq(j-1).find('tr').removeClass('ck');
+							},1000)
+							return;
+						}
+					}
+				}
+				else if($('.is-tbl-clone tr').eq(i).hasClass('lv2')){
+					$('.is-tbl-clone').each(function(){
+						var tbl = $(this);
+						var lv2 = tbl.find('tr.lv2');
+						for (j = 0; j < lv2.length; j++) {
+							if(lv2.eq(j).attr('data-link') == link) {
+								swap(lv2.eq(j),lv2.eq(j-1));
+								swapAttr(lv2.eq(j), lv2.eq(j-1));
+								cate();
+								listpage();
+								lv2.eq(j).addClass('ck');
+								lv2.eq(j-1).addClass('ck');
+								setTimeout(function(){
+									lv2.eq(j).removeClass('ck');
+									lv2.eq(j-1).removeClass('ck');
+								},1000)
+								return;
+							}
+						}
+					});
+				}
+				return;
+			}
+		}
+	});
+	$('.is-down').unbind('click').click(function(){
+		var link = $(this).attr('data-link');
+		for(i = 0; i < $('.is-tbl-clone tr').length; i++){
+			if($('.is-tbl-clone tr').eq(i).attr('data-link') == link) {
+				if ($('.is-tbl-clone tr').eq(i).hasClass('lv1')) {
+					for (j = 0; j < $('tr.lv1').length; j++) {
+						if($('.is-tbl-clone tr.lv1').eq(j).attr('data-link') == link) {
+							swap($('.is-tbl-clone').eq(j),$('.is-tbl-clone').eq(j+1));
+							swapAttr($('.is-tbl-clone').eq(j),$('.is-tbl-clone').eq(j+1));
+							cate();
+							listpage();
+							$('.is-tbl-clone').eq(j).find('tr').addClass('ck');
+							$('.is-tbl-clone').eq(j+1).find('tr').addClass('ck');
+							console.log($('.is-tbl-clone').eq(j+1).find('tr .cl2').html());
+							setTimeout(function(){
+								$('.is-tbl-clone').eq(j).find('tr').removeClass('ck');
+								$('.is-tbl-clone').eq(j+1).find('tr').removeClass('ck');
+							},1000)
+							return;
+						}
+					}
+				}
+				else if($('.is-tbl-clone tr').eq(i).hasClass('lv2')){
+					$('.is-tbl-clone').each(function(){
+						var tbl = $(this);
+						var lv2 = tbl.find('tr.lv2');
+						for (j = 0; j < lv2.length; j++) {
+							if(lv2.eq(j).attr('data-link') == link) {
+								swap(lv2.eq(j),lv2.eq(j+1));
+								swapAttr(lv2.eq(j), lv2.eq(j+1));
+								cate();
+								listpage();
+								lv2.eq(j).addClass('ck');
+								lv2.eq(j+1).addClass('ck');
+								setTimeout(function(){
+									lv2.eq(j).removeClass('ck');
+									lv2.eq(j+1).removeClass('ck');
+								},1000)
+								return;
+							}
+						}
+					});
+				}
 				return;
 			}
 		}
 	});
 }
-//Thay đổi vị trí danh mục
+function swap(a,b){
+	var c = a.html();
+	a.html(b.html());
+	b.html(c);
+}
+function swapAttr(a, b){
+	var c = a.attr('data-link');
+	a.attr('data-link',b.attr('data-link'));
+	b.attr('data-link',c);
+}
+//show danh mục
 function showCateLv2(){
 	$('.cate_table').each(function(){
 		var tbl = $(this);
@@ -120,11 +231,6 @@ function showCateLv2(){
 			$('.lv2').show();	
 		}
 	});
-}
-function swap(a,b){
-	var c = a.html();
-	a.html(b.html());
-	b.html(c);
 }
 //Xóa dòng table
 function delRow(){

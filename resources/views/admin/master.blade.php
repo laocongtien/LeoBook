@@ -40,9 +40,10 @@
                 <div class="fa fa-close"></div>
             </div>
             <div class="body_pop">
-                Bạn muốn xóa danh mục $Tên?
-                <!--Bạn muốn thêm danh mục $Tên?
-                Cập nhật danh mục $Tên?-->
+                Bạn muốn xóa (danh mục, sách, nhà xuất bản...) $Tên?
+                <!--Bạn muốn thêm (danh mục, sách, nhà xuất bản...) $Tên?
+                Cập nhật (danh mục, sách, nhà xuất bản...) $Tên?
+                Cập nhật menu sách thành công-->
             </div>
             <div class="ctrl mxClrAft">
                 <button class="cancel" action="kệ pa nó">
@@ -54,7 +55,6 @@
             </div>
         </div>
     </div>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -125,18 +125,6 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"> Tác giả<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{ route('admin.author.getList') }}">Danh sách</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.author.getAdd') }}">Thêm tác giả</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
                             <a href="#">Sách<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -144,6 +132,18 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.book.getAdd') }}">Thêm sách mới</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"> Tác giả<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.author.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.author.getAdd') }}">Thêm tác giả</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

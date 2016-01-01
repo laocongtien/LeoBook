@@ -1,16 +1,13 @@
 @extends('admin.master')
-@section('Category','Danh mục')
-@section('action', 'Thêm mới')
 @section('content')
 
 <div class="col-lg-12">
     <h1 class="page-header">Danh mục
-        <small>Thêm mới</small>
     </h1>
 </div>
-<div class="col-lg-7" style="padding-bottom:120px">
+<div class="clear"></div>
  @if(count($errors) > 0)
-    <div class="alert alert-danger">
+    <div class="er wrap">
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -18,23 +15,31 @@
         </ul>
     </div>
 @endif
-    <form action="{!! route('admin.cate.getAdd') !!}" method="POST">
-    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-        <div class="form-group">
-            <label>Category Name</label>
-            <input class="form-control" name="txtCateName" placeholder="Please Enter Category Name" />
+    <form action="{!! route('admin.cate.getAdd') !!}" method="POST" class="wrap">
+    {{csrf_field()}}
+        <div class="fgr">
+            <div class="l">
+                Thư mục cha
+            </div>
+            <select name="" id="" class="is-sl">
+                <option value="">Thư mục gốc</option>
+                <option value="">Sách văn học</option>
+                <option value="">Sách kinh tế</option>
+            </select>
         </div>
-        <div class="form-group">
-            <label>Category Status</label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="1" checked="" type="radio">Visible
-            </label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="2" type="radio">Invisible
-            </label>
+        <div class="fgr">
+            <div class="l">
+                Tên danh mục
+            </div>
+            <input type="text" name="txtCateName" placeholder="Nhập tên danh mục" class="ip">
         </div>
-        <button type="submit" class="btn btn-default">Category Add</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+        <div class="ctrlp">
+            <button class="apply">
+                Thêm Danh mục
+            </button>
+            <button class="cancel">
+                Hủy
+            </button>
+        </div>
     </form>
-</div>
 @stop

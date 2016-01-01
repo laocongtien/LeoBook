@@ -688,13 +688,6 @@ a:hover, a:focus {
 			line-height: 24px;
 		}
 	}
-	.lv2 {
-		.is-show{
-			visibility: visible;
-			opacity: 0;
-			pointer-events: none;
-		}
-	}
 	&.cate_table{
 		.cl1{
 			width: 100px;
@@ -739,10 +732,133 @@ a:hover, a:focus {
 				}
 			}
 		}
+		.lv2 {
+			&:first-child{
+				.fa-caret-up{
+					pointer-events: none;
+					opacity: 0.25;
+				}
+			}
+			.is-show{
+				visibility: visible;
+				opacity: 0;
+				pointer-events: none;
+			}
+		}
 	}
 	.disable{
 		pointer-events: none;
-		opacity: 0.5;
+		opacity: 0.25;
+	}
+}
+.fgr{
+	display: block;
+	margin-top: 15px;
+	width: 50%;
+	&:first-child{
+		margin-top: 0;
+	}
+	.l{
+		display: block;
+		font-size: 13px;
+		color: rgba(0,0,0,0.86);
+		margin-bottom: 5px;
+	}
+	.sbHolder{
+			margin: 0;
+	    background-color: #fff;
+	    border: 1px solid rgba(0, 0, 0, 0.12);
+	    font-family: "HelveticaNeue";
+	    width: 100%;
+	    .sbToggle {
+		    display: none;
+			}
+			.sbSelector {
+		    width: 100%;
+		    &:link, &:visited, &:hover {
+			    color: @mainColor;
+				}
+			}
+			.sbOptions {
+		    background-color: #fff;
+		    border: 1px solid rgba(0,0,0,0.12);
+		    width: 100%;
+		    a {
+			    border-bottom: 1px solid rgba(0,0,0,0.05);
+			    &:link, &:visited {
+				    color: rgba(0,0,0,0.86);
+				    text-decoration: none;
+					}
+				}
+			}
+		}
+	.ip{
+		width: 100%;
+		border: 1px solid rgba(0,0,0,0.12);
+		height: 30px;
+		display: block;
+		padding-left: 10px;
+		color: rgba(0,0,0,0.86);
+		font-size: 13px;
+		font-family: "HelveticaNeue-Medium";
+	}
+}
+.er{
+	display: block;
+	background-color: #f65e7f;
+	padding: 5px 10px 5px;
+	margin-bottom: 20px;
+	*{
+		color: #fff;
+		font-family: "HelveticaNeue-Light";
+		font-size: 13px;
+	}
+}
+.sc{
+	display: block;
+	background-color: rgba(0,166,81,0.7);
+	padding: 5px 10px 5px;
+	margin-bottom: 20px;
+	*{
+		color: #fff;
+		font-family: "HelveticaNeue-Light";
+		font-size: 13px;
+	}
+}
+.ctrlp{
+	display: block;
+	padding: 20px 0;
+	.apply{
+		.ovl_bg_bl();
+		display: block;
+		height: 30px;
+		background-color: @mainColor;
+		color: #fff;
+		font-family: "HelveticaNeue-Medium";
+		text-transform: uppercase;
+		font-size: 14px;
+		box-shadow: none;
+		border: none;
+		padding: 0 10px;
+		line-height: 30px;
+		float: right;
+		margin-left: 15px;
+	}
+	.cancel{
+		.ovl_bg_bl();
+		display: block;
+		height: 30px;
+		border: 1px solid rgba(0,0,0,0.24);
+		background-color: rgba(0,0,0,0.1);
+		color: #fff;
+		font-family: "HelveticaNeue-Medium";
+		text-transform: uppercase;
+		font-size: 14px;
+		box-shadow: none;
+		border: none;
+		padding: 0 10px;
+		line-height: 30px;
+		float: right;
 	}
 }
 .page_number{
