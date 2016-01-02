@@ -8,7 +8,7 @@ class Ward extends Model
 {
     protected $table = 'wards';
 
-	protected $fillable = ['name', 'wards', 'type','location','district_id'];
+	protected $fillable = ['name', 'type','location','district_id'];
 
 	public $timestamps = false;
 
@@ -16,4 +16,4 @@ class Ward extends Model
 		return $this->belongsTo('App\District');
 	}
 }
-}
+

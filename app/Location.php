@@ -8,7 +8,7 @@ class Location extends Model
 {
     protected $table = 'locations';
 
-	protected $fillable = ['user_id', 'house_number', 'shreet','province_id','district_id','ward_id','default'];
+	protected $fillable = ['user_id', 'house_number', 'street','province_id','district_id','ward_id','default'];
 
 	public $timestamps = false;
 
@@ -19,7 +19,7 @@ class Location extends Model
 		return $this->belongsTo('App\Province');
 	}
 	public function district() {
-		return $this->belongsTo('App\Dictrict');
+		return $this->belongsTo('App\District');
 	}
 	public function ward() {
 		return $this->belongsTo('App\Ward');

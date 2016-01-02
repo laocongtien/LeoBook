@@ -119,6 +119,7 @@ function selectbox(){
 		},
 		effect: "fade"
 	});
+
 }
 function ptajax () {
 	var url = window.location.href;
@@ -209,6 +210,9 @@ function tabbox(){
 					window.location.hash = mn.attr('data-set');
 				}
 			}
+			if ($('.liacc.is-menu').length){
+				window.location.hash = mn.attr('data-link');
+			}
 			tab.each(function(){
 				var tb = $(this);
 				if (tb.attr('data-link') == link){
@@ -223,6 +227,10 @@ function tabbox(){
 							}
 							phantrangAjax(window.location.href,link,tb,limit, sort, list);
 						}else $('.filterbox.all').show();
+					}
+					if (!tb.find('div.loaded').length){
+					var user_id = $('.user-info').attr('data-set');
+					phantrangAjax(window.location.href,link,tb,user_id);
 					}
 					tb.show();
 					//console.log('tab');
@@ -505,11 +513,17 @@ function taikhoan(){
 		var def = ck.parent().parent();
 		$('.linacc').removeClass('def');
 		def.addClass('def');
+		var sort = def.attr('data-set');
+		var user_id = $('.user-info').attr('data-set');
+		phantrangAjax(window.location.href,'profile',null,user_id,sort);
 	});
 	$('.is-rmadr').unbind('click').click(function(){
 		var rm = $(this);
 		var def = rm.parent().parent();
 		def.remove();
+		var list = def.attr('data-set');
+		var user_id = $('.user-info').attr('data-set');
+		phantrangAjax(window.location.href,'profile',null,user_id,null,list);
 	});
 	/* trang mail */
 	$('.is-tbl').each(function(){
@@ -786,7 +800,8 @@ function popup(){
 		})
 	});
 	$('.is-bg').click(function(){
-		$('.is-closepop').trigger('click');
+		$('.is-pop').removeClass('showpop');
+		$('body').removeClass('shp');
 	});
 	$('.is-closepop').click(function(){
 		$('.is-pop').removeClass('showpop');
@@ -992,13 +1007,14 @@ function phantrang(){
 }
 
 function phantrangAjax(link,data,gridbook,limit,sort,list){
-	$
+	
 	$.ajax({
 		url: link,
 		type: 'GET',
 		data: {'data' : data, 'limit': limit, 'sort': sort, 'list': list},
 	})
 	.done(function(result) {
+		if (!gridbook) return;
 		gridbook.empty();
 		gridbook.append(result);
 		phantrang();
@@ -1006,6 +1022,8 @@ function phantrangAjax(link,data,gridbook,limit,sort,list){
 		limited();
 		selectbox();
 		authorDetail();
+		if ($('.liacc.is-menu').length) popup();
+		if ($('.accpage').length) taikhoan(); 
 	})
 	.fail(function() {
 		//window.location.reload();
@@ -1025,11 +1043,12 @@ Number.prototype.formatMoney = function(c, d, t){
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 }
 function change() {
-  	$(window).on('hashchange', function (){
-    	showTabByHash();
-	}).trigger('hashchange');
+	if($('.is-menu').length){
+	  	$(window).on('hashchange', function (){
+	    	showTabByHash();
+		}).trigger('hashchange');
+	}
 }
-
 // hàm show tab và chọn menu theo hashtag
 var i=j = 0;
 function showTabByHash(){
@@ -1055,8 +1074,15 @@ function showTabByHash(){
 			//alert (2);
 			}
 			});
-		
-		
+	}
+	if ($('.liacc.is-menu').length){
+		$('.liacc.is-menu').each(function(){
+			var name = $(this);
+			if (name.attr('data-link') == hash) {
+				name.trigger('click');
+				console.log('hash change');
+			}
+			});
 	}
 
 }

@@ -17,10 +17,13 @@ class CreateLocationsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('house_number');
-            $table->string('shreet');
+            $table->string('street');
             $table->integer('province_id')->unsigned();
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->integer('district_id')->unsigned();
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->integer('ward_id')->unsigned();
+            $table->foreign('ward_id')->references('id')->on('wards')->onDelete('cascade');
             $table->boolean('default');
             $table->timestamps();
         });

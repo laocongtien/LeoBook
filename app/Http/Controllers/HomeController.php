@@ -15,6 +15,10 @@ use App\Publisher, App\Issuer;
 use Cart;
 use Hash;
 use Input;
+use App\User;
+use App\Location;
+use App\Ward, App\District, App\Province;
+
 
 class HomeController extends Controller
 {
@@ -530,6 +534,55 @@ class HomeController extends Controller
     }
 
     public function customer() {
+        if(Request::ajax()){
+            $data = Request::get('data'); //tab name
+            $limit = Request::get('limit');//user id
+            $sort = Request::get('sort');   //id location
+            $list = Request::get('list');
+            switch ($data) {
+                case 'profile':
+                    $location = Location::where('user_id',$limit)->get();
+                    if ($sort) {
+                        Location::where('user_id',$limit)->update(['default'=>0]);
+                        Location::where('id',$sort)->update(['default'=>1]);
+                        return;
+                    }
+                    if ($list) {
+                        Location::where('id',$list)->delete();
+                        return;
+                    }
+
+                    return view('front.partials.customer.profile',[
+                        'location'  =>  $location
+                    ]);
+                case 'wallet':
+                    return view('front.partials.customer.wallet',[
+                        
+                    ]);
+                case 'rated':
+                    return view('front.partials.customer.rated',[
+                        
+                    ]);
+                case 'noti':
+                    return view('front.partials.customer.noti',[
+                        
+                    ]);
+                case 'order':
+                    return view('front.partials.customer.order',[
+                        
+                    ]);
+                case 'fav':
+                    return view('front.partials.customer.fav',[
+                        
+                    ]);
+                default :
+                    $sources = DB::table('Issuers');
+                    $source = Func::sort($sources,$sort);
+                    return view('front.partials.list_item_all',[
+                        'data'  =>  $source->paginate(9),
+                    ]);
+            }
+        }
         return view('front.trangcanhan');
     }
 

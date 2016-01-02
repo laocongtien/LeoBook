@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IssuerSeeder::class);
         $this->call(PublisherSeeder::class);
         $this->call(OtherSeeder::class);
-        $this->call(LocationSeeder::class);
+        //$this->call(LocationSeeder::class);
         $this->call(BookSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(OrderSeeder::class);
@@ -283,7 +283,7 @@ class LocationSeeder extends Seeder
         DB::table('locations')->insert([
                 'user_id' => '1',
                 'house_number' => $faker->buildingNumber,
-                'shreet' => $faker->streetName,
+                'street' => $faker->streetName,
                 'province_id' => $faker->numberBetween(1,63),
                 'district_id'   => $faker->numberBetween(1,100),
                 'ward_id' => $faker->numberBetween(1,100),
@@ -356,7 +356,7 @@ class CommentSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,20) as $index){
             DB::table('comments')->insert([
-                'user_id' => $faker->numberBetween(1,20),
+                'user_id' => $faker->numberBetween(1,3),
                 'book_id'=>$faker->numberBetween(1,100),
                 'title'=>$faker->randomElement(['Tuyệt','Hay','Dở']),
                 'content'=>$faker->text(30),
@@ -410,7 +410,7 @@ class OrderDetailSeeder extends Seeder
         foreach (range(1,20) as $index){
             DB::table('order_details')->insert([
                 'order_id'=> $faker->numberBetween(1,20),
-                'book_id'=> $faker->numberBetween(1,20),
+                'book_id'=> $faker->numberBetween(1,100),
                 'qty'=>$faker->randomDigit,
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
@@ -431,8 +431,8 @@ class WishlistSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,20) as $index){
             DB::table('wishlists')->insert([
-                'user_id' =>$faker->numberBetween(1,20),
-                'book_id' => $faker->numberBetween(1,20),
+                'user_id' =>$faker->numberBetween(1,3),
+                'book_id' => $faker->numberBetween(1,100),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
@@ -474,7 +474,7 @@ class NotificationSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,20) as $index){
             DB::table('notifications')->insert([
-                'user_id' => $faker->numberBetween(1,20),
+                'user_id' => $faker->numberBetween(1,3),
                 'title'      => $faker->randomElement(['Thông báo đơn hàng','Thông báo khuyến mãi']),
                 'content'     => $faker->text(100),
                 'star'        => $faker->numberBetween(0,1),
@@ -498,7 +498,7 @@ class CartSeeder extends Seeder
         $faker = Faker\Factory::create();
         foreach (range(1,20) as $index){
             DB::table('carts')->insert([
-                'book_id'     => $faker->numberBetween(1,20),
+                'book_id'     => $faker->numberBetween(1,100),
                 'qty'    => $faker->numberBetween(1,10),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
