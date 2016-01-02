@@ -25,4 +25,20 @@ class BookController extends Controller
     public function postList(CateRequest $request) {
     	print_r($request->txtCateName);
     }
+
+    public function getEdit() {
+        return view('admin.book.edit');
+    }
+
+    public function postEdit(CateRequest $request) {
+        print_r($request->txtCateName);
+    }
+
+    public function getComment() {
+        return view('admin.book.comment');
+    }
+
+    public function postComment(CateRequest $request) {
+        print_r($request->txtCateName);
+    }
 }

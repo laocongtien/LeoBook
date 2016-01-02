@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered table-hover book_table">
+    <table class="table table-bordered table-hover cmt_table">
         <thead>
             <tr align="center">
                 <th class="f cl1">

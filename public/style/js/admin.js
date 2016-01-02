@@ -4,6 +4,7 @@ $(function(){
 	listpage();
 	index();
 	cate();
+	book();
 });
 function listpage(){
 	if($('table').length == 0) return;
@@ -11,6 +12,7 @@ function listpage(){
 	check();
 	phantrang();
 	filter();
+	delRow();
 }
 function selectbox(){
 	if($('.is-sl').length == 0) return;
@@ -69,12 +71,64 @@ function check(){
 		}
 	});
 }
+
+//Xóa dòng table
+function delRow(){
+	var n;
+		$('.fa-trash').click(function(){
+			n = $(this).attr('data-link');
+			$('.popup').addClass('show');
+		});
+		$('.update').click(function(){
+			$('.table').each(function(){
+				var tbl = $(this);
+				var tr = tbl.find('tr');
+				$(tr).each(function(){
+					var r = $(this);
+					if(r.attr('data-link') == n){
+						if((r.hasClass('lv1')) && (tbl.find('.lv2').length != 0)){
+							alert("Còn danh mục con, không thể xóa danh mục cấp 1");
+							$('.popup').removeClass('show');
+							return;
+						}
+						else{
+							r.remove();
+							alert("Xóa thành công");
+							$('.popup').removeClass('show');
+							checkLv2();
+							return;
+						}
+					}
+				})
+			});
+		});
+		$('.cancel').click(function(){
+			$('.popup').remove();
+		});
+		$('.bg_pop').click(function(){
+			$('.cancel').trigger('click');
+		});
+		$('.fa-close').click(function(){
+			$('.cancel').trigger('click');
+		})
+}
+
+function swap(a,b){
+	var c = a.html();
+	a.html(b.html());
+	b.html(c);
+}
+function swapAttr(a, b){
+	var c = a.attr('data-link');
+	a.attr('data-link',b.attr('data-link'));
+	b.attr('data-link',c);
+}
+/*---------CÁC HÀM CỦA TRANG DANH MỤC---------------*/
 function cate(){
 	if($('.cate').length == 0) return;
 	disableUpDown();
 	checkLv2();
 	showCateLv2();
-	delRow();
 	swapRow();
 }
 // disable up down
@@ -185,16 +239,6 @@ function swapRow(){
 		}
 	});
 }
-function swap(a,b){
-	var c = a.html();
-	a.html(b.html());
-	b.html(c);
-}
-function swapAttr(a, b){
-	var c = a.attr('data-link');
-	a.attr('data-link',b.attr('data-link'));
-	b.attr('data-link',c);
-}
 //show danh mục
 function showCateLv2(){
 	$('.cate_table').each(function(){
@@ -232,53 +276,34 @@ function showCateLv2(){
 		}
 	});
 }
-//Xóa dòng table
-function delRow(){
-	var n;
-		$('.fa-trash').click(function(){
-			n = $(this).attr('data-link');
-			$('.popup').addClass('show');
-		});
-		$('.update').click(function(){
-			$('.table').each(function(){
-				var tbl = $(this);
-				var tr = tbl.find('tr');
-				$(tr).each(function(){
-					var r = $(this);
-					if(r.attr('data-link') == n){
-						if((r.hasClass('lv1')) && (tbl.find('.lv2').length != 0)){
-							alert("Còn danh mục con, không thể xóa danh mục cấp 1");
-							$('.popup').removeClass('show');
-							return;
-						}
-						else{
-							r.remove();
-							alert("Xóa thành công");
-							$('.popup').removeClass('show');
-							checkLv2();
-							return;
-						}
-					}
-					else return;
-				})
-			});
-		});
-		$('.cancel').click(function(){
-			$('.popup').remove();
-		});
-		$('.bg_pop').click(function(){
-			$('.cancel').trigger('click');
-		});
-		$('.fa-close').click(function(){
-			$('.cancel').trigger('click');
-		})
-}
 //Ẩn show lv2 nếu lv1 không có lv2
 function checkLv2(){
 	$('.is-tbl-clone').each(function(){
 		var tbl = $(this);
 		if(tbl.find('.lv2').length == 0) tbl.find('.is-show').addClass('hid');
 	})
+}
+
+/*------QUẢN LÝ SÁCH---------*/
+function book(){
+	if($('.book').length == 0) return;
+	if($('.book').hasClass('edit') == false) $('input').val('');
+}
+//Nhập tác giả
+function ipath(){
+	var ath = $('.is-add-ath').val();
+	$('.is-add-ath').remove();
+	$('.ipb').append(function(){
+		return '<div class="b">' + ath + '<div class="fa fa-close"></div></div>'
+	});
+	$('.ipb').append('<input list="auth" class="aip is-add-ath" placeholder="Nhập tác giả" onchange="ipath()" />');
+	removeAth();
+}
+//Xóa tác giả
+function removeAth(){
+	$('.ipb .fa-close').click(function(){
+		$(this).parent().remove();
+	});
 }
 //phân trang
 function phantrang(){

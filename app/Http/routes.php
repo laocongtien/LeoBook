@@ -100,6 +100,12 @@ Route::group(['prefix'=>'admin'],function(){
 
 		Route::get('list', ['as' => 'admin.book.getList', 'uses' => 'BookController@getList']);
 		Route::post('list', ['as' => 'admin.book.postList', 'uses' => 'BookController@postList']);
+
+		Route::get('edit', ['as' => 'admin.book.getEdit', 'uses' => 'BookController@geEdit']);
+		Route::post('edit', ['as' => 'admin.book.postEdit', 'uses' => 'BookController@postEdi']);
+
+		Route::get('comment', ['as' => 'admin.book.getComment', 'uses' => 'BookController@getComment']);
+		Route::post('comment', ['as' => 'admin.book.postComment', 'uses' => 'BookController@postComment']);
 	});
 	Route::group(['prefix' => 'publisher'], function() {
 		Route::get('add', ['as' => 'admin.publisher.getAdd', 'uses' => 'PublisherController@getAdd']);

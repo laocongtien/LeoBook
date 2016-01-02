@@ -1,217 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
-    <meta name="author" content="Vu Quoc Tuan">
-    <title>Admin - Khoa Phạm</title>
+@extends('admin.master')
+@section('content')
 
-    <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- DataTables CSS -->
-    <link href="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Admin Area - Khoa Phạm</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Category<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">List Category</a>
-                                </li>
-                                <li>
-                                    <a href="#">Add Category</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">List Product</a>
-                                </li>
-                                <li>
-                                    <a href="#">Add Product</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">List User</a>
-                                </li>
-                                <li>
-                                    <a href="#">Add User</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Product
-                            <small>Edit</small>
-                        </h1>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                    <div class="col-lg-7" style="padding-bottom:120px">
-                        <form action="" method="POST">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" name="txtName" placeholder="Please Enter Username" />
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
-                            </div>
-                            <div class="form-group">
-                                <label>Intro</label>
-                                <textarea class="form-control" rows="3" name="txtIntro"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Content</label>
-                                <textarea class="form-control" rows="3" name="txtContent"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Images</label>
-                                <input type="file" name="fImages">
-                            </div>
-                            <div class="form-group">
-                                <label>Product Keywords</label>
-                                <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
-                            </div>
-                            <div class="form-group">
-                                <label>Product Description</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Product Status</label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="1" checked="" type="radio">Visible
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="rdoStatus" value="2" type="radio">Invisible
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-default">Product Edit</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
-                        <form>
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /#page-wrapper -->
-
+<div class="col-lg-12">
+    <h1 class="page-header">
+        Thêm sách
+    </h1>
+</div>
+<div class="clear"></div>
+ @if(count($errors) > 0)
+    <div class="er wrap">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
-</body>
-
-</html>
+@endif
+<form action="{!! route('admin.book.getAdd') !!}" method="POST" class="wrap book edit">
+    {{csrf_field()}}
+    <div class="fgr">
+        <div class="l">
+            Tên sách
+        </div>
+        <input type="text" class="ip" placeholder="Nhập tên sách" name="txtName">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Danh mục
+        </div>
+        <select name="" id="" class="is-sl">
+            <option value="">
+                Chọn thư mục
+            </option>
+            <option value="">List danh mục cấp 1</option>
+        </select>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Thể loại
+        </div>
+        <select name="" id="" class="is-sl">
+            <option value="">
+                Chọn thể loại
+            </option>
+            <option value="">
+                List danh mục cấp 2 của #danh mục cấp 1
+            </option>
+        </select>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Tác giả:
+        </div>
+        <div class="ipb mxClrAft">
+            <input list="auth" class="aip is-add-ath" placeholder="Nhập tác giả" onchange="ipath()" />
+            <datalist id="auth" class="is-list">
+                <option value="Ngô Bảo Châu"></option>
+                <option value="Trần Minh Minh"></option>
+                <option value="Vương Tuấn Khải"></option>
+                <option value="Andy"></option>
+            </datalist>
+        </div>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Nhà xuất bản
+        </div>
+        <input list="nxb" class="ip" placeholder="Nhập nhà xuất bản"/>
+        <datalist id="nxb" class="is-list">
+            <option value="Ngô Bảo Châu"></option>
+            <option value="Trần Minh Minh"></option>
+            <option value="Vương Tuấn Khải"></option>
+            <option value="Andy"></option>
+        </datalist>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Nhà sản xuất
+        </div>
+        <input list="issues" class="ip" placeholder="Nhập nhà sản xuất"/>
+        <datalist id="issues" class="is-list">
+            <option value="Ngô Bảo Châu"></option>
+            <option value="Trần Minh Minh"></option>
+            <option value="Vương Tuấn Khải"></option>
+            <option value="Andy"></option>
+        </datalist>
+    </div>
+    <div class="ss3">
+        <div class="fgr sp3" name="txtPrice">
+            <div class="l">
+                Giá:
+            </div>
+            <input class="ip" type="text" placeholder="Nhập giá tiền">
+        </div>
+        <div class="fgr sp3">
+            <div class="l">
+                Số lượng
+            </div>
+            <input type="text" type="number" placeholder="Nhập số lượng sách" class="ip">
+        </div>
+        <div class="fgr sp3">
+            <div class="l">
+                Ngày xuất bản
+            </div>
+            <input type="text" class="ip" placeholder="mm/dd/yyyy">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="ss4 mxClrAft">
+        <div class="fgr">
+            <div class="l">
+                Kiểu bìa
+            </div>
+            <input type="text" class="ip" placeholder="Kiểu bìa">
+        </div>
+        <div class="fgr lt">
+            <div class="l">
+                Số trang
+            </div>
+            <input type="text" class="ip" placeholder="Số trang">
+        </div>
+        <div class="fgr la">
+            <div class="l">
+                Khổ sách
+            </div>
+            <div class="p mxClrAft">
+                <input type="text" class="s">
+                x
+                <input type="text" class="s">
+            </div>
+        </div>
+        <div class="fgr">
+            <div class="l">
+                Ngôn ngữ
+            </div>
+            <input type="text" class="ip" placeholder="Nhập ngôn ngữ">
+        </div>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Bìa sách
+        </div>
+        <div class="ch mxClrAft">
+            <div class="up">
+                <div class="bt">Chọn ảnh từ máy tính</div>
+                <input type="text" class="ipch">
+            </div>
+            <div class="up">
+                <div class="bt">Nhập link ảnh</div>
+                <input type="text" class="ipch">
+            </div>
+        </div>
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Giới thiệu sách
+        </div>
+        <textarea name="txtContent" class="itr"></textarea>
+    </div>
+    <div class="ctrlp">
+        <button class="apply">
+            Thêm Sách
+        </button>
+        <button class="cancel">
+            Hủy
+        </button>
+    </div>
+</form>
+@stop

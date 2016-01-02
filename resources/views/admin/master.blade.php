@@ -133,6 +133,21 @@
                                 <li>
                                     <a href="{{ route('admin.book.getAdd') }}">Thêm sách mới</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('admin.book.getComment') }}">Quản lý comment</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#">Combo<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.book.getList') }}">Danh sách</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.book.getAdd') }}">Thêm combo</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
