@@ -102,10 +102,20 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::post('list', ['as' => 'admin.book.postList', 'uses' => 'BookController@postList']);
 
 		Route::get('edit', ['as' => 'admin.book.getEdit', 'uses' => 'BookController@geEdit']);
-		Route::post('edit', ['as' => 'admin.book.postEdit', 'uses' => 'BookController@postEdi']);
+		Route::post('edit', ['as' => 'admin.book.postEdit', 'uses' => 'BookController@postEdit']);
 
 		Route::get('comment', ['as' => 'admin.book.getComment', 'uses' => 'BookController@getComment']);
 		Route::post('comment', ['as' => 'admin.book.postComment', 'uses' => 'BookController@postComment']);
+	});
+	Route::group(['prefix' => 'combo'], function() {
+		Route::get('add', ['as' => 'admin.combo.getAdd', 'uses' => 'ComboController@getAdd']);
+		Route::post('add', ['as' => 'admin.combo.postAdd', 'uses' => 'ComboController@postAdd']);
+
+		Route::get('list', ['as' => 'admin.combo.getList', 'uses' => 'ComboController@getList']);
+		Route::post('list', ['as' => 'admin.combo.postList', 'uses' => 'ComboController@postList']);
+
+		Route::get('edit', ['as' => 'admin.combo.getEdit', 'uses' => 'ComboController@geEdit']);
+		Route::post('edit', ['as' => 'admin.combo.postEdit', 'uses' => 'ComboController@postEdit']);
 	});
 	Route::group(['prefix' => 'publisher'], function() {
 		Route::get('add', ['as' => 'admin.publisher.getAdd', 'uses' => 'PublisherController@getAdd']);

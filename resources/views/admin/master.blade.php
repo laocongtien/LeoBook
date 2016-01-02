@@ -143,10 +143,10 @@
                             <a href="#">Combo<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('admin.book.getList') }}">Danh sách</a>
+                                    <a href="{{ route('admin.combo.getList') }}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.book.getAdd') }}">Thêm combo</a>
+                                    <a href="{{ route('admin.combo.getAdd') }}">Thêm combo</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

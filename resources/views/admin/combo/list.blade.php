@@ -4,7 +4,7 @@
 {{csrf_field()}}
     <div class="col-lg-12">
         <h1 class="page-header">
-            Quản lý lời bình //CHƯA XONG
+            Quản lý Combo
         </h1>
     </div>
     <div class="clear"></div>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered table-hover cmt_table">
+    <table class="table table-bordered table-hover combo_table">
         <thead>
             <tr align="center">
                 <th class="f cl1">
@@ -48,33 +48,31 @@
                 </th>
                 <th class="is-sort cl2">
                     <div class="tt" align="center">
-                        Tên sách
+                        Tên combo
                     </div>
                 </th>
                 <th class="is-sort cl3">
                     <div class="tt"  align="center">
-                        Đánh giá 
+                        Số mặt hàng
                     </div>
                 </th>
                 <th class="cl4">
                     <div class="tt" align="center">
-                        Người đăng
+                        Còn lại
                     </div>
                 </th>
-                <th class="cl5 is-sort">
+                <td class="cl5">
                     <div class="tt">
-                        Thời gian
+                        Số lượt mua
                     </div>
-                </th>
+                </td>
                 <th class="sb cl6">
                     <div class="tt" align="center">
-                        Trạng thái
+                        Thao tác
                     </div>
-                    <select name="" id="" class="is-sl">
-                        <option value="">Ẩn lời bình</option>
-                        <option value="">Hiển thị lời bình</option>
-                        <option value="">Xóa lời bình</option>
-                    </select>
+                    <div class="ttb" align="center">
+                        <div class="ip">Xóa</div>
+                    </div>
                 </th>
             </tr>
         </thead>
@@ -85,43 +83,41 @@
                 </td>
                 <td class="cl2">
                     <div class="t">
-                        Các Tuyệt Chiêu Microsoft Word 2010 Bằng Hình Minh Họa (Kèm CD)
+                        Combo Tony buổi sáng (tặng kèm Ly sứ cao cấp)
                     </div>
                 </td>
                 <td class="cl3">
-                    <div class="rtbar">
-                        <div class="fa fa-star"></div>
-                        <div class="fa fa-star"></div>
-                        <div class="fa fa-star"></div>
-                        <div class="fa fa-star-o"></div>
-                        <div class="fa fa-star-o"></div>
+                    <div class="t">
+                        4
                     </div>
                 </td>
                 <td class="cl4">
                     <div class="t">
-                        Nghiêng nghiêng nghiêng nghiêng
+                        50
                     </div>
                 </td>
                 <td class="cl5">
                     <div class="t">
-                        12:45:41 19/03/2015
+                        65
                     </div>
                 </td>
-                <td class="cl6">
-                    <div class="fa fa-eye">
-                        <div class="p">
-                            Chọn để ẩn lời bình
-                        </div>
-                    </div>
-                    <div class="fa fa-trash">
-                        <div class="p">
-                            Xóa lời bình
-                        </div>
-                    </div>
-                    <div class="fa fa-book">
-                        <div class="p">
-                            Xem sách
-                        </div>
+                <td class="cl9">
+                    <div class="ttb">
+                        <a href="" class="fa fa-eye">
+                            <span class="p">
+                                Xem combo
+                            </span>
+                        </a>
+                        <a href="{{ route('admin.combo.getEdit') }}" class="fa fa-edit">
+                            <span class="p">
+                                Sửa combo
+                            </span>
+                        </a>
+                        <a class="fa fa-trash" data-link="1">
+                            <span class="p">
+                                Xóa combo
+                            </span>
+                        </a>
                     </div>
                 </td>
             </tr>
