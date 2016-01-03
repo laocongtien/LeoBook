@@ -720,13 +720,17 @@ function taikhoan(){
 		var up = $(this);
 		$('.up').removeClass('show');
 		if(up.hasClass('is-upload-link')){
-			if(up.hasClass('atv')) $('.up').removeClass('show');
-			else $('.up').addClass('show');
+			if(up.hasClass('atv')) $('.up').addClass('show');
+			else $('.up').removeClass('show');
 		}
 		$('.is-upload').removeClass('atv');
 		up.addClass('atv');
+		if(up.hasClass('is-upload-file')){
+			$('input.is-upload-file').trigger('click');
+		}
 	});
 }
+
 /* --- TRANG THANH TOÁN ---*/
 
 function thanhtoan(){
@@ -1084,5 +1088,8 @@ function showTabByHash(){
 			}
 			});
 	}
-
+}
+function setValue (val) {
+	console.log(val);
+	$('input.is-upload-file-show').val(val);
 }

@@ -162,9 +162,12 @@ $route_register     =	'home.register';
 					<div class="avb mxClrAft">
 						<div class="av" style="background-image: url({!!asset('')!!}style/images/temp/prf.jpg)"></div>
 						<div class="btn">
-							<div class="upload is-upload">
+							<div class="upload is-upload is-upload-file">
 								Up ảnh từ máy tính
+
 							</div>
+							<input type="text" class="is-upload-file-show" disabled value="">
+							<input type="file" hidden class="is-upload-file" onchange="setValue(this.value)" accept="image/*">
 							<div class="upload is-upload is-upload-link">
 								Nhập link ảnh
 							</div>
@@ -176,19 +179,19 @@ $route_register     =	'home.register';
 					<div class="le">
 						Họ tên
 					</div>
-					<input type="text" class="ri" placeholder="Điền họ tên">
+					<input type="text" class="ri" placeholder="Điền họ tên" value="{{Auth::user()->fullname}}">
 				</div>
 				<div class="r mxClrAft">
 					<div class="le">
 						Số điện thoại
 					</div>
-					<input type="text" class="ri" placeholder="Điền số điện thoại">
+					<input type="text" class="ri" placeholder="Điền số điện thoại" value="{{ Auth::user()->phone }}">
 				</div>
 				<div class="r mxClrAft">
 					<div class="le">
 						Email
 					</div>
-					<input type="text" class="ri" placeholder="Điền email">
+					<input type="text" class="ri" placeholder="Điền email" value="{{ Auth::user()->email }}">
 				</div>
 			</div>
 			<div class="ctrl mxClrAft">
