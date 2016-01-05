@@ -43,7 +43,18 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        foreach (range(1,3) as $index){
+        
+            DB::table('users')->insert([
+                'username'   => $faker->userName,
+                'password'    => Hash::make('123456'),
+                'fullname'      =>  $faker->name,
+                'phone'  => $faker->phoneNumber,
+                'email'      => 'laocongtien@gmail.com',
+                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
+                'coin'     =>   $faker->numberBetween(0,3000),
+                'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+                'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+            ]);
             DB::table('users')->insert([
                 'username'   => $faker->userName,
                 'password'    => Hash::make('123456'),
@@ -55,7 +66,18 @@ class UserSeeder extends Seeder
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
-        }
+            DB::table('users')->insert([
+                'username'   => $faker->userName,
+                'password'    => Hash::make('123456'),
+                'fullname'      =>  $faker->name,
+                'phone'  => $faker->phoneNumber,
+                'email'      => $faker->freeEmail,
+                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
+                'coin'     =>   $faker->numberBetween(0,3000),
+                'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+                'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+            ]);
+        
     }
 }
 

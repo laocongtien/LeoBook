@@ -168,8 +168,8 @@ $route_cate   =	'home.cate';
 					</div>
 				</div>
 			</div>
-			<div class="is-tab tab" data-link="danhgia">
-				<div class="danhgia_nhanxet">
+			<div class="is-tab tab " data-link="danhgia">
+				<div class="danhgia_nhanxet loaded">
 					<div class="box_danhgia cmt mxClrAft">
 						<div class="danhgiasach left">
 							<div class="dg_txt">
@@ -262,8 +262,8 @@ $route_cate   =	'home.cate';
 					<span class="fa fa-caret-down"></span>
 				</div>
 			</div>
-			<div class="is-tab tab" data-link="lienquan">
-				<div class="filterbox is-is-box">
+			<div class="is-tab tab " data-link="lienquan">
+				<div class="filterbox is-is-box loaded">
 					<div class="filterbar mxClrAft">
 						<div class="boxmenu mxClrAft">
 							<div class="mn is-is-menu" data-link="01">
