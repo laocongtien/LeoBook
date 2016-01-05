@@ -2,51 +2,86 @@
 @section('content')
 
 <div class="col-lg-12">
-    <h1 class="page-header">Danh mục
-        <small>Thêm mới</small>
+    <h1 class="page-header">
+        Thêm nhà xuất bản
     </h1>
 </div>
-<div class="col-lg-7" style="padding-bottom:120px">
-    <form action="" method="POST">
-        <div class="form-group">
-            <label>Name</label>
-            <input class="form-control" name="txtName" placeholder="Please Enter Username" />
+<div class="clear"></div>
+ @if(count($errors) > 0)
+    <div class="er wrap">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form action="{!! route('admin.book.getAdd') !!}" method="POST" class="wrap iss">
+    {{csrf_field()}}
+    <div class="fgr">
+        <div class="l">
+            Tên nhà xuất bản
         </div>
-        <div class="form-group">
-            <label>Price</label>
-            <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
+        <input type="text" class="ip" placeholder="Nhập tên nhà xuất bản (Tên đầy đủ)" name="txtName">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Tên nnhà xuất bản
         </div>
-        <div class="form-group">
-            <label>Intro</label>
-            <textarea class="form-control" rows="3" name="txtIntro"></textarea>
+        <input type="text" class="ip" placeholder="Nhập tên nhà xuất bản (Tên thường gọi)" name="txtName">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Logo
         </div>
-        <div class="form-group">
-            <label>Content</label>
-            <textarea class="form-control" rows="3" name="txtContent"></textarea>
+        <div class="ch mxClrAft">
+            <div class="up">
+                <div class="bt">Chọn ảnh từ máy tính</div>
+                <input type="text" class="ipch">
+            </div>
+            <div class="up">
+                <div class="bt">Nhập link ảnh</div>
+                <input type="text" class="ipch">
+            </div>
         </div>
-        <div class="form-group">
-            <label>Images</label>
-            <input type="file" name="fImages">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Trụ sở chính
         </div>
-        <div class="form-group">
-            <label>Product Keywords</label>
-            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+        <input type="text" placeholder="Nhập địa chỉ" class="ip">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Số điện thoại liên hệ
         </div>
-        <div class="form-group">
-            <label>Product Description</label>
-            <textarea class="form-control" rows="3"></textarea>
+        <input type="text" placeholder="Nhập số điện thoại" class="ip">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Fax
         </div>
-        <div class="form-group">
-            <label>Product Status</label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="1" checked="" type="radio">Visible
-            </label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="2" type="radio">Invisible
-            </label>
+        <input type="text" placeholder="Nhập số Fax" class="ip">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Email liên hệ
         </div>
-        <button type="submit" class="btn btn-default">Product Add</button>
-        <button type="reset" class="btn btn-default">Reset</button>
-    <form>
-</div>
+        <input type="text" placeholder="Nhập email" class="ip">
+    </div>
+    <div class="fgr">
+        <div class="l">
+            Website chính thức
+        </div>
+        <input type="text" placeholder="Nhập địa chỉ website" class="ip">
+    </div>
+    <div class="ctrlp">
+        <button class="apply">
+            Thêm nhà xuất bản
+        </button>
+        <button class="cancel">
+            Hủy
+        </button>
+    </div>
+</form>
 @stop

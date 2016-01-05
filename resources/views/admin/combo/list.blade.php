@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-<form action="" method="post" accept-charset="utf-8" class="book">
+<form action="" method="post" accept-charset="utf-8" class="combo wrap">
 {{csrf_field()}}
     <div class="col-lg-12">
         <h1 class="page-header">

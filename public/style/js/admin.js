@@ -5,6 +5,7 @@ $(function(){
 	index();
 	cate();
 	book();
+	combo();
 });
 function listpage(){
 	if($('table').length == 0) return;
@@ -306,6 +307,84 @@ function removeAth(){
 	});
 }
 //phân trang
+
+/*-------Combo--------------*/
+function combo(){
+	if($('.combo').length == 0) return;
+	if($('.combo').hasClass('edit') == false) $('input').val('');
+	additemcombo();
+}
+
+	var n = 0;
+function additemcombo(){
+	$('.is-combo-add').find('.bta').click(function(){
+		var bt = $(this);
+		n++;
+		$('.is-combo-add').remove();
+		if(bt.hasClass('is-combo-abook')) {
+			$('.is-addto-combo').append(function(){
+				return '\
+				<div class="item"><!--Thêm sách-->\
+			        <div class="ttl">\
+			            #item' + n +
+			        '</div>\
+			        <div class="fgr">\
+			            <div class="l">\
+			                Thêm Sách\
+			            </div>\
+			            <input type="text" class="ip" placeholder="Nhập link sách" onchange="addcombo()">\
+			        </div>\
+			    </div>\
+			    <div class="fgr is-combo-add">\
+			        <div class="lb">\
+			            <span class="fa fa-plus-circle"></span>\
+			            <div class="bta is-combo-abook">Thêm sách</div>\
+			            <div class="bta is-combo-aother">Thêm khác</div>\
+			        </div>\
+			    </div>\
+			'});
+			additemcombo();
+		}
+		else {
+			$('.is-addto-combo').append(function(){
+				return '\
+				<div class="item"><!--Thêm khác-->\
+			        <div class="ttl">\
+			            #item' + n +
+			        '</div>\
+			        <div class="fgr">\
+			            <div class="l">\
+			                Thêm khác\
+			            </div>\
+			            <input type="text" class="ip" placeholder="Nhập tên sản phẩm">\
+			        </div>\
+			        <div class="fgr">\
+			            <div class="l">\
+			                Ảnh sản phẩm\
+			            </div>\
+			            <input type="text" class="ip" value="Thay cái này = box nhập ảnh">\
+			        </div>\
+			        <div class="fgr">\
+			            <div class="l">\
+			                Thông tin sản phẩm\
+			            </div>\
+			            <textarea name="" id="" cols="30" rows="10" class="itr"></textarea>\
+			        </div>\
+			    </div>\
+			    <div class="fgr is-combo-add">\
+			        <div class="lb">\
+			            <span class="fa fa-plus-circle"></span>\
+			            <div class="bta is-combo-abook">Thêm sách</div>\
+			            <div class="bta is-combo-aother">Thêm khác</div>\
+			        </div>\
+			    </div>\
+			'});
+			additemcombo();
+		}
+	});
+}
+
+/*---------------------*/
 function phantrang(){
 	if($('.numpage').length == 0) return;
 	$('.page_number').each(function(){

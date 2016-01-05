@@ -114,7 +114,7 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::get('list', ['as' => 'admin.combo.getList', 'uses' => 'ComboController@getList']);
 		Route::post('list', ['as' => 'admin.combo.postList', 'uses' => 'ComboController@postList']);
 
-		Route::get('edit', ['as' => 'admin.combo.getEdit', 'uses' => 'ComboController@geEdit']);
+		Route::get('edit', ['as' => 'admin.combo.getEdit', 'uses' => 'ComboController@getEdit']);
 		Route::post('edit', ['as' => 'admin.combo.postEdit', 'uses' => 'ComboController@postEdit']);
 	});
 	Route::group(['prefix' => 'publisher'], function() {

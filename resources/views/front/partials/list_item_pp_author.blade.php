@@ -19,7 +19,7 @@
 					{{ (int)(date('Y'))-$data->years}}
 				</span>
 			</div>
-			<div class="trig is-3r">
+			<div class="trig is-5r">
 				{{ $data->info }}
 			</div>
 		</div>

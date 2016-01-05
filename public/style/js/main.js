@@ -108,6 +108,10 @@ function limited(){
 		row: 3, 
 		onlyFullWords: true,
 	});
+	$('.is-3r').ellipsis({
+		row: 5, 
+		onlyFullWords: true,
+	});
 }
 /* js cho các selectbox */
 function selectbox(){

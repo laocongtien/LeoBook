@@ -16,7 +16,7 @@
         </ul>
     </div>
 @endif
-<form action="{!! route('admin.combo.getAdd') !!}" method="POST" class="wrap">
+<form action="{!! route('admin.combo.getAdd') !!}" method="POST" class="wrap combo">
     {{csrf_field()}}
     <div class="fgr">
         <div class="l">
@@ -45,16 +45,18 @@
         </div>
         <input type="text" class="ip" placeholder="Nhập số lượng combo">
     </div>
-    <div class="fgr">
-        <div class="lb">
-            <span class="fa fa-plus-circle"></span>
-            <div class="bta">Thêm sách</div>
-            <div class="bta">Thêm khác</div>
+    <div class="is-addto-combo">
+        <div class="fgr is-combo-add">
+            <div class="lb">
+                <span class="fa fa-plus-circle"></span>
+                <div class="bta is-combo-abook">Thêm sách</div>
+                <div class="bta is-combo-aother">Thêm khác</div>
+            </div>
         </div>
     </div>
-    <div class="item"><!--Thêm sách-->
+    <!-- <div class="item">Thêm sách
         <div class="ttl">
-            #item1
+            #item1 (Cập nhật theo thứ tự item ~~)
         </div>
         <div class="fgr">
             <div class="l">
@@ -63,9 +65,9 @@
             <input type="text" class="ip" placeholder="Nhập link sách" onchange="addcombo()">
         </div>
     </div>
-    <div class="item"><!--Thêm khác-->
+    <div class="item">Thêm khác
         <div class="ttl">
-            #item2
+            #item2 (Cập nhật theo thứ tự item ~~)
         </div>
         <div class="fgr">
             <div class="l">
@@ -85,7 +87,7 @@
             </div>
             <textarea name="" id="" cols="30" rows="10" class="itr"></textarea>
         </div>
-    </div>
+    </div> -->
     <div class="ctrlp mxClrAft">
         <button class="apply">
             Thêm combo
