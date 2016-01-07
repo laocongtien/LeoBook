@@ -538,6 +538,9 @@ $route_register     =	'home.register';
 						<a href="{!! route($route_customer).'#rated'  !!}" ref="rated" class="lg">
 							Danh sách đánh giá
 						</a>
+						<a href="{!! route($route_customer).'#wallet'  !!}" ref="order" class="lg">
+							Ví điện tử
+						</a>
 						<a href="{!! route($route_customer).'#order'  !!}" ref="order" class="lg">
 							Đơn hàng
 						</a>

@@ -17,7 +17,7 @@ use Hash;
 use Input;
 use App\User;
 use App\Location;
-use App\Ward, App\District, App\Province;
+use App\Ward, App\District, App\Province, App\Wishlist;
 
 
 class HomeController extends Controller
@@ -572,8 +572,9 @@ class HomeController extends Controller
                         
                     ]);
                 case 'fav':
+                    $source = wishlist::where('user_id',$limit)->paginate(4);
                     return view('front.partials.customer.fav',[
-                        
+                        'data' => $source,
                     ]);
                 default :
                     $sources = DB::table('Issuers');

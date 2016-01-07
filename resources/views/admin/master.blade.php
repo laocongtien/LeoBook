@@ -66,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="{{route('admin.index')}}">
                     <img src="{!!asset('')!!}public/style/images/theme/logo-gray.png" alt="Leobook.com">
                 </a>
             </div>

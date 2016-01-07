@@ -1,3 +1,17 @@
+<?php
+$route_bestseller = 'home.bestseller';
+$route_newbook    =	'home.newbook';
+$route_comming    =	'home.comming';
+$route_discount   =	'home.discount';
+$route_combo      =	'home.combo';
+$route_author     =	'home.author';
+$route_publisher  =	'home.publisher';
+$route_issuer     =	'home.issuer';
+$route_search     =	'home.search';
+$route_checkout   =	'home.checkout';
+$route_customer   =	'home.customer';
+$route_cate   =	'home.cate';
+?>
 <div class="filterbox loaded">
 	<div class="filterbar mxClrAft">
 		<div class="title">
@@ -32,94 +46,64 @@
 	<div class="tabbox">
 		<div class="gridbook">
 			<div class="lbook grid mxClrAft">
-				<?php   for ($i = 1; $i < 5;$i++): ?>
+
+				@foreach ($data as $item)
 					<div class="book_item">
 						<div class="book_item_hover">
 							<div class="book_cover">
-								<a href="chitiet.php">
-									<img src="style/images/temp/book<?php echo $i; ?>.jpg" alt="mybook">
+								<a href="{{ route('home.detail' , $item->book->id) }}">
+									<img src="{!!asset($item->book->image)!!}" alt="mybook">
 								</a>
 							</div>
 							<div class="smdt">
 								<div class="dt">
-									<a href="chitiet.php" class="book_title is-2r">
-										Cô đơn cũng không khóc
+									<a href="{{ route('home.detail' , $item->book->id) }}" class="book_title ">
+										{{ $item->book->name }}
 									</a>
-									<div class="book_author intt">
-										Tác giả: 
-										<a href="tacgia.php" >
-											Kita Leo
+									<div class="book_author intt ">
+										<a href="{{route('home.author').'#'.$item->book->author_id}}" class="" >
+											{{ $item->book->author->name }}
 										</a>
 									</div>
 									<div class="intt li">
-										NXB: 
-											<a href="nxb.php">Bách Việt book</a>
+										NXB:
+											<a href="{!! route($route_publisher) !!}">{!! $item->book->publisher->name!!}</a>
 									</div>
 									<div class="sal">
 										<div class="gri">
 											<div class="old">
-												103.000đ
+												{{ number_format($item->book->price,0,',','.') }}đ
 											</div>
 											<div class="new">
-												95.000đ
+												{{ number_format($item->book->price - $item->book->price * $item->book->discount /100,0,',','.') }}đ
 											</div>
 										</div>
 										<div class="li">
 											<div class="old intt">
 												Giá bìa: 
 												<span>
-													103.000đ
+													{{ number_format($item->book->price,0,',','.') }}đ
 												</span>
 											</div>
 											<div class="new intt">
 												Giá bán: 
 													<span>
-														98.000đ
+														{{ number_format($item->book->price - $item->book->price * $item->book->discount /100,0,',','.') }}đ
 													</span>
 											</div>
 										</div>
 									</div>
 									<div class="trig li wait">
-											Tự tin lên nào! Đừng khóc nữa ... Là những câu thần chú của tuổi trẻ khi tôi lấy hết can đảm rời xa P. Chàng trai ấy vẫn sống mãi trong tâm khảm của tôi, bởi những gì dang dở không có kết thúc, thì mãi vẫn là thứ mà người ta thường nghĩ đến, lúc không còn nơi bấu víu! Tôi mãi coi P là người tri kỷ của mình, dù P đã là thiên sứ! P đã rời khỏi thế gian này, nhưng P vẫn ở trong lòng tôi, như một ký ức bất tử. Đúng là, những gì đẹp sẽ còn sống mãi! Với tôi, P còn lớn hơn tình yêu, bởi chúng tôi đã từng có nhiều năm là bạn thân dưới một mái trường! Bước qua tan vỡ với P thật sâu lắng, day dứt và cả sự biết ơn! Bởi nếu cuộc đời này không gặp P, tôi sẽ không thể nhận ra giá trị của mình và gìn giữ nó! Để một ngày trưởng thành hơn, tôi gặp M trong tâm trạng nhớ cố hương da diết. Thứ duy nhất ở M cứ ở lì trong tim tôi không chịu rời đi, chính là ánh mắt! Ấm áp và an yên vô cùng. M, P đều vẫn còn lại trong tôi, dù nhiều thứ đã bỏ tôi đi mãi...
+											{{ $item->book->info }}
 									</div>
 								</div>
-								<div class="cartbox mxClrAft">
-									<div class="num left">
-										<input type="text" class="n left" value="1">
-										<div class="ctrlnum left">
-											<div class="fa fa-angle-up is-up"></div>
-											<div class="fa fa-angle-down is-down"></div>
-										</div>
-										<div class="clear"></div>
-									</div>
-									<button class="addcart left">
-										<span class="fa fa-opencart"></span>
-										<span class="fa fa-check"></span>
-										THÊM VÀO GIỎ
-									</button>
-									<button class="over is-over-check">
-										<span class="fa fa-bullhorn"></span>
-										<span class="fa fa-check"></span>
-										BÁO KHI CÓ HÀNG
-									</button>
-								</div>
+								@include('front.partials.cartbox')			
 							</div>
 						</div>
 					</div>
-				<?php endfor; ?>
+				@endforeach
 			</div>
-			<div class="page_number">
-		        <div class="page_num">
-		        	<div class="num numprev fa fa-angle-double-left hide"></div>
-		        	<div class="num numpage atv">1</div>
-		        	<div class="num numpage">2</div>
-		        	<div class="num numpage">3</div>
-		        	<div class="num numpage">4</div>
-		        	<div class="num numpage">5</div>
-		        	<div class="num numnext fa fa-angle-double-right"></div>
-		        	<div class="clear"></div>
-		        </div>
-		    </div>
+			@include('front.partials.page_num')
   		</div>
 	</div>
 </div>

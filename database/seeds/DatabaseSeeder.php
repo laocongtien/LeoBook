@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IssuerSeeder::class);
         $this->call(PublisherSeeder::class);
         $this->call(OtherSeeder::class);
-        //$this->call(LocationSeeder::class);
+        $this->call(LocationSeeder::class);
         $this->call(BookSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(OrderSeeder::class);
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
                 'fullname'      =>  $faker->name,
                 'phone'  => $faker->phoneNumber,
                 'email'      => 'laocongtien@gmail.com',
-                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
+                'avatar'     => 'public/upload/user/ava2.jpg',
                 'coin'     =>   $faker->numberBetween(0,3000),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
                 'fullname'      =>  $faker->name,
                 'phone'  => $faker->phoneNumber,
                 'email'      => $faker->freeEmail,
-                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
+                'avatar'     => 'public/upload/user/ava2.jpg',
                 'coin'     =>   $faker->numberBetween(0,3000),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'fullname'      =>  $faker->name,
                 'phone'  => $faker->phoneNumber,
                 'email'      => $faker->freeEmail,
-                'avatar'     => 'public/upload/user/ava'.$index.".jpg",
+                'avatar'     => 'public/upload/user/ava3.jpg',
                 'coin'     =>   $faker->numberBetween(0,3000),
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
@@ -306,26 +306,35 @@ class LocationSeeder extends Seeder
                 'user_id' => '1',
                 'house_number' => $faker->buildingNumber,
                 'street' => $faker->streetName,
-                'province_id' => $faker->numberBetween(1,63),
-                'district_id'   => $faker->numberBetween(1,100),
-                'ward_id' => $faker->numberBetween(1,100),
+                'province_id' => 10,
+                'district_id'   => 4,
+                'ward_id' => 28,
                 'default' => 1,
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
-        foreach (range(1,10) as $index){
-            DB::table('locations')->insert([
+         DB::table('locations')->insert([
                 'user_id' => '1',
                 'house_number' => $faker->buildingNumber,
-                'shreet' => $faker->streetName,
-                'province_id' => $faker->numberBetween(1,63),
-                'district_id'   => $faker->numberBetween(1,100),
-                'ward_id' => $faker->numberBetween(1,100),
+                'street' => $faker->streetName,
+                'province_id' => 12,
+                'district_id'   => 271,
+                'ward_id' => 67,
                 'default' => 0,
                 'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
                 'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
             ]);
-        }
+          DB::table('locations')->insert([
+                'user_id' => '1',
+                'house_number' => $faker->buildingNumber,
+                'street' => $faker->streetName,
+                'province_id' => 68,
+                'district_id'   => 20,
+                'ward_id' => 520,
+                'default' => 0,
+                'created_at' => $faker->dateTimeBetween('-3 days','-1 days'),
+                'updated_at' => $faker->dateTimeBetween('-1 days', 'now')
+            ]);
     }
 }
 

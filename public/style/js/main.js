@@ -226,11 +226,13 @@ function tabbox(){
 								$('.filterbox.all').hide();
 							}
 							phantrangAjax(window.location.href,link,tb,limit, sort, list);
+
 						}else $('.filterbox.all').show();
 					}
 					if (!tb.find('div.loaded').length){
 					var user_id = $('.user-info').attr('data-set');
 					phantrangAjax(window.location.href,link,tb,user_id);
+					console.log('kiad');
 					}
 					tb.show();
 					//console.log('tab');
