@@ -724,15 +724,25 @@ function taikhoan(){
 	});
 	$('.is-upload').click(function(){
 		var up = $(this);
+		$('.up').val('');
+		$('.is-upload-file-show').val('');
 		$('.up').removeClass('show');
+		$('.is-upload-file-show').removeClass('show');
 		if(up.hasClass('is-upload-link')){
 			if(up.hasClass('atv')) $('.up').addClass('show');
 			else $('.up').removeClass('show');
+		}
+		else{
+			if(up.hasClass('atv')) $('.is-upload-file-show').addClass('show');
+			else $('.is-upload-file-show').removeClass('show');
 		}
 		$('.is-upload').removeClass('atv');
 		up.addClass('atv');
 		if(up.hasClass('is-upload-file')){
 			$('input.is-upload-file').trigger('click');
+		}
+		else{
+			$('input.is-upload-link').trigger('click');
 		}
 	});
 }
