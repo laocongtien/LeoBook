@@ -530,8 +530,48 @@ class HomeController extends Controller
     }
 
     public function search() {
-        return view('front.timkiem');
+        $key = Request::get('tim_kiem_tu_khoa');
+        if (Request::ajax())
+        {
+            $limit = Request::get('limit');
+            $data = Request::get('data');
+            $sort = Request::get('sort');
+            $list = Request::get('list');
+            
+            if ($data == '01'){
+                $book = book::where('name','LIKE','%'.$key.'%')->where('publishing_date','<',date('y-m-d'));
+                $books = Func::sort($book,$sort)->paginate($limit);
+                return view('front.partials.list_book_item_info_page_lbook',[
+                    'data' => $books,
+                    'list' => $list
+                ]);
+            }elseif ($data == '02'){
+                $author = author::where('name','LIKE','%'.$key.'%');
+                $authors = Func::sort($author,$sort)->paginate($limit);
+                return view('front.partials.list_book_item_info_page_lbook_author',[
+                    'data' => $authors,
+                    'list' => $list
+                ]);
+            }elseif ($data == '03'){
+                $author = book::where('name','LIKE','%'.$key.'%')->where('publishing_date','<',date('y-m-d'));
+                $authors = Func::sort($author,$sort)->paginate($limit);
+                return 'chưa làm';
+            }
+            return view('front.partials.list_book_item_info_page_lbook',[
+                'data' => $model,
+                'list' => $list
+            ]);
+        }
+
+        $search_book = book::where('name','LIKE','%'.$key.'%')->where('publishing_date','<',date('y-m-d'));
+        $search_books = Func::sort($search_book,'default')->paginate(5);
+        //$cate_name = issuer::where('id',$id)->first()->name;
+        return view('front.timkiem',[
+            'data' =>  $search_books,
+             //'name' => 'Sách của '.$cate_name ,
+        ]);
     }
+    
 
     public function customer() {
         if(Request::ajax()){

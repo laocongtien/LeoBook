@@ -55,7 +55,7 @@ Danh mục sách
 			</div>
 			<div class="tabbox">
 				<div class="is-tab gridbook" data-link="01">
-					{{-- đổ trang list_book_item_info_page_lbook --}}
+					@include('front.partials.list_book_item_info_page_lbook')
 	      		</div>
 			    <div class="is-tab gridbook" data-link="02">
 					{{-- đổ trang list_book_item_info_page_lbook --}}
