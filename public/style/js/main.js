@@ -17,6 +17,7 @@ $(function(){
 function starup(){
 	$('.cartbox').each(function(){
 		var box = $(this);
+		if(box.hasClass('chout')) return;
 		if(box.parent().hasClass('lica')) return;
 		box.find('.n').val('1');
 	});	
@@ -1042,6 +1043,10 @@ function phantrangAjax(link,data,gridbook,limit,sort,list){
 		limited();
 		selectbox();
 		authorDetail();
+		$('.trig').ellipsis({
+			row: 3, 
+			onlyFullWords: true,
+		});
 		if ($('.liacc.is-menu').length) popup();
 		if ($('.accpage').length) taikhoan(); 
 	})

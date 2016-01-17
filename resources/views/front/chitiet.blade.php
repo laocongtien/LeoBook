@@ -138,7 +138,7 @@ $route_cate   =	'home.cate';
 			<div class="is-tab tab tab1" data-link="gioithieu">
 				<div class="txt_gioithieu">
 					<div class="ndchinh">
-						{!! $item->info !!}
+						<!-- bỏ p lúc code--><p>{!! $item->info !!}</p>
 					</div>
 					<div class="seemore">
 						Xem thêm

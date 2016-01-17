@@ -419,7 +419,7 @@ $route_register     =	'home.register';
 					</div>
 					<div class="menu_c2 hide">
 						<div class="clone2" sub="tt_1">
-							<?php $cates = DB::table('cates')->get(); ?>
+							<?php $cates = DB::table('cates')->where('parent_id',0)->get(); ?>
 							@foreach ($cates as $cate)
 								<div class="title_c2">
 									<a href="{!! route('bestseller.cate',$cate->id) !!}" class="name_menu">

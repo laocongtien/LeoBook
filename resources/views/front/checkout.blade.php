@@ -32,7 +32,7 @@ $route_cate   =	'home.cate';
 					@foreach($content as $item)
 						<div class="cart-item mxClrAft">
 							<a href="{{ route('home.detail' , $item->id) }}" class="cv left" id="{{ $item->rowid }}">
-								<img src="style/images/temp/book{{ $item['options']['image'] }}.jpg" alt="mybook">
+								<img src="{{ $item['options']['image'] }}" alt="mybook">
 							</a>
 							<div class="dtb left">
 								<a href="{{ route('home.detail' , $item->id) }}" class="ttb">
@@ -42,8 +42,32 @@ $route_cate   =	'home.cate';
 									Xóa sản phẩm
 								</div>
 							</div>
-							@include('front.partials.cartbox')	
-							<div class="br left">
+							
+								<div class="cartbox mxClrAft left chout 
+												
+								">
+									<div class="num left">
+										@if (Cart::count() != 0)
+										@foreach(Cart::content() as $cart)
+										<?php
+										if ($cart->id == $item->id) 
+											{
+											$qty = $cart->qty;
+											break;
+											}										
+										?>										
+										@endforeach
+										@endif
+										<input type="text" class="n left qty" value="{{$qty}}">
+										<input type="hidden" class="b-id" value="{{ $item->id }}">
+										<div class="ctrlnum left">
+											<div class="fa fa-angle-up is-up"></div>
+											<div class="fa fa-angle-down is-down"></div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>	
+							<div class="br right">
 								{{ number_format($item->price,0,',','.') }}đ
 							</div>
 						</div>
